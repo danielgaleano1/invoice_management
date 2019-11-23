@@ -14,7 +14,7 @@ class city extends Model
         return $this->hasMany(client::class);
     }
 
-    public function users() {
-        return $this->hasMany(user_employee::class);
+    public function collaborator() {
+        return $this->hasMany(collaborator::class);
     }
 }

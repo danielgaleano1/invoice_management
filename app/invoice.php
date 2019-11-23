@@ -14,8 +14,8 @@ class invoice extends Model
         return $this->belongsTo(client::class);
     }
 
-    public function user() {
-        return $this->belongsTo(user_employee::class);
+    public function collaborator() {
+        return $this->belongsTo(collaborator::class);
     }
 
     public function invoice_products() {

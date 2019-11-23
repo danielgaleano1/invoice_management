@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/invoice', 'invoice_controller');
+Route::resource('invoice', 'invoice_controller');
 
 Route::get('/invoice/{id}/confirm_delete', 'invoice_controller@confirm_delete');
+
+Route::resource('client', 'client_controller');

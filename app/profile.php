@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class profile extends Model
 {
-    public function users() {
-        return $this->hasMany(user_employee::class);
+    public function collaborator() {
+        return $this->hasMany(collaborator::class);
     }
 }
