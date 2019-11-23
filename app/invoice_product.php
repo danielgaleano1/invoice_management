@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class invoice_product extends Model
 {
-    public function invoices() {
+    public function invoice() {
         return $this->belongsTo(invoice::class);
     }
 

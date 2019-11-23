@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class invoice extends Model
 {
-    public function invoice_states() {
+    public function invoice_state() {
         return $this->belongsTo(invoice_state::class);
     }
 
-    public function clients() {
+    public function client() {
         return $this->belongsTo(client::class);
     }
 
-    public function users() {
+    public function user() {
         return $this->belongsTo(user_employee::class);
     }
 
