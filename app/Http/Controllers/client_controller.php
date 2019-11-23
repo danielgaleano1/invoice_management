@@ -13,7 +13,7 @@ class client_controller extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**

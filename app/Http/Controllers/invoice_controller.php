@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\invoice;
 
 class invoice_controller extends Controller
 {
@@ -13,7 +14,9 @@ class invoice_controller extends Controller
      */
     public function index()
     {
-        //
+        return view('invoice.index', [
+            'invoice_list' => invoice::all()
+        ]);
     }
 
     /**
@@ -45,7 +48,7 @@ class invoice_controller extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -56,7 +59,10 @@ class invoice_controller extends Controller
      */
     public function edit($id)
     {
-        //
+        $invoice_list = invoice::findOrFail($id);
+        return view('invoice.edit', [
+            'invoice_list' => $invoice_list
+        ]);
     }
 
     /**
@@ -78,6 +84,11 @@ class invoice_controller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {
+        //
+    }
+
+    public function confirm_delete($id)
     {
         //
     }
