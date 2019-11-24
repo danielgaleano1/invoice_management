@@ -15,7 +15,7 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('collaborator_id');
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('invoice_state_id');
             $table->unsignedInteger('code');
@@ -24,7 +24,7 @@ class CreateInvoicesTable extends Migration
             $table->float('total_value');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('collaborator_id')->references('id')->on('collaborators');
             $table->foreign('client_id')->references('id')->on('clients');
             $table->foreign('invoice_state_id')->references('id')->on('invoice_states'); 
         });
