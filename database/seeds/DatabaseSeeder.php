@@ -12,12 +12,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
          //$this->call(country_factory::class);
-         //factory(App\country::class,5)->create();
-         //factory(App\city::class, 10)->create();
-
-         factory(App\country::class, 3)->create()->each(function ($country) {
-            factory(App\city::class, 2)->create(['country_id'=>$country->id]);
-        });
+         
+         //factory(App\country::class, 3)->create()->each(function ($country) {
+        //    factory(App\city::class, 2)->create(['country_id'=>$country->id]);
+        //});
+        factory(App\country::class, 3)->create();
+        factory(App\city::class, 2)->create();
         factory(App\client::class, 2)->create();
     }
 }
