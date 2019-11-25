@@ -18,11 +18,11 @@ class CreateCollaboratorsTable extends Migration
             $table->unsignedBigInteger('profile_id');
             $table->unsignedBigInteger('city_id');
             $table->unsignedInteger('code');
-            $table->string('name', 50);
-            $table->string('address', 50);
+            $table->string('name', 200);
+            $table->string('address', 200);
             $table->string('phone', 10);
-            $table->string('email', 50);
-            $table->string('password', 50);
+            $table->string('email', 200);
+            $table->string('password', 200);
             $table->timestamps();
 
             $table->foreign('profile_id')->references('id')->on('profiles');

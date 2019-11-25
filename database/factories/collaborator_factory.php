@@ -2,12 +2,11 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Model;
+use App\collaborator;
 use Faker\Generator as Faker;
 
-$factory->define(App\country::class, function (Faker $faker) {
-
+$factory->define(App\collaborator::class, function (Faker $faker) {
     return [
-        'name' => $faker->country,
+        //
     ];
 });
