@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <a class="btn btn-primary" href="/expense_reports/create">Create new invoice</a>
+            <a class="btn btn-primary" href="/invoice/create">Create new invoice</a>
         </div>
     </div>
     <div class="row">
