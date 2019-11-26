@@ -20,7 +20,7 @@ class CreateCollaboratorsTable extends Migration
             $table->unsignedInteger('code');
             $table->string('name', 200);
             $table->string('address', 200);
-            $table->string('phone', 10);
+            $table->string('phone', 50);
             $table->string('email', 200);
             $table->string('password', 200);
             $table->timestamps();
