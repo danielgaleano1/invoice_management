@@ -14,7 +14,7 @@ class CollaboratorController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**

@@ -1,29 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <div class="col">
-            <h1>Edit Invoices {{ $invoice_list->code }}</h1>
+    <div class="card card-default">
+        <div class="card-header pb-0">
+            <h5 class="card-title">{{ __('Edit a invoice') }}</h5>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <a class="btn btn-secondary" href="/invoice">Back</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <form action="/invoice/{{ $invoice_list->id }}" method="POST">
+        <div class="card-body">
+            <form action="{{ route('invoice.update', $invoice_list) }}" method="post" id="invoices-form">
                 @csrf
-                @method('put')
-                <div class="form-goup">
-                    <label for="title">Code</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Type a title" value="{{ old('code') }}">
-                </div>
-                <button class="btn btn-primary" type="submit">Submit</button>
+                @method('PATCH')
+                @include('invoice\__form')
             </form>
         </div>
+        <div class="card-footer d-flex justify-content-between">
+            <a href="{{ route('invoice.index') }}" class="btn btn-danger">
+                <i class="fas fa-arrow-left"></i> {{ __('Cancel') }}
+            </a>
+            <button type="submit" class="btn btn-success" form="invoices-form">
+                <i class="fas fa-edit"></i> {{ __('Update') }}
+            </button>
+        </div>
     </div>
-
     
 @endsection
