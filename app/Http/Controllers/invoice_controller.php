@@ -20,8 +20,8 @@ class invoice_controller extends Controller
          return view('invoice.index', [
             'invoice_list' => invoice::all(),
             'collaborator_list' => collaborator::all(),
-            'client_list' => invoice::all(),
             'invoice_state_list' => invoice_state::all(),
+            'client_list' => client::all(),
         ]);
     }
 
