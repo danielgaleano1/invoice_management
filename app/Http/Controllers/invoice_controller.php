@@ -21,7 +21,7 @@ class invoice_controller extends Controller
             'invoice_list' => invoice::all(),
             'collaborator_list' => collaborator::all(),
             'invoice_state_list' => invoice_state::all(),
-            'client_list' => client::all(),
+            'client_list' => client::all()
         ]);
     }
 
@@ -33,9 +33,10 @@ class invoice_controller extends Controller
     public function create()
     {
         return view('invoice.create', [
+            'invoice_list' => invoice::all(),
             'collaborator_list' => collaborator::all(),
-            'client_list' => invoice::all(),
             'invoice_state_list' => invoice_state::all(),
+            'client_list' => client::all()
         ]);
     }
 
@@ -47,7 +48,17 @@ class invoice_controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $invoice_record = new invoice;
+        $invoice_record->collaborator_id = $request->input('collaborator.value');
+        $invoice_record->client_id = $request->input('client.value');
+        $invoice_record->invoice_state_id = $request->input('invoice_state.value');
+        $invoice_record->code = $request->input('code');
+        $invoice_record->expiration_at = $request->input('expiration_at');
+        $invoice_record->value_tax = $request->input('value_tax');
+        $invoice_record->total_value = $request->input('total_value');
+        $invoice_record->save();
+
+        return redirect()->route('invoice.index')->withSuccess(__('Invoice create successfully!'));
     }
 
     /**
@@ -73,7 +84,7 @@ class invoice_controller extends Controller
         return view('invoice.edit', [
             'invoice_list' => $invoice_list,
             'collaborator_list' => collaborator::all(),
-            'client_list' => invoice::all(),
+            'client_list' => client::all(),
             'invoice_state_list' => invoice_state::all(),
         ]);
     }
@@ -87,7 +98,18 @@ class invoice_controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $invoice_list = invoice::findOrFail($id);
+        
+        $invoice_list->collaborator_id = $request->input('collaborator');
+        $invoice_list->client_id = $request->input('client');
+        $invoice_list->invoice_state_id = $request->input('invoice_state');
+        $invoice_list->code = $request->input('code');
+        $invoice_list->expiration_at = $request->input('expiration_at');
+        $invoice_list->value_tax = $request->input('value_tax');
+        $invoice_list->total_value = $request->input('total_value');
+        $invoice_list->save();
+
+        return redirect()->route('invoice.index')->withSuccess(__('Invoice updated successfully!'));
     }
 
     /**
