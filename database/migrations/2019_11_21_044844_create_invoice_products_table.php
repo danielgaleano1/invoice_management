@@ -21,8 +21,8 @@ class CreateInvoiceProductsTable extends Migration
             $table->float('price');
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('invoice_id')->references('id')->on('invoices') ->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')
+            $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');
         });
     }
 
