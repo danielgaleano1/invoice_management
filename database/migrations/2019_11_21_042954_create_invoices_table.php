@@ -25,7 +25,7 @@ class CreateInvoicesTable extends Migration
             $table->timestamps();
 
             $table->foreign('collaborator_id')->references('id')->on('collaborators');
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('invoice_state_id')->references('id')->on('invoice_states'); 
         });
     }
