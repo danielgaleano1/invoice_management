@@ -7,6 +7,8 @@ use App\invoice;
 use App\collaborator;
 use App\client;
 use App\invoice_state;
+use App\invoice_product;
+use App\product;
 
 class invoice_controller extends Controller
 {
@@ -69,7 +71,12 @@ class invoice_controller extends Controller
      */
     public function show($id)
     {
-
+        $invoice_list = invoice::findOrFail($id);
+        return view('invoice.show', [
+            'invoice_list' => $invoice_list,
+            'invoice_product_list' => invoice_product::all(),
+            'product_list' => product::all(),
+        ]);  
     }
 
     /**
