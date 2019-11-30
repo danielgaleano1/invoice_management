@@ -36,8 +36,19 @@
                             <td>{{ $invoice_lists->expiration_at }}</td>
                             <td>{{ $invoice_lists->value_tax }}</td>
                             <td>{{ $invoice_lists->total_value }}</td>
-                            <td><a href="/invoice/{{ $invoice_lists->id }}/edit">Edit</a></td>
-                            <td><a href="/invoice/{{ $invoice_lists->id }}/confirm_delete">delete</a></td>
+                            <td class="text-right">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Collaborator actions') }}">
+                                    <a href="{{ route('invoice.show', $invoice_lists) }}" class="btn btn-link" title="{{ __('View') }}">
+                                        <i class="fas fa-eye">View</i>
+                                    </a>
+                                    <a href="{{ route('invoice.edit', $invoice_lists) }}" class="btn btn-link" title="{{ __('Edit') }}">
+                                        <i class="fas fa-edit">Edit</i>
+                                    </a>
+                                    <a href="/invoice/{{ $invoice_lists->id }}/confirm_delete" class="btn btn-link text-danger" title="{{ __('Delete') }}">
+                                        <i class="fas fa-trash">Delete</i>
+                                    </a>
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

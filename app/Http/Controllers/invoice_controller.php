@@ -49,9 +49,9 @@ class invoice_controller extends Controller
     public function store(Request $request)
     {
         $invoice_record = new invoice;
-        $invoice_record->collaborator_id = $request->input('collaborator.value');
-        $invoice_record->client_id = $request->input('client.value');
-        $invoice_record->invoice_state_id = $request->input('invoice_state.value');
+        $invoice_record->collaborator_id = $request->input('collaborator');
+        $invoice_record->client_id = $request->input('client');
+        $invoice_record->invoice_state_id = $request->input('invoice_state');
         $invoice_record->code = $request->input('code');
         $invoice_record->expiration_at = $request->input('expiration_at');
         $invoice_record->value_tax = $request->input('value_tax');
@@ -120,11 +120,16 @@ class invoice_controller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $invoice_list = invoice::findOrFail($id);
+        $invoice_list->delete();
+        return redirect()->route('invoice.index')->withSuccess(__('Invoice deleted successfully'));
     }
 
     public function confirm_delete($id)
     {
-        //
+        $invoice_list = invoice::findOrFail($id);
+        return view('invoice.confirm_delete', [
+            'invoice_list' => $invoice_list
+        ]);
     }
 }
