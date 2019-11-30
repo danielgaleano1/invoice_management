@@ -17,11 +17,11 @@ class CreateCollaboratorsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('profile_id');
             $table->unsignedBigInteger('city_id');
-            $table->unsignedInteger('code');
+            $table->unsignedInteger('code')->unique();
             $table->string('name', 200);
             $table->string('address', 200);
             $table->string('phone', 50);
-            $table->string('email', 200);
+            $table->string('email', 200)->unique();
             $table->string('password', 200);
             $table->timestamps();
 

@@ -22,7 +22,7 @@ class CreateInvoiceProductsTable extends Migration
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->foreign('invoice_id')->references('id')->on('invoices') ->onDelete('cascade');
         });
     }
 

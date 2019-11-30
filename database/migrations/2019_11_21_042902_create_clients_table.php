@@ -20,7 +20,7 @@ class CreateClientsTable extends Migration
             $table->string('name', 200);
             $table->string('address', 200);
             $table->string('phone', 50);
-            $table->string('email', 200);
+            $table->string('email', 200)->unique();
             $table->timestamps();
 
             $table->foreign('city_id')->references('id')->on('cities');
