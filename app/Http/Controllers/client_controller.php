@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\client;
+use App\city;
 
 class client_controller extends Controller
 {
@@ -13,7 +15,10 @@ class client_controller extends Controller
      */
     public function index()
     {
-
+        return view('client.index', [
+            'client_list' => client::all(),
+            'city_list' => city::all()
+        ]);
     }
 
     /**
