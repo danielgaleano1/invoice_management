@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\client;
 use App\city;
+use App\invoice;
 
 class client_controller extends Controller
 {
@@ -28,7 +29,11 @@ class client_controller extends Controller
      */
     public function create()
     {
-        //
+        return view('client.create', [
+            'client_list' => client::all(),
+            'invoice_list' => invoice::all(),
+            'city_list' => city::all()
+        ]);
     }
 
     /**
@@ -39,7 +44,16 @@ class client_controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client_record = new client;
+        $client_record->city_id = $request->input('city');
+        $client_record->code = $request->input('code');
+        $client_record->name = $request->input('name');
+        $client_record->address = $request->input('address');
+        $client_record->phone = $request->input('phone');
+        $client_record->email = $request->input('email');
+        $client_record->save();
+
+        return redirect()->route('client.index')->withSuccess(__('Client create successfully!'));
     }
 
     /**
@@ -50,7 +64,11 @@ class client_controller extends Controller
      */
     public function show($id)
     {
-        //
+        $client_list = client::findOrFail($id);
+        return view('client.show', [
+            'client_list' => $client_list,
+            'invoice_list' => invoice::all()
+        ]);  
     }
 
     /**
@@ -61,7 +79,12 @@ class client_controller extends Controller
      */
     public function edit($id)
     {
-        //
+        $client_list = client::findOrFail($id);
+        return view('client.edit', [
+            'client_list' => $client_list,
+            'invoice_list' => invoice::all(),
+            'city_list' => city::all()
+        ]);
     }
 
     /**
@@ -73,7 +96,17 @@ class client_controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $client_record = client::findOrFail($id);
+
+        $client_record->city_id = $request->input('city');
+        $client_record->code = $request->input('code');
+        $client_record->name = $request->input('name');
+        $client_record->address = $request->input('address');
+        $client_record->phone = $request->input('phone');
+        $client_record->email = $request->input('email');
+        $client_record->save();
+
+        return redirect()->route('client.index')->withSuccess(__('Client update successfully!'));
     }
 
     /**
@@ -82,8 +115,18 @@ class client_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+     public function destroy($id)
+     {
+         $client_list = client::findOrFail($id);
+         $client_list->delete();
+         return redirect()->route('client.index')->withSuccess(__('client deleted successfully'));
+     }
+ 
+     public function confirm_delete($id)
+     {
+         $client_list = client::findOrFail($id);
+         return view('client.confirm_delete', [
+             'client_list' => $client_list
+         ]);
+     }
 }

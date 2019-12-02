@@ -7,7 +7,7 @@
             <h5 class="card-title">{{ __('Clients') }}</h5>
         </div>
         <div class="card-footer d-flex justify-content-between">
-            <a class="btn btn-primary" href="{{ route('invoice.create') }}">Create new client</a>
+            <a class="btn btn-primary" href="{{ route('client.create') }}">Create new client</a>
         </div>
     </div>
 

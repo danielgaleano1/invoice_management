@@ -2,72 +2,54 @@
 
     <div class="col-md-6">
         <div class="form-group">
-            <label for="collaborator">{{ __('Collaborator') }}</label>
-            <select class="form-control custom-select {{ $errors->has('collaborator') ? 'is-invalid' : '' }}" name="collaborator" id="collaborator" required>
-                <option value="">{{ __('Please select a collaborator') }}</option>
-                @foreach($collaborator_list as $collaborator)
-                    <option value="{{ $collaborator->id }}">{{ $collaborator->name }}</option>
-                @endforeach
-            </select>
-            @includeWhen($errors->has('collaborator'), 'partials.__invalid_feedback', ['feedback' => $errors->first('collaborator')])
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="invoice_state">{{ __('Invoice State') }}</label>
-            <select class="form-control custom-select {{ $errors->has('invoice_state') ? 'is-invalid' : '' }}" name="invoice_state" id="invoice_state" required>
-                <option value="">{{ __('Please select a invoice state') }}</option>
-                @foreach($invoice_state_list as $invoice_state)
-                    <option value="{{ $invoice_state->id }}">{{ $invoice_state->type }}</option>
-                @endforeach
-            </select>
-            @includeWhen($errors->has('invoice_state'), 'partials.__invalid_feedback', ['feedback' => $errors->first('invoice_state')])
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="client">{{ __('client') }}</label>
-            <select class="form-control custom-select {{ $errors->has('client') ? 'is-invalid' : '' }}" name="client" id="client" required>
-                <option value="">{{ __('Please select a client') }}</option>
-                @foreach($client_list as $client)
-                    <option value="{{ $client->id }}">{{ $client->name }}</option>
-                @endforeach
-            </select>
-            @includeWhen($errors->has('client'), 'partials.__invalid_feedback', ['feedback' => $errors->first('client')])
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
             <label for="code">{{ __('Code') }}</label>
-            <input type="text" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code" id="code" value="" required>
+            <input type="text" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code" id="code" value="{{ old('code') }}" required>
             @includeWhen($errors->has('code'), 'partials.__invalid_feedback', ['feedback' => $errors->first('code')])
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="form-group">
-            <label for="expiration_at">{{ __('expiration at') }}</label>
-            <input type="date" class="form-control {{ $errors->has('expiration_at') ? 'is-invalid' : '' }}" name="expiration_at" id="expiration_at" value="" required>
-            @includeWhen($errors->has('expiration_at'), 'partials.__invalid_feedback', ['feedback' => $errors->first('expiration_at')])
+            <label for="name">{{ __('Name') }}</label>
+            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" id="name" value="" required>
+            @includeWhen($errors->has('name'), 'partials.__invalid_feedback', ['feedback' => $errors->first('name')])
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="form-group">
-            <label for="value_tax">{{ __('Tax Value') }}</label>
-            <input type="text" class="form-control {{ $errors->has('value_tax') ? 'is-invalid' : '' }}" name="value_tax" id="value_tax" value="" required>
-            @includeWhen($errors->has('value_tax'), 'partials.__invalid_feedback', ['feedback' => $errors->first('value_tax')])
+            <label for="address">{{ __('Address') }}</label>
+            <input type="text" class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address" id="address" value="{{ old('address') }}" required>
+            @includeWhen($errors->has('address'), 'partials.__invalid_feedback', ['feedback' => $errors->first('address')])
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="form-group">
-            <label for="total_value">{{ __('Total Value') }}</label>
-            <input type="text" class="form-control {{ $errors->has('total_value') ? 'is-invalid' : '' }}" name="total_value" id="total_value" value="" required>
-            @includeWhen($errors->has('total_value'), 'partials.__invalid_feedback', ['feedback' => $errors->first('total_value')])
+            <label for="phone">{{ __('Phone') }}</label>
+            <input type="text" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" name="phone" id="phone" value="{{ old('phone') }}" required>
+            @includeWhen($errors->has('phone'), 'partials.__invalid_feedback', ['feedback' => $errors->first('phone')])
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="email">{{ __('Email') }}</label>
+            <input type="text" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" id="email" value="{{ old('email') }}" required>
+            @includeWhen($errors->has('email'), 'partials.__invalid_feedback', ['feedback' => $errors->first('email')])
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="city">{{ __('City') }}</label>
+            <select class="form-control custom-select {{ $errors->has('city') ? 'is-invalid' : '' }}" name="city" id="city" required>
+                <option value="">{{ __('Please select a city') }}</option>
+                @foreach($city_list as $city)
+                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                @endforeach
+            </select>
+            @includeWhen($errors->has('city'), 'partials.__invalid_feedback', ['feedback' => $errors->first('city')])
         </div>
     </div>
 
