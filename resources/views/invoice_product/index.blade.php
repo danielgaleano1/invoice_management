@@ -4,10 +4,10 @@
 
 <div class="card card-default">
         <div class="card-header pb-0">
-            <h5 class="card-title">{{ __('Invoices') }}</h5>
+            <h5 class="card-title">{{ __('Invoices products') }}</h5>
         </div>
         <div class="card-footer d-flex justify-content-between">
-            <a class="btn btn-primary" href="{{ route('invoice.create') }}">Create new invoice</a>
+            <a class="btn btn-primary" href="{{ route('invoice_product.create') }}">Add new product</a>
         </div>
     </div>
 

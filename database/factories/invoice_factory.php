@@ -18,7 +18,7 @@ $factory->define(App\invoice::class, function (Faker $faker) {
         },
         'code' => $faker->numberBetween(100000, 700000),
         'expiration_at' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+3 months', $timezone = null),
-        'value_tax' => $faker->numberBetween(100, 1000),
-        'total_value' => $faker->numberBetween(140000, 980000),
+        'value_tax' => 0,
+        'total_value' => 0,
     ];
 });

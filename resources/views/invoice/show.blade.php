@@ -45,6 +45,9 @@
 
             <div class="card card-default">
                 <div class="card-header">{{ __('Invoice Products') }}</div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a class="btn btn-primary" href="{{ route('invoice_product.create') }}">Add product</a>
+                </div>
                 <div class="card-body">
                     <table class="table table-hover">
                     <thead>
