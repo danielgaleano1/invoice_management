@@ -21,26 +21,26 @@
         </div>
         <div class="card-body">
             <dl class="row">
-                <dt class="col-md-3">{{ __('Code') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->code }}</dd>
+                <dt class="col-md-1">{{ __('Code') }}</dt>
+                <dd class="col-md-2">{{ $invoice_list->code }}</dd>
 
-                <dt class="col-md-3">{{ __('Collaborator') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->collaborator->name }}</dd>
+                <dt class="col-md-1">{{ __('Collaborator') }}</dt>
+                <dd class="col-md-2">{{ $invoice_list->collaborator->name }}</dd>
                 
-                <dt class="col-md-3">{{ __('Client') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->client->name }}</dd>
+                <dt class="col-md-1">{{ __('Client') }}</dt>
+                <dd class="col-md-2">{{ $invoice_list->client->name }}</dd>
 
-                <dt class="col-md-3">{{ __('invoice State') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->invoice_state->type }}</dd>
+                <dt class="col-md-1">{{ __('invoice State') }}</dt>
+                <dd class="col-md-2">{{ $invoice_list->invoice_state->type }}</dd>
                 
-                <dt class="col-md-3">{{ __('Expiration at') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->expiration_at }}</dd>
+                <dt class="col-md-1">{{ __('Expiration at') }}</dt>
+                <dd class="col-md-2">{{ $invoice_list->expiration_at }}</dd>
                 
-                <dt class="col-md-3">{{ __('Value Tax') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->value_tax }}</dd>
+                <dt class="col-md-1">{{ __('Value Tax') }}</dt>
+                <dd class="col-md-2">{{ $invoice_list->value_tax }}</dd>
                 
-                <dt class="col-md-3">{{ __('Value Total') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->total_value }}</dd>
+                <dt class="col-md-1">{{ __('Value Total') }}</dt>
+                <dd class="col-md-2">{{ $invoice_list->total_value }}</dd>
             </dl>
 
             <div class="card card-default">

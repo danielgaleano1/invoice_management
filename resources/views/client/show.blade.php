@@ -21,22 +21,22 @@
         </div>
         <div class="card-body">
             <dl class="row">
-                <dt class="col-md-3">{{ __('Code') }}</dt>
+                <dt class="col-md-1">{{ __('Code') }}</dt>
                 <dd class="col-md-3">{{ $client_list->code }}</dd>
 
-                <dt class="col-md-3">{{ __('Name') }}</dt>
+                <dt class="col-md-1">{{ __('Name') }}</dt>
                 <dd class="col-md-3">{{ $client_list->name }}</dd>
                 
-                <dt class="col-md-3">{{ __('Address') }}</dt>
+                <dt class="col-md-1">{{ __('Address') }}</dt>
                 <dd class="col-md-3">{{ $client_list->address }}</dd>
 
-                <dt class="col-md-3">{{ __('phone') }}</dt>
+                <dt class="col-md-1">{{ __('phone') }}</dt>
                 <dd class="col-md-3">{{ $client_list->phone }}</dd>
                 
-                <dt class="col-md-3">{{ __('Email') }}</dt>
+                <dt class="col-md-1">{{ __('Email') }}</dt>
                 <dd class="col-md-3">{{ $client_list->email }}</dd>
                 
-                <dt class="col-md-3">{{ __('Client') }}</dt>
+                <dt class="col-md-1">{{ __('Client') }}</dt>
                 <dd class="col-md-3">{{ $client_list->city->name }}</dd>
             </dl>
 
@@ -46,9 +46,9 @@
                     <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>{{ __('Product') }}</th>
-                            <th>{{ __('Quantity') }}</th>
-                            <th>{{ __('Price') }}</th>
+                            <th>{{ __('Invoice Id') }}</th>
+                            <th>{{ __('Invoice Code') }}</th>
+                            <th>{{ __('Collaborator') }}</th>
                             <th class="text-right"></th>
                         </tr>
                     </thead>

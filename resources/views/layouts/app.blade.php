@@ -30,13 +30,6 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <a href="{{ route('invoice.index') }}" class="btn btn-link" title="{{ __('invoice') }}">
-                    <i class="fas fa-eye">Invoice</i>
-                </a>
-                <a href="{{ route('client.index') }}" class="btn btn-link" title="{{ __('client') }}">
-                    <i class="fas fa-edit">Client</i>
-                </a>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
@@ -56,6 +49,19 @@
                                 </li>
                             @endif
                         @else
+                            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+                                <div class="container">
+                                    <a href="{{ route('invoice.index') }}" class="btn btn-link" title="{{ __('invoice') }}">
+                                        <i class="fas fa-eye">Invoice</i>
+                                    </a>
+                                    <a href="{{ route('client.index') }}" class="btn btn-link" title="{{ __('client') }}">
+                                        <i class="fas fa-edit">Client</i>
+                                    </a>
+                                    <a class="btn btn-primary" href="{{ route('invoice.index') }}">{{ __('Invoice') }}</a>
+                                    <a class="btn btn-primary" href="{{ route('client.index') }}">{{ __('Client') }}</a>
+                                </div>
+                            </nav>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
