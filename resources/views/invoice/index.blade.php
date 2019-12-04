@@ -44,9 +44,9 @@
                                     <a href="{{ route('invoice.edit', $invoice_lists) }}" class="btn btn-link" title="{{ __('Edit') }}">
                                         <i class="fas fa-edit">Edit</i>
                                     </a>
-                                    <a href="/invoice/{{ $invoice_lists->id }}/confirm_delete" class="btn btn-link text-danger" title="{{ __('Delete') }}">
-                                        <i class="fas fa-trash">Delete</i>
-                                    </a>
+                                    <button type="button" class="btn btn-link text-danger" data-route="{{ route('invoice.destroy', $invoice_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_invoice_modal"
+                                        <i class="fas fa-trash">{{ __('Delete') }}</i>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -55,3 +55,9 @@
             </table>
         </div>
 @endsection
+@push('modals')
+    @include('partials.__confirm_delete_invoice_modal')
+@endpush
+@push('delete-modal')
+    <script src="{{ asset(mix('js/delete-modal.js')) }}"></script>
+@endpush

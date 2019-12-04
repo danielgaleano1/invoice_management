@@ -121,12 +121,4 @@ class client_controller extends Controller
          $client_list->delete();
          return redirect()->route('client.index')->withSuccess(__('client deleted successfully'));
      }
- 
-     public function confirm_delete($id)
-     {
-         $client_list = client::findOrFail($id);
-         return view('client.confirm_delete', [
-             'client_list' => $client_list
-         ]);
-     }
 }

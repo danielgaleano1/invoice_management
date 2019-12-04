@@ -47,6 +47,9 @@
                 <div class="card-header">{{ __('Invoice Products') }}</div>
                 <div class="card-footer d-flex justify-content-between">
                     <a class="btn btn-primary" href="{{ route('invoice_product.create') }}">Add product</a>
+                    <button type="button" class="btn btn-link text-danger" data-route="" data-toggle="modal" data-target="#confirm_delete_invoice_modal"
+                        <i class="fas fa-trash">{{ __('Delete') }}</i>
+                    </button>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover">
@@ -67,10 +70,10 @@
                                     <td>{{ $invoice_product_lists->price }}</td>
                                     <td class="text-right">
                                         <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Collaborator actions') }}">
-                                            <a href="{{ route('invoice.edit', $invoice_list) }}" class="btn btn-link" title="{{ __('Edit') }}">
+                                            <a href="{{ route('invoice.edit', $invoice_lists) }}" class="btn btn-link" title="{{ __('Edit') }}">
                                                 <i class="fas fa-edit">Edit</i>
                                             </a>
-                                            <a href="/invoice/{{ $invoice_list->id }}/confirm_delete" class="btn btn-link text-danger" title="{{ __('Delete') }}">
+                                            <a href="/invoice/{{ $invoice_lists->id }}/confirm_delete" class="btn btn-link text-danger" title="{{ __('Delete') }}">
                                                 <i class="fas fa-trash">Delete</i>
                                             </a>
                                         </div>
@@ -85,3 +88,6 @@
         </div>
     </div>
 @endsection
+@push('modals')
+    @include('partials.__add_invoice_product_modal')
+@endpush

@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex="-1" role="dialog" id="confirm_delete_modal">
+<div class="modal fade" tabindex="-1" role="dialog" id="add_invoice_product_modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,14 +9,13 @@
             </div>
             <div class="modal-body">
                 <p>{{ __('This action cannot be undone!') }}</p>
-                <form id="delete_form" action="{{ route('client.destroy', $client_lists->id) }}" method="POST">
-                    @method('DELETE')
+                <form id="add_form" action="{{ route('invoice_product.create') }}" method="POST">
                     @csrf()
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
-                <button type="submit" form="delete_form" class="btn btn-danger">{{ __('Delete') }}</button>
+                <button type="submit" form="add_form" class="btn btn-danger">{{ __('Delete') }}</button>
             </div>
         </div>
     </div>

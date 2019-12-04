@@ -131,12 +131,4 @@ class invoice_controller extends Controller
         $invoice_list->delete();
         return redirect()->route('invoice.index')->withSuccess(__('Invoice deleted successfully'));
     }
-
-    public function confirm_delete($id)
-    {
-        $invoice_list = invoice::findOrFail($id);
-        return view('invoice.confirm_delete', [
-            'invoice_list' => $invoice_list
-        ]);
-    }
 }

@@ -16,6 +16,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th>{{ __('id') }}</th>
                         <th>{{ __('Code') }}</th>
                         <th>{{ __('Name') }}</th>
                         <th>{{ __('Address') }}</th>
@@ -28,6 +29,7 @@
                 <tbody>
                     @foreach($client_list as $client_lists)
                         <tr>
+                            <td>{{ $client_lists->id }}</td>
                             <td>{{ $client_lists->code }}</td>
                             <td>{{ $client_lists->name }}</td>
                             <td>{{ $client_lists->address }}</td>
@@ -42,11 +44,9 @@
                                     <a href="{{ route('client.edit', $client_lists) }}" class="btn btn-link" title="{{ __('Edit') }}">
                                         <i class="fas fa-edit">Edit</i>
                                     </a>
-                                    <a href="/client/{{ $client_lists->id }}/confirm_delete" class="btn btn-link text-danger" title="{{ __('Delete') }}">
-                                        <i class="fas fa-trash">Delete</i>
-                                    </a>
-                                    <button type="button" class="btn btn-link text-danger" data-route="{{ route('client.destroy', $client_lists) }}" data-toggle="modal" data-target="#confirm_delete_modal" title="{{ __('Delete') }}">
-                                        <i class="fas fa-trash">Delete2</i>
+
+                                    <button type="button" class="btn btn-link text-danger" data-route="{{ route('client.destroy', $client_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
+                                        <i class="fas fa-trash">{{ __('Delete') }}</i>
                                     </button>
                                 </div>
                             </td>
@@ -61,5 +61,5 @@
     @include('partials.__confirm_delete_modal')
 @endpush
 @push('delete-modal')
-    <script type="text/javascript" src="{{ URL::asset ('js/delete-modal.js') }}"></script>
+    <script src="{{ asset(mix('js/delete-modal.js')) }}"></script>
 @endpush
