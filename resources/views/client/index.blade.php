@@ -45,6 +45,9 @@
                                     <a href="/client/{{ $client_lists->id }}/confirm_delete" class="btn btn-link text-danger" title="{{ __('Delete') }}">
                                         <i class="fas fa-trash">Delete</i>
                                     </a>
+                                    <button type="button" class="btn btn-link text-danger" data-route="{{ route('client.destroy', $client_lists) }}" data-toggle="modal" data-target="#confirm_delete_modal" title="{{ __('Delete') }}">
+                                        <i class="fas fa-trash">Delete2</i>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -53,3 +56,10 @@
             </table>
         </div>
 @endsection
+
+@push('modals')
+    @include('partials.__confirm_delete_modal')
+@endpush
+@push('delete-modal')
+    <script type="text/javascript" src="{{ URL::asset ('js/delete-modal.js') }}"></script>
+@endpush

@@ -8,18 +8,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ __('Invoice Management') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    @stack('modals')
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -89,5 +83,9 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset(mix('js/manifest.js')) }}"></script>
+    <script src="{{ asset(mix('js/vendor.js')) }}"></script>
+    <script src="{{ asset(mix('js/app.js')) }}"></script>
+    @stack('scripts')
 </body>
 </html>
