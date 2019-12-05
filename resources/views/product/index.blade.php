@@ -1,0 +1,61 @@
+@extends('layouts.app')
+
+@section('content')
+
+<div class="card card-default">
+        <div class="card-header pb-0">
+            <h3 class="card-title">{{ __('Invoices') }}</h3>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+            <a class="btn btn-primary" href="{{ route('invoice.create') }}">Create new invoice</a>
+        </div>
+    </div>
+
+
+    <div class="table-responsive-lg">
+            <table class="table table-hover table-bordered" >
+                <thead class="thead-dark">
+                    <tr>
+                        <th>{{ __('Code') }}</th>
+                        <th>{{ __('Collaborator') }}</th>
+                        <th>{{ __('Client') }}</th>
+                        <th>{{ __('invoice State') }}</th>
+                        <th>{{ __('Expiration at') }}</th>
+                        <th>{{ __('Value Tax') }}</th>
+                        <th>{{ __('Value Total') }}</th>
+                        <th class="text-center">{{ __('Actions') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($invoice_list as $invoice_lists)
+                        <tr>
+                            <td>{{ $invoice_lists->code }}</td>
+                            <td>{{ $invoice_lists->collaborator_id }}</td>
+                            <td>{{ $invoice_lists->client_id }}</td>
+                            <td>{{ $invoice_lists->invoice_state_id }}</td>
+                            <td>{{ $invoice_lists->expiration_at }}</td>
+                            <td>{{ $invoice_lists->value_tax }}</td>
+                            <td>{{ $invoice_lists->total_value }}</td>
+                            <td class="text-center">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Collaborator actions') }}">
+                                    <a href="{{ route('invoice.show', $invoice_lists) }}" class="btn btn-outline-info" title="{{ __('View') }}">
+                                        <i class="fas fa-eye">{{ __('View') }}</i>
+                                    </a>
+                                    
+                                    <a href="{{ route('invoice.edit', $invoice_lists) }}" class="btn btn-outline-secondary" title="{{ __('Edit') }}">
+                                        <i class="fas fa-edit">{{ __('Edit') }}</i>
+                                    </a>
+                                    <button type="button" class="btn btn-outline-danger" data-route="{{ route('invoice.destroy', $invoice_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
+                                        <i class="fas fa-trash">{{ __('Delete') }}</i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+@endsection
+@push('modals')
+    @include('partials.__confirm_delete_modal')
+@endpush
