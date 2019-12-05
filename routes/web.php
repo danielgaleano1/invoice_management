@@ -12,13 +12,9 @@
 */
 
 Route::resource('invoice', 'invoice_controller');
-Route::get('/invoice/{id}/confirm_delete', 'invoice_controller@confirm_delete');
-
 Route::resource('client', 'client_controller');
-Route::get('/client/{id}/confirm_delete', 'client_controller@confirm_delete');
-
+Route::resource('product', 'product_controller');
 Route::resource('invoice_product', 'invoice_product_controller');
-Route::get('/invoice_product/{id}/confirm_delete', 'invoice_product_controller@confirm_delete');
 
 Auth::routes();
 

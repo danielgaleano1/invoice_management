@@ -41,6 +41,7 @@
                                     <a href="{{ route('client.show', $client_lists) }}" class="btn btn-info" title="{{ __('View') }}">
                                         <i class="fas fa-eye">View</i>
                                     </a>
+    
                                     <a href="{{ route('client.edit', $client_lists) }}" class="btn btn-warning" title="{{ __('Edit') }}">
                                         <i class="fas fa-edit">Edit</i>
                                     </a>

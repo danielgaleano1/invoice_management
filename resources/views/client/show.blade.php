@@ -9,7 +9,7 @@
                         <i class="fas fa-arrow-left"></i> {{ __('Back') }}
                     </a>
 
-                    <a href="{{ route('client.edit', $client_list) }}" class="btn btn-secondary">
+                    <a href="{{ route('client.edit', $client_list) }}" class="btn btn-warning">
                         <i class="fas fa-edit"></i> {{ __('Edit') }}
                     </a>
 

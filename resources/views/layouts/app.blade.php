@@ -79,13 +79,14 @@
 
         @guest
         @else
-        <nav class="navbar navbar-dark bg-primary navbar-expand sticky-top">
+        <nav class="navbar navbar-light navbar-expand sticky-top" style="background-color: rgb(0, 93, 88);">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <a class="btn btn-primary" href="{{ route('invoice.index') }}">{{ __('Invoice') }}</a>
-                <a class="btn btn-primary" href="{{ route('client.index') }}">{{ __('Client') }}</a>
+                <a class="btn" style="background-color: rgb(0, 93, 88); color: white; border-style: solid; border-color: white;" href="{{ route('invoice.index') }}">{{ __('Invoice') }}</a>
+                <a class="btn btn-light" style="background-color: rgb(0, 93, 88); color: white; border-style: solid; border-color: white;" href="{{ route('client.index') }}">{{ __('Client') }}</a>
+                <a class="btn btn-light" style="background-color: rgb(0, 93, 88); color: white; border-style: solid; border-color: white;" href="{{ route('product.index') }}">{{ __('Product') }}</a>
             </div>
         </nav>
         @endguest
