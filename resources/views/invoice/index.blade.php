@@ -41,10 +41,11 @@
                                     <a href="{{ route('invoice.show', $invoice_lists) }}" class="btn btn-link" title="{{ __('View') }}">
                                         <i class="fas fa-eye">View</i>
                                     </a>
-                                    <a href="{{ route('invoice.edit', $invoice_lists) }}" class="btn btn-link" title="{{ __('Edit') }}">
+                                    
+                                    <a href="{{ route('invoice.edit', $invoice_lists) }}" class="btn btn-warning" title="{{ __('Edit') }}">
                                         <i class="fas fa-edit">Edit</i>
                                     </a>
-                                    <button type="button" class="btn btn-link text-danger" data-route="{{ route('invoice.destroy', $invoice_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
+                                    <button type="button" class="btn btn-danger" data-route="{{ route('invoice.destroy', $invoice_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
                                         <i class="fas fa-trash">{{ __('Delete') }}</i>
                                     </button>
                                 </div>
