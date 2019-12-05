@@ -56,10 +56,6 @@
             </table>
         </div>
 @endsection
-
 @push('modals')
     @include('partials.__confirm_delete_modal')
-@endpush
-@push('delete-modal')
-    <script src="{{ asset(mix('js/delete-modal.js')) }}"></script>
 @endpush

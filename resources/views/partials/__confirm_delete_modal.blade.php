@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <p>{{ __('This action cannot be undone!') }}</p>
-                <form id="delete_form" action="{{ route('client.destroy', $client_lists->id) }}" method="POST">
+                <form id="delete_form" action="" method="POST">
                     @method('DELETE')
                     @csrf()
                 </form>

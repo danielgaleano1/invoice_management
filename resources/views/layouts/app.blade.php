@@ -86,6 +86,11 @@
     <script src="{{ asset(mix('js/manifest.js')) }}"></script>
     <script src="{{ asset(mix('js/vendor.js')) }}"></script>
     <script src="{{ asset(mix('js/app.js')) }}"></script>
+    <script>
+    $('#confirm_delete_modal').on('show.bs.modal', function (e) {
+        $('#delete_form').attr('action', $(e.relatedTarget).data('route'));
+    });
+    </script>
     @stack('scripts')
 </body>
 </html>
