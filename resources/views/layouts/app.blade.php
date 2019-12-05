@@ -43,19 +43,6 @@
                                 </li>
                             @endif
                         @else
-                            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-                                <div class="container">
-                                    <a href="{{ route('invoice.index') }}" class="btn btn-link" title="{{ __('invoice') }}">
-                                        <i class="fas fa-eye">Invoice</i>
-                                    </a>
-                                    <a href="{{ route('client.index') }}" class="btn btn-link" title="{{ __('client') }}">
-                                        <i class="fas fa-edit">Client</i>
-                                    </a>
-                                    <a class="btn btn-primary" href="{{ route('invoice.index') }}">{{ __('Invoice') }}</a>
-                                    <a class="btn btn-primary" href="{{ route('client.index') }}">{{ __('Client') }}</a>
-                                </div>
-                            </nav>
-
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -73,12 +60,36 @@
                                     </form>
                                 </div>
                             </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
 
+        @guest
+        @else
+        <nav class="navbar navbar-dark bg-primary navbar-expand sticky-top">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <a class="btn btn-primary" href="{{ route('invoice.index') }}">{{ __('Invoice') }}</a>
+                <a class="btn btn-primary" href="{{ route('client.index') }}">{{ __('Client') }}</a>
+            </div>
+        </nav>
+        @endguest
+        
         <main class="py-4">
             @yield('content')
         </main>
