@@ -52,7 +52,7 @@ class product_controller extends Controller
      */
     public function store(Request $request)
     {
-        $product_record = new invoice;
+        $product_record = new product;
         $product_record->code = $request->input('code');
         $product_record->description = $request->input('description');
         $product_record->stock = $request->input('stock');

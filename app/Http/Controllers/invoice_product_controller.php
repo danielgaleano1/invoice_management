@@ -20,6 +20,7 @@ class invoice_product_controller extends Controller
     {
         return view('invoice_product.index', [
             'invoice_product_list' => invoice_product::all(),
+            'invoice_list' => invoice::all(),
             'collaborator_list' => collaborator::all(),
             'client_list' => client::all()
         ]);
@@ -93,6 +94,9 @@ class invoice_product_controller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $invoice_product_list = invoice_product::findOrFail($id);
+        $invoice_list = $invoice_product_list->invoice_id;
+        $invoice_product_list->delete();
+        return redirect()->route('invoice.show', $invoice_list)->withSuccess(__('Invoice Product deleted successfully'));
     }
 }

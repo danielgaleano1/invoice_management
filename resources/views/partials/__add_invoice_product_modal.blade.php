@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <p>{{ __('This action cannot be undone!') }}</p>
-                <form id="add_form" action="{{ route('invoice_product.create') }}" method="POST">
+                <form id="add_form" action="" method="POST">
                     @csrf()
                 </form>
             </div>

@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         factory(App\collaborator::class, 2)->create();
         factory(App\invoice_state::class, 2)->create();
         factory(App\product::class, 2)->create();
-        factory(App\invoice_product::class, 2)->create();
+        factory(App\invoice_product::class, 20)->create();
         factory(App\invoice::class, 2)->create();
         factory(App\User::class, 2)->create();
     }

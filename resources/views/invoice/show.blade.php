@@ -13,9 +13,9 @@
                         <i class="fas fa-edit"></i> {{ __('Edit') }}
                     </a>
 
-                    <a href="/invoice/{{ $invoice_list->id }}/confirm_delete" class="btn btn-danger" title="{{ __('Delete') }}">
-                        <i class="fas fa-trash"></i>{{ __('Delete') }}
-                    </a>
+                    <button type="button" class="btn btn-danger" data-route="{{ route('invoice.destroy', $invoice_list->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
+                        <i class="fas fa-trash">{{ __('Delete') }}</i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -46,16 +46,18 @@
             <div class="card card-default">
                 <div class="card-header">{{ __('Invoice Products') }}</div>
                 <div class="card-footer d-flex justify-content-between">
-                    <a class="btn btn-primary" href="{{ route('invoice_product.create') }}">Add product</a>
+                    <button type="button" class="btn btn-outline-primary" data-route="{{ route('invoice_product.create') }}" data-toggle="modal" data-target="#add_invoice_product_modal"
+                        <i class="fas fa-trash">{{ __('Add Product') }}</i>
+                    </button> 
                 </div>
                 <div class="card-body">
-                    <table class="table table-hover">
-                    <thead>
+                <table class="table table-hover table-bordered" >
+                    <thead class="thead-dark">
                         <tr>
                             <th>{{ __('Product') }}</th>
                             <th>{{ __('Quantity') }}</th>
                             <th>{{ __('Price') }}</th>
-                            <th class="text-right"></th>
+                            <th class="text-center">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,7 +67,10 @@
                                     <td>{{ $invoice_product_lists->product_id }}</td>
                                     <td>{{ $invoice_product_lists->quantity }}</td>
                                     <td>{{ $invoice_product_lists->price }}</td>
-                                    <td class="text-right">
+                                    <td class="text-center">                                       
+                                        <button type="button" class="btn btn-outline-danger" data-route="{{ route('invoice_product.destroy', $invoice_product_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
+                                            <i class="fas fa-trash">{{ __('Delete') }}</i>
+                                        </button>
                                     </td>
                                 @endif
                             </tr>
@@ -78,5 +83,6 @@
     </div>
 @endsection
 @push('modals')
-    
+    @include('partials.__confirm_delete_modal')
+    @include('partials.__add_invoice_product_modal')
 @endpush
