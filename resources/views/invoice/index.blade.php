@@ -7,7 +7,7 @@
             <h3 class="card-title">{{ __('Invoices') }}</h3>
         </div>
         <div class="card-footer d-flex justify-content-between">
-            <a class="btn btn-primary" href="{{ route('invoice.create') }}">Create new invoice</a>
+            <a class="btn btn-outline-primary" href="{{ route('invoice.create') }}">Create new invoice</a>
         </div>
     </div>
 

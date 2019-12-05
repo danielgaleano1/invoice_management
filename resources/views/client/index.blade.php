@@ -4,17 +4,17 @@
 
 <div class="card card-default">
         <div class="card-header pb-0">
-            <h5 class="card-title">{{ __('Clients') }}</h5>
+            <h3 class="card-title">{{ __('Clients') }}</h3>
         </div>
         <div class="card-footer d-flex justify-content-between">
-            <a class="btn btn-primary" href="{{ route('client.create') }}">Create new client</a>
+            <a class="btn btn-outline-primary" href="{{ route('client.create') }}">Create new client</a>
         </div>
     </div>
 
 
     <div class="table-responsive-lg">
-            <table class="table table-hover">
-                <thead>
+    <table class="table table-hover table-bordered" >
+                <thead class="thead-dark">
                     <tr>
                         <th>{{ __('id') }}</th>
                         <th>{{ __('Code') }}</th>
@@ -38,15 +38,15 @@
                             <td>{{ $client_lists->city_id }}</td>
                             <td class="text-right">
                                 <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Client actions') }}">
-                                    <a href="{{ route('client.show', $client_lists) }}" class="btn btn-info" title="{{ __('View') }}">
+                                    <a href="{{ route('client.show', $client_lists) }}" class="btn btn-outline-info" title="{{ __('View') }}">
                                         <i class="fas fa-eye">View</i>
                                     </a>
     
-                                    <a href="{{ route('client.edit', $client_lists) }}" class="btn btn-warning" title="{{ __('Edit') }}">
+                                    <a href="{{ route('client.edit', $client_lists) }}" class="btn btn-outline-secondary" title="{{ __('Edit') }}">
                                         <i class="fas fa-edit">Edit</i>
                                     </a>
 
-                                    <button type="button" class="btn btn-danger" data-route="{{ route('client.destroy', $client_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
+                                    <button type="button" class="btn btn-outline-danger" data-route="{{ route('client.destroy', $client_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
                                         <i class="fas fa-trash">{{ __('Delete') }}</i>
                                     </button>
                                 </div>

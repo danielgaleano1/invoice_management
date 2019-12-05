@@ -5,15 +5,15 @@
             <h5 class="card-title mb-0">{{ __('Client') }}</h5>
             <div>
                 <div class="btn-group btn-group-sm">
-                    <a href="{{ route('client.index') }}" class="btn btn-secondary">
+                    <a href="{{ route('client.index') }}" class="btn btn-outline-primary">
                         <i class="fas fa-arrow-left"></i> {{ __('Back') }}
                     </a>
 
-                    <a href="{{ route('client.edit', $client_list) }}" class="btn btn-warning">
+                    <a href="{{ route('client.edit', $client_list) }}" class="btn btn-outline-secondary">
                         <i class="fas fa-edit"></i> {{ __('Edit') }}
                     </a>
 
-                    <a href="/client/{{ $client_list->id }}/confirm_delete" class="btn btn-danger" title="{{ __('Delete') }}">
+                    <a href="/client/{{ $client_list->id }}/confirm_delete" class="btn btn-outline-danger" title="{{ __('Delete') }}">
                         <i class="fas fa-trash"></i>{{ __('Delete') }}
                     </a>
                 </div>
@@ -43,8 +43,8 @@
             <div class="card card-default">
                 <div class="card-header">{{ __('Invoices') }}</div>
                 <div class="card-body">
-                    <table class="table table-hover">
-                    <thead>
+                    <table class="table table-hover table-bordered" >
+                    <thead class="thead-dark">
                         <tr>
                             <th>{{ __('Invoice Id') }}</th>
                             <th>{{ __('Invoice Code') }}</th>
@@ -61,12 +61,12 @@
                                     <td>{{ $invoice_lists->collaborator_id }}</td>
                                     <td class="text-right">
                                         <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Collaborator actions') }}">
-                                            <a href="{{ route('invoice.edit', $invoice_lists) }}" class="btn btn-link" title="{{ __('Edit') }}">
+                                            <a href="{{ route('invoice.edit', $invoice_lists) }}" class="btn btn-outline-secondary" title="{{ __('Edit') }}">
                                                 <i class="fas fa-edit">Edit</i>
                                             </a>
-                                            <a href="/invoice/{{ $invoice_lists->id }}/confirm_delete" class="btn btn-link text-danger" title="{{ __('Delete') }}">
-                                                <i class="fas fa-trash">Delete</i>
-                                            </a>
+                                            <button type="button" class="btn btn-outline-danger" data-route="{{ route('invoice.destroy', $invoice_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
+                                                <i class="fas fa-trash">{{ __('Delete') }}</i>
+                                            </button>
                                         </div>
                                     </td>
                                 @endif
@@ -79,3 +79,6 @@
         </div>
     </div>
 @endsection
+@push('modals')
+    @include('partials.__confirm_delete_modal')
+@endpush

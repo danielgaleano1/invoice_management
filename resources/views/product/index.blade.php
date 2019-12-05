@@ -7,7 +7,7 @@
             <h3 class="card-title">{{ __('Products') }}</h3>
         </div>
         <div class="card-footer d-flex justify-content-between">
-            <a class="btn btn-primary" href="{{ route('product.create') }}">Create new product</a>
+            <a class="btn btn-outline-primary" href="{{ route('product.create') }}">Create new product</a>
         </div>
     </div>
 

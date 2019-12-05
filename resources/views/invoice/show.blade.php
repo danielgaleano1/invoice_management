@@ -5,15 +5,15 @@
             <h5 class="card-title mb-0">{{ __('Invoice') }}</h5>
             <div>
                 <div class="btn-group btn-group-sm">
-                    <a href="{{ route('invoice.index') }}" class="btn btn-secondary">
+                    <a href="{{ route('invoice.index') }}" class="btn btn-outline-primary">
                         <i class="fas fa-arrow-left"></i> {{ __('Back') }}
                     </a>
 
-                    <a href="{{ route('invoice.edit', $invoice_list) }}" class="btn btn-warning">
+                    <a href="{{ route('invoice.edit', $invoice_list) }}" class="btn btn-outline-secondary">
                         <i class="fas fa-edit"></i> {{ __('Edit') }}
                     </a>
 
-                    <button type="button" class="btn btn-danger" data-route="{{ route('invoice.destroy', $invoice_list->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
+                    <button type="button" class="btn btn-outline-danger" data-route="{{ route('invoice.destroy', $invoice_list->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
                         <i class="fas fa-trash">{{ __('Delete') }}</i>
                     </button>
                 </div>
