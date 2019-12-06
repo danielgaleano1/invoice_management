@@ -25,8 +25,8 @@
                             <label for="description">{{ __('description') }}</label>
                             <select class="form-control custom-select {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description" id="description" required>
                                 <option value="">{{ __('Please select a description') }}</option>
-                                @foreach($invoice_product_list as $invoice_product_lists)
-                                    <option value="{{ $invoice_product_lists->id }}">{{ $invoice_product_lists->name }}</option>
+                                @foreach($product_list as $product_lists)
+                                    <option value="{{ $product_lists->id }}">{{ $product_lists->description }}</option>
                                 @endforeach
                             </select>
                             @includeWhen($errors->has('description'), 'partials.__invalid_feedback', ['feedback' => $errors->first('description')])
