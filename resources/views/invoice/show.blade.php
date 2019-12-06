@@ -54,6 +54,7 @@
                 <table class="table table-hover table-bordered" >
                     <thead class="thead-dark">
                         <tr>
+                            <th>{{ __('Code') }}</th>
                             <th>{{ __('Product') }}</th>
                             <th>{{ __('Quantity') }}</th>
                             <th>{{ __('Price') }}</th>
@@ -64,7 +65,8 @@
                         @foreach($invoice_product_list as $invoice_product_lists)
                             <tr>
                                 @if($invoice_product_lists->invoice_id == $invoice_list->id)
-                                    <td>{{ $invoice_product_lists->product_id }}</td>
+                                    <td>{{ $invoice_product_lists->id }}</td>
+                                    <td>{{ $invoice_product_lists->product->description }}</td>
                                     <td>{{ $invoice_product_lists->quantity }}</td>
                                     <td>{{ $invoice_product_lists->price }}</td>
                                     <td class="text-center">                                       

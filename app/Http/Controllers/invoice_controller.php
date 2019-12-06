@@ -23,7 +23,8 @@ class invoice_controller extends Controller
             'invoice_list' => invoice::all(),
             'collaborator_list' => collaborator::all(),
             'invoice_state_list' => invoice_state::all(),
-            'client_list' => client::all()
+            'client_list' => client::all(),
+            'product_list' => product::all()
         ]);
     }
 
@@ -38,7 +39,8 @@ class invoice_controller extends Controller
             'invoice_list' => invoice::all(),
             'collaborator_list' => collaborator::all(),
             'invoice_state_list' => invoice_state::all(),
-            'client_list' => client::all()
+            'client_list' => client::all(),
+            'product_list' => product::all()
         ]);
     }
 

@@ -3,55 +3,51 @@
 @section('content')
 
 <div class="card card-default">
-        <div class="card-header pb-0">
-            <h5 class="card-title">{{ __('Invoices products') }}</h5>
-        </div>
-        <div class="card-footer d-flex justify-content-between">
-            <a class="btn btn-primary" href="{{ route('invoice_product.create') }}">Add new product</a>
-        </div>
+    <div class="card-header">
+    <h3 class="card-title">{{ __('Invoice Products') }}</h3>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        <button type="button" class="btn btn-outline-primary" data-route="{{ route('invoice_product.create') }}" data-toggle="modal" data-target="#add_invoice_product_modal"
+            <i class="fas fa-trash">{{ __('Add Product') }}</i>
+        </button> 
     </div>
 
-
+    <div class="card-body">
     <div class="table-responsive-lg">
-            <table class="table table-hover">
-                <thead>
+        <table class="table table-hover table-bordered" >
+            <thead class="thead-dark">
+                <tr>
+                    <th>{{ __('Code') }}</th>
+                    <th>{{ __('Product') }}</th>
+                    <th>{{ __('Invoice') }}</th>
+                    <th>{{ __('Quantity') }}</th>
+                    <th>{{ __('Price') }}</th>
+                    <th class="text-center">{{ __('Actions') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($invoice_product_list as $invoice_product_lists)
                     <tr>
-                        <th>{{ __('Code') }}</th>
-                        <th>{{ __('Collaborator') }}</th>
-                        <th>{{ __('Client') }}</th>
-                        <th>{{ __('invoice State') }}</th>
-                        <th>{{ __('Expiration at') }}</th>
-                        <th>{{ __('Value Tax') }}</th>
-                        <th>{{ __('Value Total') }}</th>
-                        <th class="text-right"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($invoice_list as $invoice_lists)
-                        <tr>
-                            <td>{{ $invoice_lists->code }}</td>
-                            <td>{{ $invoice_lists->collaborator_id }}</td>
-                            <td>{{ $invoice_lists->client_id }}</td>
-                            <td>{{ $invoice_lists->invoice_state_id }}</td>
-                            <td>{{ $invoice_lists->expiration_at }}</td>
-                            <td>{{ $invoice_lists->value_tax }}</td>
-                            <td>{{ $invoice_lists->total_value }}</td>
-                            <td class="text-right">
-                                <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Collaborator actions') }}">
-                                    <a href="{{ route('invoice.show', $invoice_lists) }}" class="btn btn-link" title="{{ __('View') }}">
-                                        <i class="fas fa-eye">View</i>
-                                    </a>
-                                    <a href="{{ route('invoice.edit', $invoice_lists) }}" class="btn btn-link" title="{{ __('Edit') }}">
-                                        <i class="fas fa-edit">Edit</i>
-                                    </a>
-                                    <a href="/invoice/{{ $invoice_lists->id }}/confirm_delete" class="btn btn-link text-danger" title="{{ __('Delete') }}">
-                                        <i class="fas fa-trash">Delete</i>
-                                    </a>
-                                </div>
+                            <td>{{ $invoice_product_lists->id }}</td>
+                            <td>{{ $invoice_product_lists->product->description }}</td>
+                            <td>{{ $invoice_product_lists->invoice->code }}</td>
+                            <td>{{ $invoice_product_lists->quantity }}</td>
+                            <td>{{ $invoice_product_lists->price }}</td>
+                            <td class="text-center">                                       
+                                <button type="button" class="btn btn-outline-danger" data-route="{{ route('invoice_product.destroy', $invoice_product_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
+                                    <i class="fas fa-trash">{{ __('Delete') }}</i>
+                                </button>
                             </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
 @endsection
+@push('modals')
+    @include('partials.__confirm_delete_modal')
+    @include('partials.__add_invoice_product_modal')
+@endpush
