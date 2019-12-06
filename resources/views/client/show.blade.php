@@ -13,9 +13,9 @@
                         <i class="fas fa-edit"></i> {{ __('Edit') }}
                     </a>
 
-                    <a href="/client/{{ $client_list->id }}/confirm_delete" class="btn btn-outline-danger" title="{{ __('Delete') }}">
-                        <i class="fas fa-trash"></i>{{ __('Delete') }}
-                    </a>
+                    <button type="button" class="btn btn-outline-danger" data-route="{{ route('client.destroy', $client_list) }}" data-toggle="modal" data-target="#confirm_delete_modal"
+                        <i class="fas fa-trash">{{ __('Delete') }}</i>
+                    </button>
                 </div>
             </div>
         </div>
