@@ -107,8 +107,19 @@ class invoice_product_controller extends Controller
     public function destroy($id)
     {
         $invoice_product_list = invoice_product::findOrFail($id);
-        $invoice_list = $invoice_product_list->invoice_id;
         $invoice_product_list->delete();
+
+        $invoice_list = $invoice_product_list->invoice_id;
+        $invoice_list_record = invoice::findOrFail($invoice_list);
+        $invoice_list_record->value_tax = $invoice_list_record->value_tax - ($invoice_product_list->price * $invoice_product_list->quantity * 0.19);
+        $invoice_list_record->total_value = $invoice_list_record->total_value - ($invoice_product_list->price * $invoice_product_list->quantity);
+        $invoice_list_record->save();
+
+        $product_list = $invoice_product_list->product_id;
+        $product_update = product::findOrFail($product_list);
+        $product_update->stock = $product_update->stock + $invoice_product_list->quantity;
+        $product_update->save();
+
         return redirect()->route('invoice.show', $invoice_list)->withSuccess(__('Invoice Product deleted successfully'));
     }
 }
