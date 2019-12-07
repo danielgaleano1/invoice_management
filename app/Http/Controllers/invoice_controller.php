@@ -19,8 +19,6 @@ class invoice_controller extends Controller
      */
     public function index()
     {
-        $invoices = invoice::paginate(2);
-
          return view('invoice.index', [
             'invoice_list' => invoice::paginate(5),
             'collaborator_list' => collaborator::all(),
@@ -54,16 +52,7 @@ class invoice_controller extends Controller
      */
     public function store(Request $request)
     {
-        $invoice_record = new invoice;
-        $invoice_record->collaborator_id = $request->input('collaborator');
-        $invoice_record->client_id = $request->input('client');
-        $invoice_record->invoice_state_id = $request->input('invoice_state');
-        $invoice_record->code = $request->input('code');
-        $invoice_record->expiration_at = $request->input('expiration_at');
-        $invoice_record->value_tax = $request->input('value_tax');
-        $invoice_record->total_value = $request->input('total_value');
-        $invoice_record->save();
-
+        invoice::create($request->all());
         return redirect()->route('invoice.index')->withSuccess(__('Invoice create successfully!'));
     }
 
