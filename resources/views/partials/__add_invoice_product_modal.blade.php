@@ -35,7 +35,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="quantity">{{ __('Quantity') }}</label>
-                            <input type="number" class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" name="quantity" id="quantity" value="{{ '1' }}" required readonly>
+                            <input type="number" class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" name="quantity" id="quantity" value="" required>
                             @includeWhen($errors->has('quantity'), 'partials.__invalid_feedback', ['feedback' => $errors->first('quantity')])
                         </div>
                     </div>
@@ -48,6 +48,15 @@
                         </div>
                     </div>
                 </form>
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="stock">{{ __('Stock') }}</label>
+                        <input type="number" class="form-control {{ $errors->has('stock') ? 'is-invalid' : '' }}" name="stock" id="stock" value="{{ $product_lists->stock }}" required readonly>
+                        @includeWhen($errors->has('stock'), 'partials.__invalid_feedback', ['feedback' => $errors->first('stock')])
+                    </div>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
