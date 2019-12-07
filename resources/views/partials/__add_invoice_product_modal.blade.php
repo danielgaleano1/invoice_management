@@ -14,22 +14,21 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="invoice_id">{{ __('invoice_id') }}</label>
-                            <input type="number" class="form-control {{ $errors->has('invoice_id') ? 'is-invalid' : '' }}" name="invoice_id" id="invoice_id" value="{{ $invoice_list->id }}" required readonly>
+                            <input type="hidden" class="form-control {{ $errors->has('invoice_id') ? 'is-invalid' : '' }}" name="invoice_id" id="invoice_id" value="{{ $invoice_list->id }}" required readonly>
                             @includeWhen($errors->has('invoice_id'), 'partials.__invalid_feedback', ['feedback' => $errors->first('invoice_id')])
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="code">{{ __('Code') }}</label>
-                            <select class="form-control custom-select {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code" id="code" required>
+                            <label for="product_id">{{ __('Code') }}</label>
+                            <select class="form-control custom-select {{ $errors->has('product_id') ? 'is-invalid' : '' }}" name="product_id" id="product_id" required>
                                 <option value="">{{ __('Please select a code') }}</option>
                                 @foreach($product_list as $product_lists)
                                     <option value="{{ $product_lists->id }}">{{ $product_lists->code }}</option>
                                 @endforeach
                             </select>
-                            @includeWhen($errors->has('code'), 'partials.__invalid_feedback', ['feedback' => $errors->first('code')])
+                            @includeWhen($errors->has('product_id'), 'partials.__invalid_feedback', ['feedback' => $errors->first('product_id')])
                         </div>
                     </div>
 
@@ -44,7 +43,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="price">{{ __('Price') }}</label>
-                            <input type="number" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" name="price" id="price" value="{{ '1' }}" required readonly>
+                            <input type="number" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" name="price" id="price" value="{{ '100' }}" required readonly>
                             @includeWhen($errors->has('price'), 'partials.__invalid_feedback', ['feedback' => $errors->first('price')])
                         </div>
                     </div>

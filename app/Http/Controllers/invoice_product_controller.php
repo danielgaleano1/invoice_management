@@ -61,6 +61,15 @@ class invoice_product_controller extends Controller
 
         return redirect()->route('invoice.show', $invoice_list)->withSuccess(__('Invoice Product deleted successfully'));
         */
+
+        $invoice_list_record = invoice::findOrFail($request->invoice_id);
+        
+        $invoice_list_record->value_tax = $invoice_list_record->value_tax + ($request->input('price') * 0.19);
+        $invoice_list_record->total_value = $invoice_list_record->total_value + $request->input('price');
+
+        $invoice_list_record->save();
+
+        return back();
     }
 
     /**

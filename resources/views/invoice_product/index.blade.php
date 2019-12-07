@@ -4,12 +4,7 @@
 
 <div class="card card-default">
     <div class="card-header">
-    <h3 class="card-title">{{ __('Invoice Products') }}</h3>
-    </div>
-    <div class="card-footer d-flex justify-content-between">
-        <button type="button" class="btn btn-outline-primary" data-route="{{ route('invoice_product.create') }}" data-toggle="modal" data-target="#add_invoice_product_modal"
-            <i class="fas fa-trash">{{ __('Add Product') }}</i>
-        </button> 
+        <h3 class="card-title">{{ __('Invoice Products') }}</h3>
     </div>
 
     <div class="card-body">
@@ -49,5 +44,4 @@
 @endsection
 @push('modals')
     @include('partials.__confirm_delete_modal')
-    @include('partials.__add_invoice_product_modal')
 @endpush
