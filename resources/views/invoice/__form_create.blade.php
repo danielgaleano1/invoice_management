@@ -10,40 +10,40 @@
 
     <div class="col-md-6">
         <div class="form-group">
-            <label for="collaborator">{{ __('Collaborator') }}</label>
-            <select class="form-control custom-select {{ $errors->has('collaborator') ? 'is-invalid' : '' }}" name="collaborator" id="collaborator" required>
+            <label for="collaborator_id">{{ __('Collaborator') }}</label>
+            <select class="form-control custom-select {{ $errors->has('collaborator_id') ? 'is-invalid' : '' }}" name="collaborator_id" id="collaborator_id" required>
                 <option value="">{{ __('Please select a collaborator') }}</option>
                 @foreach($collaborator_list as $collaborator)
                     <option value="{{ $collaborator->id }}">{{ $collaborator->name }}</option>
                 @endforeach
             </select>
-            @includeWhen($errors->has('collaborator'), 'partials.__invalid_feedback', ['feedback' => $errors->first('collaborator')])
+            @includeWhen($errors->has('collaborator_id'), 'partials.__invalid_feedback', ['feedback' => $errors->first('collaborator_id')])
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="form-group">
-            <label for="invoice_state">{{ __('Invoice State') }}</label>
-            <select class="form-control custom-select {{ $errors->has('invoice_state') ? 'is-invalid' : '' }}" name="invoice_state" id="invoice_state" required>
+            <label for="invoice_state_id">{{ __('Invoice State') }}</label>
+            <select class="form-control custom-select {{ $errors->has('invoice_state_id') ? 'is-invalid' : '' }}" name="invoice_state_id" id="invoice_state_id" required>
                 <option value="">{{ __('Please select a invoice state') }}</option>
                 @foreach($invoice_state_list as $invoice_state)
                     <option value="{{ $invoice_state->id }}">{{ $invoice_state->type }}</option>
                 @endforeach
             </select>
-            @includeWhen($errors->has('invoice_state'), 'partials.__invalid_feedback', ['feedback' => $errors->first('invoice_state')])
+            @includeWhen($errors->has('invoice_state_id'), 'partials.__invalid_feedback', ['feedback' => $errors->first('invoice_state_id')])
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="form-group">
-            <label for="client">{{ __('client') }}</label>
-            <select class="form-control custom-select {{ $errors->has('client') ? 'is-invalid' : '' }}" name="client" id="client" required>
+            <label for="client_id">{{ __('client') }}</label>
+            <select class="form-control custom-select {{ $errors->has('client_id') ? 'is-invalid' : '' }}" name="client_id" id="client_id" required>
                 <option value="">{{ __('Please select a client') }}</option>
                 @foreach($client_list as $client)
                     <option value="{{ $client->id }}">{{ $client->name }}</option>
                 @endforeach
             </select>
-            @includeWhen($errors->has('client'), 'partials.__invalid_feedback', ['feedback' => $errors->first('client')])
+            @includeWhen($errors->has('client_id'), 'partials.__invalid_feedback', ['feedback' => $errors->first('client_id')])
         </div>
     </div>
 
