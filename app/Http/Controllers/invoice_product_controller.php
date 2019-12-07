@@ -50,24 +50,16 @@ class invoice_product_controller extends Controller
      */
     public function store(Request $request)
     {
-        //dd($product_lists->id);
         invoice_product::create($request->all());
-        /*$invoice_product_record = new invoice_product;
-        $invoice_product_record->product_id = $request->$product_lists->id;
-        $invoice_product_record->invoice_id = $request->$invoice_list->id;
-        $invoice_product_record->quantity = $request->input('quantity');
-        $invoice_product_record->price = $request->input('price');
-        $invoice_product_record->save();
-
-        return redirect()->route('invoice.show', $invoice_list)->withSuccess(__('Invoice Product deleted successfully'));
-        */
 
         $invoice_list_record = invoice::findOrFail($request->invoice_id);
-        
-        $invoice_list_record->value_tax = $invoice_list_record->value_tax + ($request->input('price') * 0.19);
-        $invoice_list_record->total_value = $invoice_list_record->total_value + $request->input('price');
-
+        $invoice_list_record->value_tax = $invoice_list_record->value_tax + ($request->input('price') * $request->input('quantity') * 0.19);
+        $invoice_list_record->total_value = $invoice_list_record->total_value + ($request->input('price') * $request->input('quantity'));
         $invoice_list_record->save();
+
+        $product_update = product::findOrFail($request->product_id);
+        $product_update->stock = $product_update->stock - $request->input('quantity');
+        $product_update->save();
 
         return back();
     }
