@@ -46,7 +46,7 @@
             <div class="card card-default">
                 <div class="card-header">{{ __('Invoice Products') }}</div>
                 <div class="card-footer d-flex justify-content-between">
-                    <button type="button" class="btn btn-outline-primary" data-description="{{ $product_list }}" data-route="{{ route('invoice_product.create') }}" data-toggle="modal" data-target="#add_invoice_product_modal"
+                    <button type="button" class="btn btn-outline-primary" data-route="{{ route('invoice_product.store') }}" data-toggle="modal" data-target="#add_invoice_product_modal"
                         <i class="fas fa-trash">{{ __('Add Product') }}</i>
                     </button> 
                 </div>

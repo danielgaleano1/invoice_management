@@ -15,6 +15,8 @@ Route::resource('invoice', 'invoice_controller');
 Route::resource('client', 'client_controller');
 Route::resource('product', 'product_controller');
 Route::resource('invoice_product', 'invoice_product_controller');
+Route::get('invoice/{{ invoice->id }}/invoice_product/create', 'invoice_product@create');
+Route::get('invoice_product/create', 'invoice_product@create');
 
 Auth::routes();
 

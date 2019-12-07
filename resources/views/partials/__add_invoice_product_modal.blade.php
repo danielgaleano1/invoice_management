@@ -8,36 +8,51 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>{{ __('This action cannot be undone!') }}</p>
-                <form id="add_form" action="" method="POST">
+                <p>{{ __('Select one product') }}</p>
+                <form id="add_form" action="" method="post">
                     @csrf()
 
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label for="invoice_id">{{ __('invoice_id') }}</label>
+                            <input type="number" class="form-control {{ $errors->has('invoice_id') ? 'is-invalid' : '' }}" name="invoice_id" id="invoice_id" value="{{ $invoice_list->id }}" required readonly>
+                            @includeWhen($errors->has('invoice_id'), 'partials.__invalid_feedback', ['feedback' => $errors->first('invoice_id')])
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
                             <label for="code">{{ __('Code') }}</label>
-                            <input type="number" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code" id="code" value="" required>
+                            <select class="form-control custom-select {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code" id="code" required>
+                                <option value="">{{ __('Please select a code') }}</option>
+                                @foreach($product_list as $product_lists)
+                                    <option value="{{ $product_lists->id }}">{{ $product_lists->code }}</option>
+                                @endforeach
+                            </select>
                             @includeWhen($errors->has('code'), 'partials.__invalid_feedback', ['feedback' => $errors->first('code')])
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="description">{{ __('description') }}</label>
-                            <select class="form-control custom-select {{ $errors->has('description') ? 'is-invalid' : '' }}" name="description" id="description" required>
-                                <option value="">{{ __('Please select a description') }}</option>
-                                @foreach($product_list as $product_lists)
-                                    <option value="{{ $product_lists->id }}">{{ $product_lists->description }}</option>
-                                @endforeach
-                            </select>
-                            @includeWhen($errors->has('description'), 'partials.__invalid_feedback', ['feedback' => $errors->first('description')])
+                            <label for="quantity">{{ __('Quantity') }}</label>
+                            <input type="number" class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" name="quantity" id="quantity" value="{{ '1' }}" required readonly>
+                            @includeWhen($errors->has('quantity'), 'partials.__invalid_feedback', ['feedback' => $errors->first('quantity')])
                         </div>
                     </div>
 
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="price">{{ __('Price') }}</label>
+                            <input type="number" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" name="price" id="price" value="{{ '1' }}" required readonly>
+                            @includeWhen($errors->has('price'), 'partials.__invalid_feedback', ['feedback' => $errors->first('price')])
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
-                <button type="submit" form="add_form" class="btn btn-danger">{{ __('Delete') }}</button>
+                <button type="submit" form="add_form" class="btn btn-success">{{ __('Add product') }}</button>
             </div>
         </div>
     </div>

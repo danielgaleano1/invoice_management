@@ -50,14 +50,17 @@ class invoice_product_controller extends Controller
      */
     public function store(Request $request)
     {
-        $invoice_product_record = new invoice_product;
-        $invoice_product_record->product_id = $request->input('product_id');
-        $invoice_product_record->invoice_id = $request->input('invoice_id');
+        //dd($product_lists->id);
+        invoice_product::create($request->all());
+        /*$invoice_product_record = new invoice_product;
+        $invoice_product_record->product_id = $request->$product_lists->id;
+        $invoice_product_record->invoice_id = $request->$invoice_list->id;
         $invoice_product_record->quantity = $request->input('quantity');
         $invoice_product_record->price = $request->input('price');
         $invoice_product_record->save();
 
         return redirect()->route('invoice.show', $invoice_list)->withSuccess(__('Invoice Product deleted successfully'));
+        */
     }
 
     /**

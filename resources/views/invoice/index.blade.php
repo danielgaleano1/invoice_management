@@ -52,6 +52,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $invoice_list->links() }}
     </div>
 </div>
 @endsection

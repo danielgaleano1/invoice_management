@@ -30,6 +30,9 @@
                         <td>{{ $product_lists->price }}</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Product actions') }}">
+                                <button type="button" class="btn btn-outline-primary" data-description="{{ $product_lists->description }}" data-route="{{ route('product.update', $product_lists->id) }}"  data-toggle="modal" data-target="#add_products_modal"
+                                    <i class="fas fa-trash">{{ __('Add Product') }}</i>
+                                </button> 
 
                                 <a href="{{ route('product.edit', $product_lists) }}" class="btn btn-outline-secondary" title="{{ __('Edit') }}">
                                     <i class="fas fa-edit">{{ __('Edit') }}</i>
@@ -48,4 +51,5 @@
 @endsection
 @push('modals')
     @include('partials.__confirm_delete_modal')
+    @include('partials.__add_products_modal')
 @endpush

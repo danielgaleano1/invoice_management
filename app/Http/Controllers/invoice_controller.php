@@ -19,8 +19,10 @@ class invoice_controller extends Controller
      */
     public function index()
     {
+        $invoices = invoice::paginate(2);
+
          return view('invoice.index', [
-            'invoice_list' => invoice::all(),
+            'invoice_list' => invoice::paginate(5),
             'collaborator_list' => collaborator::all(),
             'invoice_state_list' => invoice_state::all(),
             'client_list' => client::all(),
