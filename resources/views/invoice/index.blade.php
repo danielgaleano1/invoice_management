@@ -7,7 +7,9 @@
         <h3 class="card-title">{{ __('Invoices') }}</h3>
     </div>
     <div class="card-footer d-flex justify-content-between">
-        <a class="btn btn-outline-primary" href="{{ route('invoice.create') }}">Create new invoice</a>
+        <a class="btn btn-outline-primary" href="{{ route('invoice.create') }}">
+            <i class="fas fa-plus-circle"></i> {{ __('Create new invoice') }}
+        </a>
     </div>
 
     <div class="table-responsive-lg">
@@ -37,14 +39,14 @@
                         <td class="text-center">
                             <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Collaborator actions') }}">
                                 <a href="{{ route('invoice.show', $invoice_lists) }}" class="btn btn-outline-info" title="{{ __('View') }}">
-                                    <i class="fas fa-eye">{{ __('View') }}</i>
+                                    <i class="fas fa-eye"></i> {{ __('View') }}
                                 </a>
                                 
                                 <a href="{{ route('invoice.edit', $invoice_lists) }}" class="btn btn-outline-secondary" title="{{ __('Edit') }}">
-                                    <i class="fas fa-edit">{{ __('Edit') }}</i>
+                                    <i class="far fa-edit"></i> {{ __('Edit') }}
                                 </a>
-                                <button type="button" class="btn btn-outline-danger" data-route="{{ route('invoice.destroy', $invoice_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
-                                    <i class="fas fa-trash">{{ __('Delete') }}</i>
+                                <button type="button" class="btn btn-outline-danger" data-route="{{ route('invoice.destroy', $invoice_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal">
+                                    <i class="far fa-trash-alt"></i> {{ __('Delete') }}
                                 </button>
                             </div>
                         </td>

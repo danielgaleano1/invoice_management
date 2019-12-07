@@ -7,7 +7,9 @@
         <h3 class="card-title">{{ __('Clients') }}</h3>
     </div>
     <div class="card-footer d-flex justify-content-between">
-        <a class="btn btn-outline-primary" href="{{ route('client.create') }}">Create new client</a>
+        <a class="btn btn-outline-primary" href="{{ route('client.create') }}">
+            <i class="fas fa-plus-circle"></i> {{ __('Create new client') }}
+        </a>
     </div>
 
     <div class="table-responsive-lg">
@@ -37,15 +39,15 @@
                         <td class="text-right">
                             <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Client actions') }}">
                                 <a href="{{ route('client.show', $client_lists) }}" class="btn btn-outline-info" title="{{ __('View') }}">
-                                    <i class="fas fa-eye">View</i>
+                                    <i class="fas fa-eye"></i> {{ __('View') }}
                                 </a>
 
                                 <a href="{{ route('client.edit', $client_lists) }}" class="btn btn-outline-secondary" title="{{ __('Edit') }}">
-                                    <i class="fas fa-edit">Edit</i>
+                                    <i class="fas fa-edit"></i> {{ __('Edit') }}
                                 </a>
 
-                                <button type="button" class="btn btn-outline-danger" data-route="{{ route('client.destroy', $client_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
-                                    <i class="fas fa-trash">{{ __('Delete') }}</i>
+                                <button type="button" class="btn btn-outline-danger" data-route="{{ route('client.destroy', $client_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal">
+                                    <i class="fas fa-trash-alt"></i> {{ __('Delete') }}
                                 </button>
                             </div>
                         </td>

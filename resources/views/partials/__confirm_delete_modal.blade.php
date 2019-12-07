@@ -15,8 +15,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
-                <button type="submit" form="delete_form" class="btn btn-danger">{{ __('Delete') }}</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i> {{ __('Close') }}</button>
+                <button type="submit" form="delete_form" class="btn btn-danger"><i class="fas fa-trash-alt"></i> {{ __('Delete') }}</button>
             </div>
         </div>
     </div>

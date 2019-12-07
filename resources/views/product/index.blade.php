@@ -7,7 +7,9 @@
         <h3 class="card-title">{{ __('Products') }}</h3>
     </div>
     <div class="card-footer d-flex justify-content-between">
-        <a class="btn btn-outline-primary" href="{{ route('product.create') }}">Create new product</a>
+        <a class="btn btn-outline-primary" href="{{ route('product.create') }}">
+            <i class="fas fa-plus-circle"></i> {{ __('Create new product') }}
+        </a>
     </div>
 
     <div class="table-responsive-lg">
@@ -30,15 +32,15 @@
                         <td>{{ $product_lists->price }}</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Product actions') }}">
-                                <button type="button" class="btn btn-outline-primary" data-description="{{ $product_lists->description }}" data-route="{{ route('product.update', $product_lists->id) }}"  data-toggle="modal" data-target="#add_products_modal"
-                                    <i class="fas fa-trash">{{ __('Add Product') }}</i>
+                                <button type="button" class="btn btn-outline-primary" data-description="{{ $product_lists->description }}" data-route="{{ route('product.update', $product_lists->id) }}"  data-toggle="modal" data-target="#add_products_modal">
+                                    <i class="fas fa-plus-circle"></i> {{ __('Add Product') }}
                                 </button> 
 
                                 <a href="{{ route('product.edit', $product_lists) }}" class="btn btn-outline-secondary" title="{{ __('Edit') }}">
-                                    <i class="fas fa-edit">{{ __('Edit') }}</i>
+                                    <i class="fas fa-edit"></i> {{ __('Edit') }}
                                 </a>
-                                <button type="button" class="btn btn-outline-danger" data-route="{{ route('product.destroy', $product_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
-                                    <i class="fas fa-trash">{{ __('Delete') }}</i>
+                                <button type="button" class="btn btn-outline-danger" data-route="{{ route('product.destroy', $product_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal">
+                                    <i class="fas fa-trash-alt"></i> {{ __('Delete') }}
                                 </button>
                             </div>
                         </td>

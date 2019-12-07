@@ -16,8 +16,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
-                <button type="submit" form="add_product_form" class="btn btn-success">{{ __('Add product quantity') }}</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i> {{ __('Close') }}</button>
+                <button type="submit" form="add_product_form" class="btn btn-success"><i class="fas fa-plus-circle"></i> {{ __('Add product quantity') }}</button>
             </div>
         </div>
     </div>

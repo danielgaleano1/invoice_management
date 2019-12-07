@@ -84,10 +84,18 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <a class="btn btn-light" style="background-color: rgb(0, 93, 88); color: white; border-style: solid; border-color: white;" href="{{ route('invoice.index') }}">{{ __('Invoice') }}</a>
-                <a class="btn btn-light" style="background-color: rgb(0, 93, 88); color: white; border-style: solid; border-color: white;" href="{{ route('client.index') }}">{{ __('Client') }}</a>
-                <a class="btn btn-light" style="background-color: rgb(0, 93, 88); color: white; border-style: solid; border-color: white;" href="{{ route('product.index') }}">{{ __('Product') }}</a>
-                <a class="btn btn-light" style="background-color: rgb(0, 93, 88); color: white; border-style: solid; border-color: white;" href="{{ route('invoice_product.index') }}">{{ __('Invoice Product') }}</a>
+                <a class="btn btn-light" style="background-color: rgb(0, 93, 88); color: white; border-style: solid; border-color: white;" href="{{ route('invoice.index') }}">
+                    <i class="fas fa-file-invoice"></i>{{ __(' Invoice') }}
+                </a>
+                <a class="btn btn-light" style="background-color: rgb(0, 93, 88); color: white; border-style: solid; border-color: white;" href="{{ route('client.index') }}">
+                    <i class="fas fa-building"></i>{{ __(' Client') }}
+                </a>
+                <a class="btn btn-light" style="background-color: rgb(0, 93, 88); color: white; border-style: solid; border-color: white;" href="{{ route('product.index') }}">
+                    <i class="fab fa-linode"></i>{{ __(' Product') }}
+                </a>
+                <a class="btn btn-light" style="background-color: rgb(0, 93, 88); color: white; border-style: solid; border-color: white;" href="{{ route('invoice_product.index') }}">
+                    <i class="fas fa-receipt"></i>{{ __(' Invoice Product') }}
+                </a>
             </div>
         </nav>
         @endguest
@@ -99,6 +107,7 @@
     <script src="{{ asset(mix('js/manifest.js')) }}"></script>
     <script src="{{ asset(mix('js/vendor.js')) }}"></script>
     <script src="{{ asset(mix('js/app.js')) }}"></script>
+    <script src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" data-auto-replace-svg="nest"></script>
     <script>
     $('#confirm_delete_modal').on('show.bs.modal', function (e) {
         $('#delete_form').attr('action', $(e.relatedTarget).data('route'));

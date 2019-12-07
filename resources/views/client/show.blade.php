@@ -13,8 +13,8 @@
                         <i class="fas fa-edit"></i> {{ __('Edit') }}
                     </a>
 
-                    <button type="button" class="btn btn-outline-danger" data-route="{{ route('client.destroy', $client_list) }}" data-toggle="modal" data-target="#confirm_delete_modal"
-                        <i class="fas fa-trash">{{ __('Delete') }}</i>
+                    <button type="button" class="btn btn-outline-danger" data-route="{{ route('client.destroy', $client_list) }}" data-toggle="modal" data-target="#confirm_delete_modal">
+                        <i class="fas fa-trash"></i> {{ __('Delete') }}
                     </button>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <dt class="col-md-1">{{ __('Email') }}</dt>
                 <dd class="col-md-3">{{ $client_list->email }}</dd>
                 
-                <dt class="col-md-1">{{ __('Client') }}</dt>
+                <dt class="col-md-1">{{ __('City') }}</dt>
                 <dd class="col-md-3">{{ $client_list->city->name }}</dd>
             </dl>
 
@@ -49,7 +49,7 @@
                             <th>{{ __('Invoice Id') }}</th>
                             <th>{{ __('Invoice Code') }}</th>
                             <th>{{ __('Collaborator') }}</th>
-                            <th class="text-right"></th>
+                            <th class="text-center">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,13 +59,13 @@
                                     <td>{{ $invoice_lists->id }}</td>
                                     <td>{{ $invoice_lists->code }}</td>
                                     <td>{{ $invoice_lists->collaborator_id }}</td>
-                                    <td class="text-right">
+                                    <td class="text-center">
                                         <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Collaborator actions') }}">
                                             <a href="{{ route('invoice.edit', $invoice_lists) }}" class="btn btn-outline-secondary" title="{{ __('Edit') }}">
-                                                <i class="fas fa-edit">Edit</i>
+                                                <i class="fas fa-edit"></i> {{ __('Edit') }}
                                             </a>
-                                            <button type="button" class="btn btn-outline-danger" data-route="{{ route('invoice.destroy', $invoice_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal"
-                                                <i class="fas fa-trash">{{ __('Delete') }}</i>
+                                            <button type="button" class="btn btn-outline-danger" data-route="{{ route('invoice.destroy', $invoice_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal">
+                                                <i class="fas fa-trash-alt"></i> {{ __('Delete') }}
                                             </button>
                                         </div>
                                     </td>
