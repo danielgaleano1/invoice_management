@@ -55,6 +55,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $client_list->links() }}
     </div>
 </div>
 @endsection
