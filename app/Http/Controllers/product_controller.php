@@ -52,6 +52,14 @@ class product_controller extends Controller
      */
     public function store(Request $request)
     {
+
+        $validData = $request->validate([
+            'code' => 'min:3|unique:products,code',
+            'description' => 'min:3|max:100',
+            'stock' => 'min:1|numeric',
+            'price' => 'min:1|numeric'
+        ]);
+
         $product_record = new product;
         $product_record->code = $request->input('code');
         $product_record->description = $request->input('description');
