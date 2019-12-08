@@ -72,7 +72,7 @@ class invoice_controller extends Controller
         $invoice_list = invoice::findOrFail($id);
         return view('invoice.show', [
             'invoice_list' => $invoice_list,
-            'invoice_product_list' => invoice_product::paginate(5),
+            'invoice_product_list' => invoice_product::all(),
             'product_list' => product::all(),
         ]);  
     }
