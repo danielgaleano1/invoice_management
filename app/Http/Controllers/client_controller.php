@@ -122,8 +122,6 @@ class client_controller extends Controller
             ],
         ]);
 
-        
-
         $client_record->city_id = $request->input('city');
         $client_record->code = $request->input('code');
         $client_record->name = $request->input('name');
