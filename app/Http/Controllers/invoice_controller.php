@@ -20,7 +20,7 @@ class invoice_controller extends Controller
     public function index()
     {
          return view('invoice.index', [
-            'invoice_list' => invoice::paginate(5),
+            'invoice_list' => invoice::paginate(10),
             'collaborator_list' => collaborator::all(),
             'invoice_state_list' => invoice_state::all(),
             'client_list' => client::all(),
@@ -72,7 +72,7 @@ class invoice_controller extends Controller
         $invoice_list = invoice::findOrFail($id);
         return view('invoice.show', [
             'invoice_list' => $invoice_list,
-            'invoice_product_list' => invoice_product::all(),
+            'invoice_product_list' => invoice_product::paginate(5),
             'product_list' => product::all(),
         ]);  
     }
