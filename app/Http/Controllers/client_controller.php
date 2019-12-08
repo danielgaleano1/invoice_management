@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\client;
 use App\city;
@@ -44,6 +45,14 @@ class client_controller extends Controller
      */
     public function store(Request $request)
     {
+        $validData = $request->validate([
+            'code' => 'min:3|unique:clients,code',
+            'name' => 'min:3',
+            'address' => 'min:5',
+            'phone' => 'min:3|numeric',
+            'email' => 'min:3|email|unique:clients,email'
+        ]);
+
         $client_record = new client;
         $client_record->city_id = $request->input('city');
         $client_record->code = $request->input('code');
@@ -97,6 +106,24 @@ class client_controller extends Controller
     public function update(Request $request, $id)
     {
         $client_record = client::findOrFail($id);
+
+        $validData = $request->validate([
+            'code' => [
+                'min:3',
+                'max:10',
+                Rule::unique('clients')->ignore($client_record->id),
+            ],
+            'name' => 'min:3',
+            'address' => 'min:5',
+            'phone' => 'min:3|numeric',
+            'email' => [
+                'email',
+                Rule::unique('clients')->ignore($client_record->id),
+            ],
+            
+        ]);
+
+        
 
         $client_record->city_id = $request->input('city');
         $client_record->code = $request->input('code');
