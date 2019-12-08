@@ -120,7 +120,6 @@ class client_controller extends Controller
                 'email',
                 Rule::unique('clients')->ignore($client_record->id),
             ],
-            
         ]);
 
         

@@ -52,6 +52,11 @@ class invoice_controller extends Controller
      */
     public function store(Request $request)
     {
+        $validData = $request->validate([
+            'code' => 'min:3|unique:invoices,code',
+            'expiration_at' => 'date',
+        ]);
+
         invoice::create($request->all());
         return redirect()->route('invoice.index')->withSuccess(__('Invoice create successfully!'));
     }
@@ -100,6 +105,16 @@ class invoice_controller extends Controller
     {
         $invoice_list = invoice::findOrFail($id);
         
+        $validData = $request->validate([
+            'code' => 'min:3|unique:invoices,code',
+            'code' => [
+                'min:3',
+                'max:10',
+                Rule::unique('invoices')->ignore($invoice_list->id),
+            ],
+            'expiration_at' => 'date',
+        ]);
+
         $invoice_list->collaborator_id = $request->input('collaborator');
         $invoice_list->client_id = $request->input('client');
         $invoice_list->invoice_state_id = $request->input('invoice_state');
