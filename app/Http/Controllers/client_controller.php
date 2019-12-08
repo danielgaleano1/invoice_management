@@ -18,7 +18,7 @@ class client_controller extends Controller
     public function index()
     {
         return view('client.index', [
-            'client_list' => client::all(),
+            'client_list' => client::paginate(10),
             'city_list' => city::all()
         ]);
     }
