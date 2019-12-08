@@ -50,18 +50,26 @@ class invoice_product_controller extends Controller
      */
     public function store(Request $request)
     {
-        invoice_product::create($request->all());
-
+        
         $invoice_list_record = invoice::findOrFail($request->invoice_id);
-        $invoice_list_record->value_tax = $invoice_list_record->value_tax + ($request->input('price') * $request->input('quantity') * 0.19);
-        $invoice_list_record->total_value = $invoice_list_record->total_value + ($request->input('price') * $request->input('quantity'));
-        $invoice_list_record->save();
-
         $product_update = product::findOrFail($request->product_id);
-        $product_update->stock = $product_update->stock - $request->input('quantity');
-        $product_update->save();
 
-        return back();
+        if ($product_update->stock > $request->input('quantity')){
+            
+            invoice_product::create($request->all());
+            
+            $invoice_list_record->value_tax = $invoice_list_record->value_tax + ($request->input('price') * $request->input('quantity') * 0.19);
+            $invoice_list_record->total_value = $invoice_list_record->total_value + ($request->input('price') * $request->input('quantity'));
+            $invoice_list_record->save();
+
+            $product_update->stock = $product_update->stock - $request->input('quantity');
+            $product_update->save();
+
+            return back();
+        }
+        else{
+            return redirect()->route('invoice.show', $invoice_list_record)->with('message', 'Quantity not available');
+        }
     }
 
     /**
@@ -106,6 +114,7 @@ class invoice_product_controller extends Controller
      */
     public function destroy($id)
     {
+
         $invoice_product_list = invoice_product::findOrFail($id);
         $invoice_product_list->delete();
 
