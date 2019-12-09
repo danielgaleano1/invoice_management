@@ -13,18 +13,22 @@ class DatabaseSeeder extends Seeder
     {
          //$this->call(country_factory::class);
          
-         //factory(App\country::class, 3)->create()->each(function ($country) {
-        //    factory(App\city::class, 2)->create(['country_id'=>$country->id]);
-        //});
-        factory(App\country::class, 3)->create();
-        factory(App\city::class, 2)->create();
-        factory(App\client::class, 2)->create();
-        factory(App\profile::class, 2)->create();
-        factory(App\collaborator::class, 2)->create();
-        factory(App\invoice_state::class, 2)->create();
-        factory(App\product::class, 2)->create();
-        factory(App\invoice_product::class, 20)->create();
-        factory(App\invoice::class, 2)->create();
-        factory(App\User::class, 2)->create();
+         factory(App\country::class, 1)->create()->each(function ($country) {
+            factory(App\city::class, 3)->create(['country_id'=>$country->id]);
+        });
+        factory(App\client::class, 1)->create();
+        factory(App\profile::class, 1)->create();
+        factory(App\collaborator::class, 1)->create();
+        factory(App\invoice_state::class, 1)->create();
+        factory(App\product::class, 1)->create();
+        
+        factory(App\invoice::class, 1)->create()->each(function ($invoice) {
+            factory(App\invoice_product::class, 5)->create(['invoice_id'=>$invoice->id]);
+        });
+        /*
+        factory(App\invoice_product::class, 1)->create();
+        factory(App\invoice::class, 1)->create();
+        */
+        factory(App\User::class, 1)->create();
     }
 }

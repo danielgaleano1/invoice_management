@@ -7,12 +7,8 @@ use Faker\Generator as Faker;
 
 $factory->define(App\collaborator::class, function (Faker $faker) {
     return [
-        'city_id' => function () {
-            return factory(App\city::class)->create()->id;
-        },
-        'profile_id' => function () {
-            return factory(App\profile::class)->create()->id;
-        },
+        'city_id' => factory(App\city::class),
+        'profile_id' => factory(App\profile::class),
         'code' => $faker->numberBetween(14000000, 28000000),
         'name' => $faker->firstName,
         'address' => $faker->address,

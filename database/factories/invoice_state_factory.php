@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\invoice_state::class, function (Faker $faker) {
     return [
-        'type' => $faker->sentence($nbWords = 1, $variableNbWords = true),
+        'type' => $faker->unique()->sentence($nbWords = 1, $variableNbWords = true),
         'description' => $faker->sentence($nbWords = 2, $variableNbWords = true),
         'state' => 1,
     ];
