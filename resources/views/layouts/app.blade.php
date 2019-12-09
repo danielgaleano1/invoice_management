@@ -107,6 +107,7 @@
     <script src="{{ asset(mix('js/manifest.js')) }}"></script>
     <script src="{{ asset(mix('js/vendor.js')) }}"></script>
     <script src="{{ asset(mix('js/app.js')) }}"></script>
+    <script src="{{ asset('js/functions.js') }}"></script>
     <script src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" data-auto-replace-svg="nest"></script>
     <script>
     $('#confirm_delete_modal').on('show.bs.modal', function (e) {

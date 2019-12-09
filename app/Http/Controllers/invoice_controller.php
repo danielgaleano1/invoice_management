@@ -72,7 +72,7 @@ class invoice_controller extends Controller
         $invoice_list = invoice::findOrFail($id);
         return view('invoice.show', [
             'invoice_list' => $invoice_list,
-            'invoice_product_list' => invoice_product::paginate(5),
+            'invoice_product_list' => invoice_product::all(),
             'product_list' => product::all(),
         ]);  
     }
@@ -138,5 +138,12 @@ class invoice_controller extends Controller
         $invoice_list = invoice::findOrFail($id);
         $invoice_list->delete();
         return redirect()->route('invoice.index')->withSuccess(__('Invoice deleted successfully'));
+    }
+
+    public function search_product_modal($product_id)
+    {
+        $data_product = invoice::search_database($product_id)->get();
+        dd($data_product);
+        return redirect()->route('invoice.show')->with("data_product", $data_product);
     }
 }

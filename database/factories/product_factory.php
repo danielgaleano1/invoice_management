@@ -10,6 +10,6 @@ $factory->define(App\product::class, function (Faker $faker) {
         'code' => $faker->numberBetween(14000000, 28000000),
         'description' => $faker->sentence($nbWords = 3, $variableNbWords = true),
         'stock' => $faker->numberBetween(400, 1800),
-        'price' => $faker->numberBetween(140000, 980000),
+        'price' => 10000,
     ];
 });

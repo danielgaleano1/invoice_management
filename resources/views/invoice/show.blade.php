@@ -79,7 +79,6 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $invoice_product_list->links() }}
                 </div>
             </div>
         </div>

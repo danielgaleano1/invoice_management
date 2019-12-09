@@ -22,7 +22,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="product_id">{{ __('Code') }}</label>
-                            <select class="form-control custom-select {{ $errors->has('product_id') ? 'is-invalid' : '' }}" name="product_id" id="product_id" required>
+                            <select class="form-control custom-select {{ $errors->has('product_id') ? 'is-invalid' : '' }}" name="product_id" id="product_id" onchange="search_product()" required>
                                 <option value="">{{ __('Please select a code') }}</option>
                                 @foreach($product_list as $product_lists)
                                     <option value="{{ $product_lists->id }}">{{ $product_lists->code }}</option>
@@ -43,7 +43,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="price">{{ __('Price') }}</label>
-                            <input type="number" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" name="price" id="price" value="{{ '100' }}" required readonly>
+                            <input type="number" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" name="price" id="price" value="" required readonly>
                             @includeWhen($errors->has('price'), 'partials.__invalid_feedback', ['feedback' => $errors->first('price')])
                         </div>
                     </div>
