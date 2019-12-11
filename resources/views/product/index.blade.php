@@ -48,7 +48,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $client_list->links() }}
+        {{ $product_list->links() }}
     </div>
 </div>
 @endsection
