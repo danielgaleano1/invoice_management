@@ -43,7 +43,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="price">{{ __('Price') }}</label>
-                            <input type="number" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" name="price" id="price" value="10000" required readonly>
+                            <input type="number" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" name="price" id="price" value="" required readonly>
                             @includeWhen($errors->has('price'), 'partials.__invalid_feedback', ['feedback' => $errors->first('price')])
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="stock">{{ __('Stock') }}</label>
-                        <input type="number" class="form-control {{ $errors->has('stock') ? 'is-invalid' : '' }}" name="stock" id="stock" value="{{ $product_lists->stock }}" required readonly>
+                        <input type="number" class="form-control {{ $errors->has('stock') ? 'is-invalid' : '' }}" name="stock" id="stock" value="" required readonly>
                         @includeWhen($errors->has('stock'), 'partials.__invalid_feedback', ['feedback' => $errors->first('stock')])
                     </div>
                 </div>
