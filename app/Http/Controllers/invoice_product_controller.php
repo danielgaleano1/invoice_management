@@ -85,9 +85,6 @@ class invoice_product_controller extends Controller
         $product_id_modal = product::findOrFail($id);
         $product_price = $product_id_modal->price;
         $product_stock = $product_id_modal->stock;
-        //$data_product = invoice::search_database($request)->get();
-        //dd($product_price, $product_stock, $id, $product_id_modal, $product_id_modal->price);
-        //return redirect()->back()->withInput([$product_price, $product_stock]);
         return response()->json(['price' => $product_price, 'stock' => $product_stock]);
         
     }
