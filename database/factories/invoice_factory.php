@@ -13,6 +13,7 @@ $factory->define(App\invoice::class, function (Faker $faker) {
         'invoice_state_id' => factory(App\invoice_state::class),
         'code' => $faker->numberBetween(100000, 700000),
         'expiration_at' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+3 months', $timezone = null),
+        'date_of_receipt' => null,
         'value_tax' => 9500,
         'total_value' => 50000,
     ];
