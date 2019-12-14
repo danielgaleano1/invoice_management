@@ -53,12 +53,12 @@
                 <div class="card-body">
                 <table class="table table-hover table-bordered" >
                     <thead class="thead-dark">
-                        <tr>
+                        <tr class="text-center">
                             <th>{{ __('Code') }}</th>
                             <th>{{ __('Product') }}</th>
                             <th>{{ __('Quantity') }}</th>
                             <th>{{ __('Price') }}</th>
-                            <th class="text-center">{{ __('Actions') }}</th>
+                            <th>{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
