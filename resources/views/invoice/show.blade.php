@@ -33,9 +33,15 @@
                 <dt class="col-md-1">{{ __('invoice State') }}</dt>
                 <dd class="col-md-3">{{ $invoice_list->invoice_state->type }}</dd>
                 
+                <dt class="col-md-1">{{ __('Expedition at') }}</dt>
+                <dd class="col-md-3">{{ $invoice_list->created_at }}</dd>
+
                 <dt class="col-md-1">{{ __('Expiration at') }}</dt>
                 <dd class="col-md-3">{{ $invoice_list->expiration_at }}</dd>
-                
+
+                <dt class="col-md-1">{{ __('Receipt at') }}</dt>
+                <dd class="col-md-3">{{ $invoice_list->date_of_receipt }}</dd>
+
                 <dt class="col-md-1">{{ __('Value Tax') }}</dt>
                 <dd class="col-md-3">{{ $invoice_list->value_tax }}</dd>
                 
@@ -77,6 +83,22 @@
                                 @endif
                             </tr>
                         @endforeach
+                        <tr>
+                            <td  class="text-right" colspan="3">
+                                {{ __('Value Tax') }}
+                            </td>
+                            <td>
+                                {{ $invoice_list->value_tax }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-right" colspan="3">
+                                {{ __('Value Total') }}
+                            </td>
+                            <td>
+                                {{ $invoice_list->total_value }}
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 </div>

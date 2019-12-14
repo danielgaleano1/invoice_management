@@ -20,7 +20,9 @@
                     <th>{{ __('Collaborator') }}</th>
                     <th>{{ __('Client') }}</th>
                     <th>{{ __('invoice State') }}</th>
+                    <th>{{ __('Expedition at') }}</th>
                     <th>{{ __('Expiration at') }}</th>
+                    <th>{{ __('Receipt at') }}</th>
                     <th>{{ __('Value Tax') }}</th>
                     <th>{{ __('Value Total') }}</th>
                     <th>{{ __('Actions') }}</th>
@@ -33,7 +35,9 @@
                         <td>{{ $invoice_lists->collaborator->name }}</td>
                         <td>{{ $invoice_lists->client->name }}</td>
                         <td>{{ $invoice_lists->invoice_state->type }}</td>
+                        <td>{{ $invoice_lists->created_at }}</td>
                         <td>{{ $invoice_lists->expiration_at }}</td>
+                        <td>{{ $invoice_lists->date_of_receipt }}</td>
                         <td>{{ $invoice_lists->value_tax }}</td>
                         <td>{{ $invoice_lists->total_value }}</td>
                         <td class="text-center">
