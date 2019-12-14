@@ -15,7 +15,7 @@
     <div class="table-responsive-lg">
         <table class="table table-hover table-bordered" >
             <thead class="thead-dark">
-                <tr>
+                <tr class="text-center">
                     <th>{{ __('id') }}</th>
                     <th>{{ __('Code') }}</th>
                     <th>{{ __('Name') }}</th>
@@ -23,7 +23,7 @@
                     <th>{{ __('Phone') }}</th>
                     <th>{{ __('Email') }}</th>
                     <th>{{ __('City') }}</th>
-                    <th class="text-right"></th>
+                    <th >{{ __('Actions') }}</th>
                 </tr>
             </thead>
             <tbody>

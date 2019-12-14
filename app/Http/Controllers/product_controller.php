@@ -21,7 +21,7 @@ class product_controller extends Controller
     public function index()
     {
         return view('product.index', [
-            'product_list' => product::all(),
+            'product_list' => product::paginate(10),
             'invoice_list' => invoice::all(),
             'collaborator_list' => collaborator::all(),
             'invoice_state_list' => invoice_state::all(),

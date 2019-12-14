@@ -22,9 +22,4 @@ class invoice extends Model
     public function invoice_products() {
         return $this->hasMany(invoice_product::class);
     }
-    
-    public function search_database($query, $product_id){
-        $product_price = DB::table('products')->where('id','=','1')->value('price');
-        return $product_price;
-    }
 }

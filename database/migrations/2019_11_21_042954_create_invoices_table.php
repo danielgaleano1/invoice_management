@@ -21,8 +21,8 @@ class CreateInvoicesTable extends Migration
             $table->unsignedInteger('code')->unique();
             $table->date('expiration_at');
             $table->date('date_of_receipt')->nullable();
-            $table->float('value_tax');
-            $table->float('total_value');
+            $table->decimal('value_tax');
+            $table->decimal('total_value');
             $table->timestamps();
 
             $table->foreign('collaborator_id')->references('id')->on('collaborators');

@@ -15,7 +15,7 @@
     <div class="table-responsive-lg">
         <table class="table table-hover table-bordered" >
             <thead class="thead-dark">
-                <tr>
+                <tr class="text-center">
                     <th>{{ __('Code') }}</th>
                     <th>{{ __('Collaborator') }}</th>
                     <th>{{ __('Client') }}</th>
@@ -25,7 +25,7 @@
                     <th>{{ __('Receipt at') }}</th>
                     <th>{{ __('Value Tax') }}</th>
                     <th>{{ __('Value Total') }}</th>
-                    <th class="text-center">{{ __('Actions') }}</th>
+                    <th>{{ __('Actions') }}</th>
                 </tr>
             </thead>
             <tbody>
