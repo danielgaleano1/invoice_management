@@ -20,7 +20,7 @@ class CreateInvoicesTable extends Migration
             $table->unsignedBigInteger('invoice_state_id');
             $table->unsignedInteger('code')->unique();
             $table->date('expiration_at');
-            $table->date('date_of_receipt');
+            $table->date('date_of_receipt')->nullable();
             $table->float('value_tax');
             $table->float('total_value');
             $table->timestamps();
