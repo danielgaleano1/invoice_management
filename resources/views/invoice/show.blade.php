@@ -43,10 +43,10 @@
                 <dd class="col-md-3">{{ $invoice_list->date_of_receipt }}</dd>
 
                 <dt class="col-md-1">{{ __('Value Tax') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->value_tax }}</dd>
+                <dd class="col-md-3">{{ number_format($invoice_list->value_tax, 2) }}</dd>
                 
                 <dt class="col-md-1">{{ __('Value Total') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->total_value }}</dd>
+                <dd class="col-md-3">{{ number_format($invoice_list->total_value, 2) }}</dd>
             </dl>
 
             <div class="card card-default">
@@ -57,7 +57,7 @@
                     </button> 
                 </div>
                 <div class="card-body">
-                <table class="table table-hover table-bordered" >
+                <table class="table table-hover table-bordered table-sm table-responsive-sm" >
                     <thead class="thead-dark">
                         <tr class="text-center">
                             <th>{{ __('Code') }}</th>
@@ -69,34 +69,34 @@
                     </thead>
                     <tbody>
                         @foreach($invoice_product_list as $invoice_product_lists)
-                            <tr>
+                            <tr class="text-center">
                                 @if($invoice_product_lists->invoice_id == $invoice_list->id)
                                     <td>{{ $invoice_product_lists->id }}</td>
                                     <td>{{ $invoice_product_lists->product->description }}</td>
                                     <td>{{ $invoice_product_lists->quantity }}</td>
-                                    <td>{{ $invoice_product_lists->price }}</td>
+                                    <td>{{ number_format($invoice_product_lists->price, 2) }}</td>
                                     <td class="text-center">                                       
-                                        <button type="button" class="btn btn-outline-danger" data-route="{{ route('invoice_product.destroy', $invoice_product_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal">
+                                        <button type="button" class="btn btn-sm btn-outline-danger" data-route="{{ route('invoice_product.destroy', $invoice_product_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal">
                                             <i class="fas fa-trash-alt"></i> {{ __('Delete') }}
                                         </button>
                                     </td>
                                 @endif
                             </tr>
                         @endforeach
-                        <tr>
+                        <tr class="text-center">
                             <td  class="text-right" colspan="3">
-                                {{ __('Value Tax') }}
+                                <b>{{ __('Value Tax') }}</b>
                             </td>
                             <td>
-                                {{ $invoice_list->value_tax }}
+                                <b>{{ number_format($invoice_list->value_tax, 2) }}</b>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="text-center">
                             <td class="text-right" colspan="3">
-                                {{ __('Value Total') }}
+                                <b>{{ __('Value Total') }}</b>
                             </td>
                             <td>
-                                {{ $invoice_list->total_value }}
+                                <b>{{ number_format($invoice_list->total_value, 2) }}</b>
                             </td>
                         </tr>
                     </tbody>
