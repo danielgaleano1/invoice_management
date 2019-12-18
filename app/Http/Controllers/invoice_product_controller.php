@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\invoice;
 use App\collaborator;
 use App\client;
@@ -80,7 +82,11 @@ class invoice_product_controller extends Controller
      */
     public function show($id)
     {
-        //
+        $product_id_modal = product::findOrFail($id);
+        $product_price = $product_id_modal->price;
+        $product_stock = $product_id_modal->stock;
+        return response()->json(['price' => $product_price, 'stock' => $product_stock]);
+        
     }
 
     /**

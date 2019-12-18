@@ -15,7 +15,7 @@
     <div class="table-responsive-lg">
         <table class="table table-hover table-bordered" >
             <thead class="thead-dark">
-                <tr>
+                <tr class="text-center">
                     <th>{{ __('Code') }}</th>
                     <th>{{ __('Collaborator') }}</th>
                     <th>{{ __('Client') }}</th>
@@ -25,7 +25,7 @@
                     <th>{{ __('Receipt at') }}</th>
                     <th>{{ __('Value Tax') }}</th>
                     <th>{{ __('Value Total') }}</th>
-                    <th class="text-center">{{ __('Actions') }}</th>
+                    <th>{{ __('Actions') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,8 +38,8 @@
                         <td>{{ $invoice_lists->created_at }}</td>
                         <td>{{ $invoice_lists->expiration_at }}</td>
                         <td>{{ $invoice_lists->date_of_receipt }}</td>
-                        <td>{{ $invoice_lists->value_tax }}</td>
-                        <td>{{ $invoice_lists->total_value }}</td>
+                        <td>{{ number_format($invoice_lists->value_tax, 2) }}</td>
+                        <td>{{ number_format($invoice_lists->total_value, 2) }}</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Collaborator actions') }}">
                                 <a href="{{ route('invoice.show', $invoice_lists) }}" class="btn btn-outline-info" title="{{ __('View') }}">

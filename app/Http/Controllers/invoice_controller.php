@@ -140,11 +140,4 @@ class invoice_controller extends Controller
         $invoice_list->delete();
         return redirect()->route('invoice.index')->withSuccess(__('Invoice deleted successfully'));
     }
-
-    public function search_product_modal($product_id)
-    {
-        $data_product = invoice::search_database($product_id)->get();
-        dd($data_product);
-        return redirect()->route('invoice.show')->with("data_product", $data_product);
-    }
 }
