@@ -9,7 +9,7 @@
             <form action="{{ route('invoice.update', $invoice_list) }}" method="post" id="invoices-form">
                 @csrf
                 @method('PATCH')
-                @include('invoice\__form')
+                @include('invoice/__form')
             </form>
         </div>
         <div class="card-footer d-flex justify-content-between">

@@ -40,7 +40,7 @@
                 <dd class="col-md-3">{{ $invoice_list->expiration_at }}</dd>
 
                 <dt class="col-md-1">{{ __('Receipt at') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->date_of_receipt }}</dd>
+                <dd class="col-md-3">{{ $invoice_list->date_of_receipt == '' ? "Whitout date" : $invoice_list->date_of_receipt }}</dd>
 
                 <dt class="col-md-1">{{ __('Value Tax') }}</dt>
                 <dd class="col-md-3">{{ number_format($invoice_list->value_tax, 2) }}</dd>
@@ -107,6 +107,6 @@
     </div>
 @endsection
 @push('modals')
-    @include('partials.__confirm_delete_modal')
-    @include('partials.__add_invoice_product_modal')
+    @include('partials/__confirm_delete_modal')
+    @include('partials/__add_invoice_product_modal')
 @endpush
