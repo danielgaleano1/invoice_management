@@ -13,7 +13,7 @@
     </div>
 
     <div class="table-responsive-lg">
-        <table class="table table-hover table-bordered" >
+        <table class="table table-hover table-bordered text-center" >
             <thead class="thead-dark">
                 <tr class="text-center">
                     <th>{{ __('Code') }}</th>
@@ -37,7 +37,7 @@
                         <td>{{ $invoice_lists->invoice_state->type }}</td>
                         <td>{{ $invoice_lists->created_at }}</td>
                         <td>{{ $invoice_lists->expiration_at }}</td>
-                        <td>{{ $invoice_lists->date_of_receipt }}</td>
+                        <td>{{ $invoice_lists->date_of_receipt == '' ? "Whitout date" : $invoice_lists->date_of_receipt }}</td>
                         <td>{{ number_format($invoice_lists->value_tax, 2) }}</td>
                         <td>{{ number_format($invoice_lists->total_value, 2) }}</td>
                         <td class="text-center">
@@ -63,5 +63,5 @@
 </div>
 @endsection
 @push('modals')
-    @include('partials.__confirm_delete_modal')
+    @include('partials/__confirm_delete_modal')
 @endpush

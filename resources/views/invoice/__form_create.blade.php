@@ -23,19 +23,6 @@
 
     <div class="col-md-6">
         <div class="form-group">
-            <label for="invoice_state_id">{{ __('Invoice State') }}</label>
-            <select class="form-control custom-select {{ $errors->has('invoice_state_id') ? 'is-invalid' : '' }}" name="invoice_state_id" id="invoice_state_id" required>
-                <option value="">{{ __('Please select a invoice state') }}</option>
-                @foreach($invoice_state_list as $invoice_state)
-                    <option value="{{ $invoice_state->id }}">{{ $invoice_state->type }}</option>
-                @endforeach
-            </select>
-            @includeWhen($errors->has('invoice_state_id'), 'partials.__invalid_feedback', ['feedback' => $errors->first('invoice_state_id')])
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
             <label for="client_id">{{ __('client') }}</label>
             <select class="form-control custom-select {{ $errors->has('client_id') ? 'is-invalid' : '' }}" name="client_id" id="client_id" required>
                 <option value="">{{ __('Please select a client') }}</option>
@@ -55,20 +42,10 @@
         </div>
     </div>
 
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="value_tax">{{ __('Tax Value') }}</label>
-            <input type="text" class="form-control {{ $errors->has('value_tax') ? 'is-invalid' : '' }}" name="value_tax" id="value_tax" value="0" required readonly>
-            @includeWhen($errors->has('value_tax'), 'partials.__invalid_feedback', ['feedback' => $errors->first('value_tax')])
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="total_value">{{ __('Total Value') }}</label>
-            <input type="text" class="form-control {{ $errors->has('total_value') ? 'is-invalid' : '' }}" name="total_value" id="total_value" value="0" required readonly>
-            @includeWhen($errors->has('total_value'), 'partials.__invalid_feedback', ['feedback' => $errors->first('total_value')])
-        </div>
-    </div>
+    <input type="hidden" name="value_tax" id="value_tax" value="0">
+            
+    <input type="hidden" name="total_value" id="total_value" value="0">
+        
+    <input type="hidden" name="invoice_state_id" id="invoice_state_id" value="1">
 
 </div>

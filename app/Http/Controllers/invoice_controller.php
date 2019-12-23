@@ -118,7 +118,7 @@ class invoice_controller extends Controller
 
         $invoice_list->collaborator_id = $request->input('collaborator');
         $invoice_list->client_id = $request->input('client');
-        $invoice_list->invoice_state_id = $request->input('invoice_state');
+        $invoice_list->invoice_state_id = "1";
         $invoice_list->code = $request->input('code');
         $invoice_list->expiration_at = $request->input('expiration_at');
         $invoice_list->value_tax = $request->input('value_tax');

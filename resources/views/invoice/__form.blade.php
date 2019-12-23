@@ -3,7 +3,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="code">{{ __('Code') }}</label>
-            <input type="text" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code" id="code" value="{{ old('code', $invoice_list->code) }}" required>
+            <input type="text" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code" id="code" value="{{ old('code', $invoice_list->code) }}" required readonly>
             @includeWhen($errors->has('code'), 'partials.__invalid_feedback', ['feedback' => $errors->first('code')])
         </div>
     </div>
@@ -23,13 +23,8 @@
 
     <div class="col-md-6">
         <div class="form-group">
-            <label for="invoice_state">{{ __('Invoice State') }}</label>
-            <select class="form-control custom-select {{ $errors->has('invoice_state') ? 'is-invalid' : '' }}" name="invoice_state" id="invoice_state" required>
-                <option value="">{{ __('Please select a invoice state') }}</option>
-                @foreach($invoice_state_list as $invoice_state)
-                    <option value="{{ $invoice_state->id }}" {{ old('invoice_state', $invoice_list->invoice_state_id) == $invoice_state->id ? 'selected' : ''}}>{{ $invoice_state->type }}</option>
-                @endforeach
-            </select>
+            <label for="value_tax">{{ __('Invoice State') }}</label>
+            <input type="text" class="form-control {{ $errors->has('invoice_state') ? 'is-invalid' : '' }}" name="invoice_state" id="invoice_state" value="{{ old('invoice_state', $invoice_list->invoice_state->type) }}" required readonly>
             @includeWhen($errors->has('invoice_state'), 'partials.__invalid_feedback', ['feedback' => $errors->first('invoice_state')])
         </div>
     </div>
