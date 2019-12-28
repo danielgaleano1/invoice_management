@@ -11,7 +11,7 @@ use App\client;
 use App\invoice_product;
 use App\product;
 
-class invoice_product_controller extends Controller
+class InvoiceProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -52,12 +52,10 @@ class invoice_product_controller extends Controller
      */
     public function store(Request $request)
     {
-        
         $invoice_list_record = invoice::findOrFail($request->invoice_id);
         $product_update = product::findOrFail($request->product_id);
 
-        if ($product_update->stock > $request->input('quantity')){
-            
+        if ($product_update->stock > $request->input('quantity')) {
             invoice_product::create($request->all());
             
             $invoice_list_record->value_tax = $invoice_list_record->value_tax + ($request->input('price') * $request->input('quantity') * 0.19);
@@ -68,8 +66,7 @@ class invoice_product_controller extends Controller
             $product_update->save();
 
             return back();
-        }
-        else{
+        } else {
             return redirect()->route('invoice.show', $invoice_list_record)->with('message', 'Quantity not available');
         }
     }
@@ -86,7 +83,6 @@ class invoice_product_controller extends Controller
         $product_price = $product_id_modal->price;
         $product_stock = $product_id_modal->stock;
         return response()->json(['price' => $product_price, 'stock' => $product_stock]);
-        
     }
 
     /**
@@ -120,7 +116,6 @@ class invoice_product_controller extends Controller
      */
     public function destroy($id)
     {
-
         $invoice_product_list = invoice_product::findOrFail($id);
         $invoice_product_list->delete();
 
