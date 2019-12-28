@@ -8,7 +8,7 @@ use App\client;
 use App\city;
 use App\invoice;
 
-class client_controller extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
