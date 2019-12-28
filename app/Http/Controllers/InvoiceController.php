@@ -20,7 +20,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-         return view('invoice.index', [
+        return view('invoice.index', [
             'invoice_list' => invoice::paginate(10),
             'collaborator_list' => collaborator::all(),
             'invoice_state_list' => invoice_state::all(),
@@ -75,7 +75,7 @@ class InvoiceController extends Controller
             'invoice_list' => $invoice_list,
             'invoice_product_list' => invoice_product::all(),
             'product_list' => product::all(),
-        ]);  
+        ]);
     }
 
     /**
