@@ -11,7 +11,7 @@ use App\invoice_state;
 use App\invoice_product;
 use App\product;
 
-class product_controller extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -53,7 +53,6 @@ class product_controller extends Controller
      */
     public function store(Request $request)
     {
-
         $validData = $request->validate([
             'code' => 'min:3|max:10|unique:products,code',
             'description' => 'min:3|max:100',
