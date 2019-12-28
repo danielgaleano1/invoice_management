@@ -32,7 +32,7 @@
                 @foreach($invoice_list as $invoice_lists)
                     <tr>
                         <td>{{ $invoice_lists->code }}</td>
-                        <td>{{ $invoice_lists->collaborator->name }}</td>
+                        <td>{{ $invoice_lists->Collaborator->name }}</td>
                         <td>{{ $invoice_lists->Client->name }}</td>
                         <td>{{ $invoice_lists->invoice_state->type }}</td>
                         <td>{{ $invoice_lists->created_at }}</td>

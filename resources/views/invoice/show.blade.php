@@ -25,7 +25,7 @@
                 <dd class="col-md-3">{{ $invoice_list->code }}</dd>
 
                 <dt class="col-md-1">{{ __('Collaborator') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->collaborator->name }}</dd>
+                <dd class="col-md-3">{{ $invoice_list->Collaborator->name }}</dd>
                 
                 <dt class="col-md-1">{{ __('Client') }}</dt>
                 <dd class="col-md-3">{{ $invoice_list->Client->name }}</dd>

@@ -60,7 +60,7 @@
                             <tr>
                                 @if($invoice_lists->client_id == $client_list->id)
                                     <td>{{ $invoice_lists->code }}</td>
-                                    <td>{{ $invoice_lists->collaborator->name }}</td>
+                                    <td>{{ $invoice_lists->Collaborator->name }}</td>
                                     <td>{{ $invoice_lists->invoice_state->type }}</td>
                                     <td>{{ $invoice_lists->expiration_at }}</td>
                                     <td>{{ $invoice_lists->value_tax }}</td>

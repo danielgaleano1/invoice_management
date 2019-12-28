@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\invoice;
-use App\collaborator;
+use App\Collaborator;
 use App\Client;
 use App\invoice_state;
 use App\invoice_product;
@@ -22,7 +22,7 @@ class InvoiceController extends Controller
     {
         return view('invoice.index', [
             'invoice_list' => invoice::paginate(10),
-            'collaborator_list' => collaborator::all(),
+            'collaborator_list' => Collaborator::all(),
             'invoice_state_list' => invoice_state::all(),
             'client_list' => Client::all(),
             'product_list' => product::all()
@@ -38,7 +38,7 @@ class InvoiceController extends Controller
     {
         return view('invoice.create', [
             'invoice_list' => invoice::all(),
-            'collaborator_list' => collaborator::all(),
+            'collaborator_list' => Collaborator::all(),
             'invoice_state_list' => invoice_state::all(),
             'client_list' => Client::all(),
             'product_list' => product::all()
@@ -89,7 +89,7 @@ class InvoiceController extends Controller
         $invoice_list = invoice::findOrFail($id);
         return view('invoice.edit', [
             'invoice_list' => $invoice_list,
-            'collaborator_list' => collaborator::all(),
+            'collaborator_list' => Collaborator::all(),
             'client_list' => Client::all(),
             'invoice_state_list' => invoice_state::all(),
         ]);

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\invoice;
-use App\collaborator;
+use App\Collaborator;
 use App\Client;
 use App\invoice_product;
 use App\product;
@@ -23,7 +23,7 @@ class InvoiceProductController extends Controller
         return view('invoice_product.index', [
             'invoice_product_list' => invoice_product::all(),
             'invoice_list' => invoice::all(),
-            'collaborator_list' => collaborator::all(),
+            'collaborator_list' => Collaborator::all(),
             'client_list' => Client::all(),
             'product_list' => product::all()
         ]);
@@ -38,7 +38,7 @@ class InvoiceProductController extends Controller
     {
         return view('invoice_product.create', [
             'invoice_product_list' => invoice_product::all(),
-            'collaborator_list' => collaborator::all(),
+            'collaborator_list' => Collaborator::all(),
             'client_list' => Client::all(),
             'product_list' => product::all()
         ]);

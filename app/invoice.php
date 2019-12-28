@@ -16,7 +16,7 @@ class invoice extends Model
     }
 
     public function collaborator() {
-        return $this->belongsTo(collaborator::class);
+        return $this->belongsTo(Collaborator::class);
     }
 
     public function invoice_products() {

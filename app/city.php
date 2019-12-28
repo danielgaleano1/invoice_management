@@ -18,6 +18,6 @@ class City extends Model
 
     public function collaborator()
     {
-        return $this->hasMany(collaborator::class);
+        return $this->hasMany(Collaborator::class);
     }
 }
