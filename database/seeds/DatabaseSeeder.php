@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
          //$this->call(country_factory::class);
          
-         factory(App\country::class, 1)->create()->each(function ($country) {
+         factory(App\Country::class, 1)->create()->each(function ($country) {
             factory(App\City::class, 3)->create(['country_id'=>$country->id]);
         });
         factory(App\Client::class, 1)->create();
