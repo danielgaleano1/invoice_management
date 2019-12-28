@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
-use App\client;
+use App\Client;
 use App\City;
 use App\invoice;
 
@@ -18,7 +18,7 @@ class ClientController extends Controller
     public function index()
     {
         return view('client.index', [
-            'client_list' => client::paginate(10),
+            'client_list' => Client::paginate(10),
             'city_list' => City::all()
         ]);
     }
@@ -31,7 +31,7 @@ class ClientController extends Controller
     public function create()
     {
         return view('client.create', [
-            'client_list' => client::all(),
+            'client_list' => Client::all(),
             'invoice_list' => invoice::all(),
             'city_list' => City::all()
         ]);
@@ -53,7 +53,7 @@ class ClientController extends Controller
             'email' => 'min:3|email|unique:clients,email'
         ]);
 
-        $client_record = new client;
+        $client_record = new Client;
         $client_record->city_id = $request->input('city');
         $client_record->code = $request->input('code');
         $client_record->name = $request->input('name');
@@ -73,7 +73,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        $client_list = client::findOrFail($id);
+        $client_list = Client::findOrFail($id);
         return view('client.show', [
             'client_list' => $client_list,
             'invoice_list' => invoice::all()
@@ -88,7 +88,7 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        $client_list = client::findOrFail($id);
+        $client_list = Client::findOrFail($id);
         return view('client.edit', [
             'client_list' => $client_list,
             'invoice_list' => invoice::all(),
@@ -105,7 +105,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $client_record = client::findOrFail($id);
+        $client_record = Client::findOrFail($id);
 
         $validData = $request->validate([
             'code' => [
@@ -141,7 +141,7 @@ class ClientController extends Controller
      */
      public function destroy($id)
      {
-         $client_list = client::findOrFail($id);
+         $client_list = Client::findOrFail($id);
          $client_list->delete();
          return redirect()->route('client.index')->withSuccess(__('client deleted successfully'));
      }

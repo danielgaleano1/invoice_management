@@ -33,7 +33,7 @@
                     <tr>
                         <td>{{ $invoice_lists->code }}</td>
                         <td>{{ $invoice_lists->collaborator->name }}</td>
-                        <td>{{ $invoice_lists->client->name }}</td>
+                        <td>{{ $invoice_lists->Client->name }}</td>
                         <td>{{ $invoice_lists->invoice_state->type }}</td>
                         <td>{{ $invoice_lists->created_at }}</td>
                         <td>{{ $invoice_lists->expiration_at }}</td>

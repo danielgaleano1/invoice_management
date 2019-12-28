@@ -5,7 +5,7 @@
 use App\Model;
 use Faker\Generator as Faker;
 
-$factory->define(App\client::class, function (Faker $faker) {
+$factory->define(App\Client::class, function (Faker $faker) {
     return [
         'city_id' => factory(App\City::class),
         'code' => $faker->numberBetween(14000000, 28000000),

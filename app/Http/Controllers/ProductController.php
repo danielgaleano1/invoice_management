@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\invoice;
 use App\collaborator;
-use App\client;
+use App\Client;
 use App\invoice_state;
 use App\invoice_product;
 use App\product;
@@ -25,7 +25,7 @@ class ProductController extends Controller
             'invoice_list' => invoice::all(),
             'collaborator_list' => collaborator::all(),
             'invoice_state_list' => invoice_state::all(),
-            'client_list' => client::all()
+            'client_list' => Client::all()
         ]);
     }
 
@@ -41,7 +41,7 @@ class ProductController extends Controller
             'invoice_list' => invoice::all(),
             'collaborator_list' => collaborator::all(),
             'invoice_state_list' => invoice_state::all(),
-            'client_list' => client::all()
+            'client_list' => Client::all()
         ]);
     }
 
@@ -95,7 +95,7 @@ class ProductController extends Controller
             'invoice_list' => invoice::all(),
             'collaborator_list' => collaborator::all(),
             'invoice_state_list' => invoice_state::all(),
-            'client_list' => client::all()
+            'client_list' => Client::all()
         ]);
     }
 
