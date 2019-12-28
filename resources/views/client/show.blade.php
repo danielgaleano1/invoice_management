@@ -37,7 +37,7 @@
                 <dd class="col-md-3">{{ $client_list->email }}</dd>
                 
                 <dt class="col-md-1">{{ __('City') }}</dt>
-                <dd class="col-md-3">{{ $client_list->city->name }}</dd>
+                <dd class="col-md-3">{{ $client_list->City->name }}</dd>
             </dl>
 
             <div class="card card-default">

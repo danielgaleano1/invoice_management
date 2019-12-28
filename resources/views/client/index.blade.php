@@ -35,7 +35,7 @@
                         <td>{{ $client_lists->address }}</td>
                         <td>{{ $client_lists->phone }}</td>
                         <td>{{ $client_lists->email }}</td>
-                        <td>{{ $client_lists->city->name }}</td>
+                        <td>{{ $client_lists->City->name }}</td>
                         <td class="text-right">
                             <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Client actions') }}">
                                 <a href="{{ route('client.show', $client_lists) }}" class="btn btn-outline-info" title="{{ __('View') }}">

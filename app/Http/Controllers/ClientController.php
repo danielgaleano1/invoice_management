@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\client;
-use App\city;
+use App\City;
 use App\invoice;
 
 class ClientController extends Controller
@@ -19,7 +19,7 @@ class ClientController extends Controller
     {
         return view('client.index', [
             'client_list' => client::paginate(10),
-            'city_list' => city::all()
+            'city_list' => City::all()
         ]);
     }
 
@@ -33,7 +33,7 @@ class ClientController extends Controller
         return view('client.create', [
             'client_list' => client::all(),
             'invoice_list' => invoice::all(),
-            'city_list' => city::all()
+            'city_list' => City::all()
         ]);
     }
 
@@ -92,7 +92,7 @@ class ClientController extends Controller
         return view('client.edit', [
             'client_list' => $client_list,
             'invoice_list' => invoice::all(),
-            'city_list' => city::all()
+            'city_list' => City::all()
         ]);
     }
 

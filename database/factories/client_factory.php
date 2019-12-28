@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\client::class, function (Faker $faker) {
     return [
-        'city_id' => factory(App\city::class),
+        'city_id' => factory(App\City::class),
         'code' => $faker->numberBetween(14000000, 28000000),
         'name' => $faker->firstName,
         'address' => $faker->address,
