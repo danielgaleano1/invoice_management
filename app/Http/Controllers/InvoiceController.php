@@ -11,7 +11,7 @@ use App\invoice_state;
 use App\invoice_product;
 use App\product;
 
-class invoice_controller extends Controller
+class InvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
