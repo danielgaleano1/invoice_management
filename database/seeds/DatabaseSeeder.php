@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             factory(App\City::class, 3)->create(['country_id'=>$country->id]);
         });
         factory(App\Client::class, 1)->create();
-        factory(App\profile::class, 1)->create();
+        factory(App\Profile::class, 1)->create();
         factory(App\Collaborator::class, 1)->create();
         factory(App\InvoiceState::class, 1)->create();
         factory(App\Product::class, 1)->create();
