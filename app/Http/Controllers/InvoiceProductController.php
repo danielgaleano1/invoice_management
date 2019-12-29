@@ -9,7 +9,7 @@ use App\Invoice;
 use App\Collaborator;
 use App\Client;
 use App\InvoiceProduct;
-use App\product;
+use App\Product;
 
 class InvoiceProductController extends Controller
 {
@@ -25,7 +25,7 @@ class InvoiceProductController extends Controller
             'invoice_list' => Invoice::all(),
             'collaborator_list' => Collaborator::all(),
             'client_list' => Client::all(),
-            'product_list' => product::all()
+            'product_list' => Product::all()
         ]);
     }
 
@@ -40,7 +40,7 @@ class InvoiceProductController extends Controller
             'invoice_product_list' => InvoiceProduct::all(),
             'collaborator_list' => Collaborator::all(),
             'client_list' => Client::all(),
-            'product_list' => product::all()
+            'product_list' => Product::all()
         ]);
     }
 
@@ -53,7 +53,7 @@ class InvoiceProductController extends Controller
     public function store(Request $request)
     {
         $invoice_list_record = Invoice::findOrFail($request->invoice_id);
-        $product_update = product::findOrFail($request->product_id);
+        $product_update = Product::findOrFail($request->product_id);
 
         if ($product_update->stock > $request->input('quantity')) {
             InvoiceProduct::create($request->all());
@@ -79,7 +79,7 @@ class InvoiceProductController extends Controller
      */
     public function show($id)
     {
-        $product_id_modal = product::findOrFail($id);
+        $product_id_modal = Product::findOrFail($id);
         $product_price = $product_id_modal->price;
         $product_stock = $product_id_modal->stock;
         return response()->json(['price' => $product_price, 'stock' => $product_stock]);
@@ -126,7 +126,7 @@ class InvoiceProductController extends Controller
         $invoice_list_record->save();
 
         $product_list = $invoice_product_list->product_id;
-        $product_update = product::findOrFail($product_list);
+        $product_update = Product::findOrFail($product_list);
         $product_update->stock = $product_update->stock + $invoice_product_list->quantity;
         $product_update->save();
 

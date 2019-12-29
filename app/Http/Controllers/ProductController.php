@@ -9,7 +9,7 @@ use App\Collaborator;
 use App\Client;
 use App\InvoiceState;
 use App\InvoiceProduct;
-use App\product;
+use App\Product;
 
 class ProductController extends Controller
 {
@@ -21,7 +21,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('product.index', [
-            'product_list' => product::paginate(10),
+            'product_list' => Product::paginate(10),
             'invoice_list' => Invoice::all(),
             'collaborator_list' => Collaborator::all(),
             'invoice_state_list' => InvoiceState::all(),
@@ -37,7 +37,7 @@ class ProductController extends Controller
     public function create()
     {
         return view('product.create', [
-            'product_list' => product::all(),
+            'product_list' => Product::all(),
             'invoice_list' => Invoice::all(),
             'collaborator_list' => Collaborator::all(),
             'invoice_state_list' => InvoiceState::all(),
@@ -60,7 +60,7 @@ class ProductController extends Controller
             'price' => 'min:1|numeric'
         ]);
 
-        $product_record = new product;
+        $product_record = new Product;
         $product_record->code = $request->input('code');
         $product_record->description = $request->input('description');
         $product_record->stock = $request->input('stock');
@@ -89,7 +89,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product_list = product::findOrFail($id);
+        $product_list = Product::findOrFail($id);
         return view('product.edit', [
             'product_list' => $product_list,
             'invoice_list' => Invoice::all(),
@@ -108,7 +108,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product_record = product::findOrFail($id);
+        $product_record = Product::findOrFail($id);
 
         $validData = $request->validate([
             'code' => [
@@ -138,7 +138,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product_list = product::findOrFail($id);
+        $product_list = Product::findOrFail($id);
         $product_list->delete();
         return redirect()->route('product.index')->withSuccess(__('Product deleted successfully'));
     }

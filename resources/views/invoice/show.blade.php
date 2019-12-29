@@ -72,7 +72,7 @@
                             <tr class="text-center">
                                 @if($invoice_product_lists->invoice_id == $invoice_list->id)
                                     <td>{{ $invoice_product_lists->id }}</td>
-                                    <td>{{ $invoice_product_lists->product->description }}</td>
+                                    <td>{{ $invoice_product_lists->Product->description }}</td>
                                     <td>{{ $invoice_product_lists->quantity }}</td>
                                     <td>{{ number_format($invoice_product_lists->price, 2) }}</td>
                                     <td class="text-center">                                       

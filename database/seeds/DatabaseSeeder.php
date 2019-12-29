@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         factory(App\profile::class, 1)->create();
         factory(App\Collaborator::class, 1)->create();
         factory(App\InvoiceState::class, 1)->create();
-        factory(App\product::class, 1)->create();
+        factory(App\Product::class, 1)->create();
         
         factory(App\Invoice::class, 1)->create()->each(function ($invoice) {
             factory(App\InvoiceProduct::class, 5)->create(['invoice_id'=>$Invoice->id]);

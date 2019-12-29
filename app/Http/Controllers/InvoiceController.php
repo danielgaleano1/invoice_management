@@ -9,7 +9,7 @@ use App\Collaborator;
 use App\Client;
 use App\InvoiceState;
 use App\InvoiceProduct;
-use App\product;
+use App\Product;
 
 class InvoiceController extends Controller
 {
@@ -25,7 +25,7 @@ class InvoiceController extends Controller
             'collaborator_list' => Collaborator::all(),
             'invoice_state_list' => InvoiceState::all(),
             'client_list' => Client::all(),
-            'product_list' => product::all()
+            'product_list' => Product::all()
         ]);
     }
 
@@ -41,7 +41,7 @@ class InvoiceController extends Controller
             'collaborator_list' => Collaborator::all(),
             'invoice_state_list' => InvoiceState::all(),
             'client_list' => Client::all(),
-            'product_list' => product::all()
+            'product_list' => Product::all()
         ]);
     }
 
@@ -74,7 +74,7 @@ class InvoiceController extends Controller
         return view('invoice.show', [
             'invoice_list' => $invoice_list,
             'invoice_product_list' => InvoiceProduct::all(),
-            'product_list' => product::all(),
+            'product_list' => Product::all(),
         ]);
     }
 
