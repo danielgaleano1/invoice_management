@@ -31,7 +31,7 @@
                 <dd class="col-md-3">{{ $invoice_list->Client->name }}</dd>
 
                 <dt class="col-md-1">{{ __('invoice State') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->invoice_state->type }}</dd>
+                <dd class="col-md-3">{{ $invoice_list->InvoiceState->type }}</dd>
                 
                 <dt class="col-md-1">{{ __('Expedition at') }}</dt>
                 <dd class="col-md-3">{{ $invoice_list->created_at }}</dd>
