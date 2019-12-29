@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use App\invoice;
+use App\Invoice;
 use App\Collaborator;
 use App\Client;
 use App\InvoiceProduct;
@@ -22,7 +22,7 @@ class InvoiceProductController extends Controller
     {
         return view('invoice_product.index', [
             'invoice_product_list' => InvoiceProduct::all(),
-            'invoice_list' => invoice::all(),
+            'invoice_list' => Invoice::all(),
             'collaborator_list' => Collaborator::all(),
             'client_list' => Client::all(),
             'product_list' => product::all()
@@ -52,7 +52,7 @@ class InvoiceProductController extends Controller
      */
     public function store(Request $request)
     {
-        $invoice_list_record = invoice::findOrFail($request->invoice_id);
+        $invoice_list_record = Invoice::findOrFail($request->invoice_id);
         $product_update = product::findOrFail($request->product_id);
 
         if ($product_update->stock > $request->input('quantity')) {
@@ -120,7 +120,7 @@ class InvoiceProductController extends Controller
         $invoice_product_list->delete();
 
         $invoice_list = $invoice_product_list->invoice_id;
-        $invoice_list_record = invoice::findOrFail($invoice_list);
+        $invoice_list_record = Invoice::findOrFail($invoice_list);
         $invoice_list_record->value_tax = $invoice_list_record->value_tax - ($invoice_product_list->price * $invoice_product_list->quantity * 0.19);
         $invoice_list_record->total_value = $invoice_list_record->total_value - ($invoice_product_list->price * $invoice_product_list->quantity);
         $invoice_list_record->save();

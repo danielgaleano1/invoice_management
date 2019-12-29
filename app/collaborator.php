@@ -15,6 +15,6 @@ class Collaborator extends Model
     }
 
     public function invoices() {
-        return $this->hasMany(invoice::class);
+        return $this->hasMany(Invoice::class);
     }
 }

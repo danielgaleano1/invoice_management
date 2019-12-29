@@ -25,7 +25,7 @@
                     <tr>
                             <td>{{ $invoice_product_lists->id }}</td>
                             <td>{{ $invoice_product_lists->product->description }}</td>
-                            <td>{{ $invoice_product_lists->invoice->code }}</td>
+                            <td>{{ $invoice_product_lists->Invoice->code }}</td>
                             <td>{{ $invoice_product_lists->quantity }}</td>
                             <td>{{ $invoice_product_lists->price }}</td>
                             <td class="text-center">                                       

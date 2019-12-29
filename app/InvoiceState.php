@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class InvoiceState extends Model
 {
     public function invoices() {
-        return $this->hasMany(invoice::class);
+        return $this->hasMany(Invoice::class);
     }
 }

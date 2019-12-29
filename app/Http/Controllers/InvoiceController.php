@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\invoice;
+use App\Invoice;
 use App\Collaborator;
 use App\Client;
 use App\InvoiceState;
@@ -21,7 +21,7 @@ class InvoiceController extends Controller
     public function index()
     {
         return view('invoice.index', [
-            'invoice_list' => invoice::paginate(10),
+            'invoice_list' => Invoice::paginate(10),
             'collaborator_list' => Collaborator::all(),
             'invoice_state_list' => InvoiceState::all(),
             'client_list' => Client::all(),
@@ -37,7 +37,7 @@ class InvoiceController extends Controller
     public function create()
     {
         return view('invoice.create', [
-            'invoice_list' => invoice::all(),
+            'invoice_list' => Invoice::all(),
             'collaborator_list' => Collaborator::all(),
             'invoice_state_list' => InvoiceState::all(),
             'client_list' => Client::all(),
@@ -58,7 +58,7 @@ class InvoiceController extends Controller
             'expiration_at' => 'date',
         ]);
 
-        invoice::create($request->all());
+        Invoice::create($request->all());
         return redirect()->route('invoice.index')->withSuccess(__('Invoice create successfully!'));
     }
 
@@ -70,7 +70,7 @@ class InvoiceController extends Controller
      */
     public function show($id)
     {
-        $invoice_list = invoice::findOrFail($id);
+        $invoice_list = Invoice::findOrFail($id);
         return view('invoice.show', [
             'invoice_list' => $invoice_list,
             'invoice_product_list' => InvoiceProduct::all(),
@@ -86,7 +86,7 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        $invoice_list = invoice::findOrFail($id);
+        $invoice_list = Invoice::findOrFail($id);
         return view('invoice.edit', [
             'invoice_list' => $invoice_list,
             'collaborator_list' => Collaborator::all(),
@@ -104,7 +104,7 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $invoice_list = invoice::findOrFail($id);
+        $invoice_list = Invoice::findOrFail($id);
         
         $validData = $request->validate([
             'code' => 'min:3|unique:invoices,code',
@@ -136,7 +136,7 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-        $invoice_list = invoice::findOrFail($id);
+        $invoice_list = Invoice::findOrFail($id);
         $invoice_list->delete();
         return redirect()->route('invoice.index')->withSuccess(__('Invoice deleted successfully'));
     }

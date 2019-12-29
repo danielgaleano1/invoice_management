@@ -6,7 +6,7 @@ use App\Model;
 use App\Collaborator;
 use Faker\Generator as Faker;
 
-$factory->define(App\invoice::class, function (Faker $faker) {
+$factory->define(App\Invoice::class, function (Faker $faker) {
     return [
         'collaborator_id' => factory(Collaborator::class),
         'client_id' => factory(App\Client::class),

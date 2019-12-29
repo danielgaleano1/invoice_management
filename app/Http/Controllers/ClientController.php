@@ -6,7 +6,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\Client;
 use App\City;
-use App\invoice;
+use App\Invoice;
 
 class ClientController extends Controller
 {
@@ -32,7 +32,7 @@ class ClientController extends Controller
     {
         return view('client.create', [
             'client_list' => Client::all(),
-            'invoice_list' => invoice::all(),
+            'invoice_list' => Invoice::all(),
             'city_list' => City::all()
         ]);
     }
@@ -76,7 +76,7 @@ class ClientController extends Controller
         $client_list = Client::findOrFail($id);
         return view('client.show', [
             'client_list' => $client_list,
-            'invoice_list' => invoice::all()
+            'invoice_list' => Invoice::all()
         ]);  
     }
 
@@ -91,7 +91,7 @@ class ClientController extends Controller
         $client_list = Client::findOrFail($id);
         return view('client.edit', [
             'client_list' => $client_list,
-            'invoice_list' => invoice::all(),
+            'invoice_list' => Invoice::all(),
             'city_list' => City::all()
         ]);
     }
