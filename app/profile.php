@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
-    public function collaborator() {
+    public function collaborator()
+    {
         return $this->hasMany(Collaborator::class);
     }
 }
