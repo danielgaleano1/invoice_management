@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\invoice;
 use App\Collaborator;
 use App\Client;
-use App\invoice_product;
+use App\InvoiceProduct;
 use App\product;
 
 class InvoiceProductController extends Controller
@@ -21,7 +21,7 @@ class InvoiceProductController extends Controller
     public function index()
     {
         return view('invoice_product.index', [
-            'invoice_product_list' => invoice_product::all(),
+            'invoice_product_list' => InvoiceProduct::all(),
             'invoice_list' => invoice::all(),
             'collaborator_list' => Collaborator::all(),
             'client_list' => Client::all(),
@@ -37,7 +37,7 @@ class InvoiceProductController extends Controller
     public function create()
     {
         return view('invoice_product.create', [
-            'invoice_product_list' => invoice_product::all(),
+            'invoice_product_list' => InvoiceProduct::all(),
             'collaborator_list' => Collaborator::all(),
             'client_list' => Client::all(),
             'product_list' => product::all()
@@ -56,7 +56,7 @@ class InvoiceProductController extends Controller
         $product_update = product::findOrFail($request->product_id);
 
         if ($product_update->stock > $request->input('quantity')) {
-            invoice_product::create($request->all());
+            InvoiceProduct::create($request->all());
             
             $invoice_list_record->value_tax = $invoice_list_record->value_tax + ($request->input('price') * $request->input('quantity') * 0.19);
             $invoice_list_record->total_value = $invoice_list_record->total_value + ($request->input('price') * $request->input('quantity'));
@@ -116,7 +116,7 @@ class InvoiceProductController extends Controller
      */
     public function destroy($id)
     {
-        $invoice_product_list = invoice_product::findOrFail($id);
+        $invoice_product_list = InvoiceProduct::findOrFail($id);
         $invoice_product_list->delete();
 
         $invoice_list = $invoice_product_list->invoice_id;

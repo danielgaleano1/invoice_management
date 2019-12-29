@@ -8,7 +8,7 @@ use App\invoice;
 use App\Collaborator;
 use App\Client;
 use App\invoice_state;
-use App\invoice_product;
+use App\InvoiceProduct;
 use App\product;
 
 class ProductController extends Controller
