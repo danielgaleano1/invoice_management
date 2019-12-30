@@ -8,7 +8,7 @@ class Invoice extends Model
 {
     protected $fillable = ['collaborator_id', 'client_id', 'invoice_state_id', 'code', 'expiration_at', 'value_tax', 'total_value'];
     
-    public function invoice_state()
+    public function invoiceState()
     {
         return $this->belongsTo(InvoiceState::class);
     }
@@ -23,7 +23,7 @@ class Invoice extends Model
         return $this->belongsTo(Collaborator::class);
     }
 
-    public function invoice_products()
+    public function invoiceProducts()
     {
         return $this->hasMany(InvoiceProduct::class);
     }

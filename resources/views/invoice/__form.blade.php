@@ -11,7 +11,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="value_tax">{{ __('Invoice State') }}</label>
-            <input type="text" class="form-control {{ $errors->has('invoice_state') ? 'is-invalid' : '' }}" name="invoice_state" id="invoice_state" value="{{ old('invoice_state', $invoice_list->invoice_state->type) }}" required readonly>
+            <input type="text" class="form-control {{ $errors->has('invoice_state') ? 'is-invalid' : '' }}" name="invoice_state" id="invoice_state" value="{{ old('invoice_state', $invoice_list->InvoiceState->type) }}" required readonly>
             @includeWhen($errors->has('invoice_state'), 'partials.__invalid_feedback', ['feedback' => $errors->first('invoice_state')])
         </div>
     </div>

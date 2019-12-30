@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    public function invoice_products()
+    public function invoiceProducts()
     {
         return $this->hasMany(InvoiceProduct::class);
     }
