@@ -9,7 +9,7 @@
             <form action="{{ route('product.update', $product_list) }}" method="post" id="product-form">
                 @csrf
                 @method('PATCH')
-                @include('product\__form')
+                @include('product/__form')
             </form>
         </div>
         <div class="card-footer d-flex justify-content-between">

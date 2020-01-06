@@ -43,5 +43,5 @@
 </div>
 @endsection
 @push('modals')
-    @include('partials.__confirm_delete_modal')
+    @include('partials/__confirm_delete_modal')
 @endpush

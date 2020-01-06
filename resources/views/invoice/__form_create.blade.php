@@ -4,7 +4,7 @@
         <div class="form-group">
             <label for="code">{{ __('Code') }}</label>
             <input type="text" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code" id="code" value="" required>
-            @includeWhen($errors->has('code'), 'partials.__invalid_feedback', ['feedback' => $errors->first('code')])
+            @includeWhen($errors->has('code'), 'partials/__invalid_feedback', ['feedback' => $errors->first('code')])
         </div>
     </div>
 
@@ -17,7 +17,7 @@
                     <option value="{{ $collaborator->id }}">{{ $collaborator->name }}</option>
                 @endforeach
             </select>
-            @includeWhen($errors->has('collaborator_id'), 'partials.__invalid_feedback', ['feedback' => $errors->first('collaborator_id')])
+            @includeWhen($errors->has('collaborator_id'), 'partials/__invalid_feedback', ['feedback' => $errors->first('collaborator_id')])
         </div>
     </div>
 
@@ -30,7 +30,7 @@
                     <option value="{{ $client->id }}">{{ $client->name }}</option>
                 @endforeach
             </select>
-            @includeWhen($errors->has('client_id'), 'partials.__invalid_feedback', ['feedback' => $errors->first('client_id')])
+            @includeWhen($errors->has('client_id'), 'partials/__invalid_feedback', ['feedback' => $errors->first('client_id')])
         </div>
     </div>
 
@@ -38,7 +38,7 @@
         <div class="form-group">
             <label for="expiration_at">{{ __('expiration at') }}</label>
             <input type="date" class="form-control {{ $errors->has('expiration_at') ? 'is-invalid' : '' }}" name="expiration_at" id="expiration_at" value="" required>
-            @includeWhen($errors->has('expiration_at'), 'partials.__invalid_feedback', ['feedback' => $errors->first('expiration_at')])
+            @includeWhen($errors->has('expiration_at'), 'partials/__invalid_feedback', ['feedback' => $errors->first('expiration_at')])
         </div>
     </div>
 
