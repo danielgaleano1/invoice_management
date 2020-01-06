@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class country extends Model
+class Country extends Model
 {
-    public function cities() {
-        return $this->hasMany(city::class);
+    public function cities()
+    {
+        return $this->hasMany(City::class);
     }
 }

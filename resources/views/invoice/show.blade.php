@@ -25,13 +25,13 @@
                 <dd class="col-md-3">{{ $invoice_list->code }}</dd>
 
                 <dt class="col-md-1">{{ __('Collaborator') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->collaborator->name }}</dd>
+                <dd class="col-md-3">{{ $invoice_list->Collaborator->name }}</dd>
                 
                 <dt class="col-md-1">{{ __('Client') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->client->name }}</dd>
+                <dd class="col-md-3">{{ $invoice_list->Client->name }}</dd>
 
                 <dt class="col-md-1">{{ __('invoice State') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->invoice_state->type }}</dd>
+                <dd class="col-md-3">{{ $invoice_list->InvoiceState->type }}</dd>
                 
                 <dt class="col-md-1">{{ __('Expedition at') }}</dt>
                 <dd class="col-md-3">{{ $invoice_list->created_at }}</dd>
@@ -72,7 +72,7 @@
                             <tr class="text-center">
                                 @if($invoice_product_lists->invoice_id == $invoice_list->id)
                                     <td>{{ $invoice_product_lists->id }}</td>
-                                    <td>{{ $invoice_product_lists->product->description }}</td>
+                                    <td>{{ $invoice_product_lists->Product->description }}</td>
                                     <td>{{ $invoice_product_lists->quantity }}</td>
                                     <td>{{ number_format($invoice_product_lists->price, 2) }}</td>
                                     <td class="text-center">                                       

@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\invoice;
-use App\collaborator;
-use App\client;
-use App\invoice_state;
-use App\invoice_product;
-use App\product;
+use App\Invoice;
+use App\Collaborator;
+use App\Client;
+use App\InvoiceState;
+use App\InvoiceProduct;
+use App\Product;
 
-class invoice_controller extends Controller
+class InvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,12 +20,12 @@ class invoice_controller extends Controller
      */
     public function index()
     {
-         return view('invoice.index', [
-            'invoice_list' => invoice::paginate(10),
-            'collaborator_list' => collaborator::all(),
-            'invoice_state_list' => invoice_state::all(),
-            'client_list' => client::all(),
-            'product_list' => product::all()
+        return view('invoice.index', [
+            'invoice_list' => Invoice::paginate(10),
+            'collaborator_list' => Collaborator::all(),
+            'invoice_state_list' => InvoiceState::all(),
+            'client_list' => Client::all(),
+            'product_list' => Product::all()
         ]);
     }
 
@@ -37,11 +37,11 @@ class invoice_controller extends Controller
     public function create()
     {
         return view('invoice.create', [
-            'invoice_list' => invoice::all(),
-            'collaborator_list' => collaborator::all(),
-            'invoice_state_list' => invoice_state::all(),
-            'client_list' => client::all(),
-            'product_list' => product::all()
+            'invoice_list' => Invoice::all(),
+            'collaborator_list' => Collaborator::all(),
+            'invoice_state_list' => InvoiceState::all(),
+            'client_list' => Client::all(),
+            'product_list' => Product::all()
         ]);
     }
 
@@ -58,7 +58,7 @@ class invoice_controller extends Controller
             'expiration_at' => 'date',
         ]);
 
-        invoice::create($request->all());
+        Invoice::create($request->all());
         return redirect()->route('invoice.index')->withSuccess(__('Invoice create successfully!'));
     }
 
@@ -70,12 +70,12 @@ class invoice_controller extends Controller
      */
     public function show($id)
     {
-        $invoice_list = invoice::findOrFail($id);
+        $invoice_list = Invoice::findOrFail($id);
         return view('invoice.show', [
             'invoice_list' => $invoice_list,
-            'invoice_product_list' => invoice_product::all(),
-            'product_list' => product::all(),
-        ]);  
+            'invoice_product_list' => InvoiceProduct::all(),
+            'product_list' => Product::all(),
+        ]);
     }
 
     /**
@@ -86,12 +86,12 @@ class invoice_controller extends Controller
      */
     public function edit($id)
     {
-        $invoice_list = invoice::findOrFail($id);
+        $invoice_list = Invoice::findOrFail($id);
         return view('invoice.edit', [
             'invoice_list' => $invoice_list,
-            'collaborator_list' => collaborator::all(),
-            'client_list' => client::all(),
-            'invoice_state_list' => invoice_state::all(),
+            'collaborator_list' => Collaborator::all(),
+            'client_list' => Client::all(),
+            'invoice_state_list' => InvoiceState::all(),
         ]);
     }
 
@@ -104,7 +104,7 @@ class invoice_controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $invoice_list = invoice::findOrFail($id);
+        $invoice_list = Invoice::findOrFail($id);
         
         $validData = $request->validate([
             'code' => 'min:3|unique:invoices,code',
@@ -136,7 +136,7 @@ class invoice_controller extends Controller
      */
     public function destroy($id)
     {
-        $invoice_list = invoice::findOrFail($id);
+        $invoice_list = Invoice::findOrFail($id);
         $invoice_list->delete();
         return redirect()->route('invoice.index')->withSuccess(__('Invoice deleted successfully'));
     }

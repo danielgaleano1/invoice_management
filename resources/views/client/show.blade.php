@@ -37,7 +37,7 @@
                 <dd class="col-md-3">{{ $client_list->email }}</dd>
                 
                 <dt class="col-md-1">{{ __('City') }}</dt>
-                <dd class="col-md-3">{{ $client_list->city->name }}</dd>
+                <dd class="col-md-3">{{ $client_list->City->name }}</dd>
             </dl>
 
             <div class="card card-default">
@@ -60,8 +60,8 @@
                             <tr>
                                 @if($invoice_lists->client_id == $client_list->id)
                                     <td>{{ $invoice_lists->code }}</td>
-                                    <td>{{ $invoice_lists->collaborator->name }}</td>
-                                    <td>{{ $invoice_lists->invoice_state->type }}</td>
+                                    <td>{{ $invoice_lists->Collaborator->name }}</td>
+                                    <td>{{ $invoice_lists->InvoiceState->type }}</td>
                                     <td>{{ $invoice_lists->expiration_at }}</td>
                                     <td>{{ $invoice_lists->value_tax }}</td>
                                     <td>{{ $invoice_lists->total_value }}</td>

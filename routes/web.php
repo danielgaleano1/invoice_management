@@ -14,11 +14,11 @@
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('invoice', 'invoice_controller');
-    Route::resource('client', 'client_controller');
-    Route::resource('product', 'product_controller');
-    Route::resource('invoice_product', 'invoice_product_controller');
-    Route::get('invoice_product/{id}', 'invoice_controller@search_product_modal');
+    Route::resource('invoice', 'InvoiceController');
+    Route::resource('client', 'ClientController');
+    Route::resource('product', 'ProductController');
+    Route::resource('invoice_product', 'InvoiceProductController');
+    Route::get('invoice_product/{id}', 'InvoiceController@search_product_modal');
 });
 
 Route::get('/', 'HomeController@index')->name('home');
