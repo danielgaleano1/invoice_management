@@ -11,7 +11,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="name">{{ __('Name') }}</label>
-            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" id="name" value="" required>
+            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" id="name" value="{{ old('name') }}" required>
             @includeWhen($errors->has('name'), 'partials/__invalid_feedback', ['feedback' => $errors->first('name')])
         </div>
     </div>
@@ -46,7 +46,7 @@
             <select class="form-control custom-select {{ $errors->has('city') ? 'is-invalid' : '' }}" name="city" id="city" required>
                 <option value="">{{ __('Please select a city') }}</option>
                 @foreach($city_list as $city)
-                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                    <option value="{{ $city->id }}" {{ old('city') == $city->id ? 'selected' : ''}}>{{ $city->name }}</option>
                 @endforeach
             </select>
             @includeWhen($errors->has('city'), 'partials/__invalid_feedback', ['feedback' => $errors->first('city')])
