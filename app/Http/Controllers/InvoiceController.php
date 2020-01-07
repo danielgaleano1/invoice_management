@@ -107,7 +107,6 @@ class InvoiceController extends Controller
         $invoice_list = Invoice::findOrFail($id);
         
         $validData = $request->validate([
-            'code' => 'min:3|unique:invoices,code',
             'code' => [
                 'min:3',
                 'max:10',

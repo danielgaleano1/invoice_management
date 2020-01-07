@@ -18,7 +18,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('client', 'ClientController');
     Route::resource('product', 'ProductController');
     Route::resource('invoice_product', 'InvoiceProductController');
-    Route::get('invoice_product/{id}', 'InvoiceController@search_product_modal');
 });
 
 Route::get('/', 'HomeController@index')->name('home');

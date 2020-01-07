@@ -58,11 +58,13 @@ class InvoiceProductController extends Controller
         if ($product_update->stock > $request->input('quantity')) {
             InvoiceProduct::create($request->all());
             
-            $invoice_list_record->value_tax = $invoice_list_record->value_tax + ($request->input('price') * $request->input('quantity') * 0.19);
-            $invoice_list_record->total_value = $invoice_list_record->total_value + ($request->input('price') * $request->input('quantity'));
+            $subtotal = $request->input('price') * $request->input('quantity');
+
+            $invoice_list_record->value_tax += $subtotal * 0.19;
+            $invoice_list_record->total_value += $subtotal;
             $invoice_list_record->save();
 
-            $product_update->stock = $product_update->stock - $request->input('quantity');
+            $product_update->stock -= $request->input('quantity');
             $product_update->save();
 
             return back();
@@ -121,13 +123,16 @@ class InvoiceProductController extends Controller
 
         $invoice_list = $invoice_product_list->invoice_id;
         $invoice_list_record = Invoice::findOrFail($invoice_list);
-        $invoice_list_record->value_tax = $invoice_list_record->value_tax - ($invoice_product_list->price * $invoice_product_list->quantity * 0.19);
-        $invoice_list_record->total_value = $invoice_list_record->total_value - ($invoice_product_list->price * $invoice_product_list->quantity);
+
+        $subtotal = $invoice_product_list->price * $invoice_product_list->quantity;
+
+        $invoice_list_record->value_tax -= $subtotal * 0.19;
+        $invoice_list_record->total_value -= $subtotal;
         $invoice_list_record->save();
 
         $product_list = $invoice_product_list->product_id;
         $product_update = Product::findOrFail($product_list);
-        $product_update->stock = $product_update->stock + $invoice_product_list->quantity;
+        $product_update->stock += $invoice_product_list->quantity;
         $product_update->save();
 
         return redirect()->route('invoice.show', $invoice_list)->withSuccess(__('Invoice Product deleted successfully'));
