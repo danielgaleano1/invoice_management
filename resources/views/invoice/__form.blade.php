@@ -61,7 +61,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="receipt_at">{{ __('receipt at') }}</label>
-            <input type="date" class="form-control {{ $errors->has('date_of_receipt') ? 'is-invalid' : '' }}" name="date_of_receipt" id="date_of_receipt" value="{{ old('date_of_receipt', $invoice_list->date_of_receipt) }}" required>
+            <input type="date" class="form-control {{ $errors->has('date_of_receipt') ? 'is-invalid' : '' }}" name="date_of_receipt" id="date_of_receipt" value="{{ old('date_of_receipt', $invoice_list->date_of_receipt) }}">
             @includeWhen($errors->has('date_of_receipt'), 'partials/__invalid_feedback', ['feedback' => $errors->first('date_of_receipt')])
         </div>
     </div>
