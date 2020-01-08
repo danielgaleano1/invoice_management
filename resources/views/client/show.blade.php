@@ -57,15 +57,15 @@
                     </thead>
                     <tbody>
                         @foreach($invoice_list as $invoice_lists)
-                            <tr>
+                            <tr class="text-center">
                                 @if($invoice_lists->client_id == $client_list->id)
                                     <td>{{ $invoice_lists->code }}</td>
                                     <td>{{ $invoice_lists->Collaborator->name }}</td>
                                     <td>{{ $invoice_lists->InvoiceState->type }}</td>
                                     <td>{{ $invoice_lists->expiration_at }}</td>
-                                    <td>{{ $invoice_lists->value_tax }}</td>
-                                    <td>{{ $invoice_lists->total_value }}</td>
-                                    <td class="text-center">
+                                    <td>{{ number_format($invoice_lists->value_tax, 2) }}</td>
+                                    <td>{{ number_format($invoice_lists->total_value, 2) }}</td>
+                                    <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Collaborator actions') }}">
                                             <a href="{{ route('invoice.edit', $invoice_lists) }}" class="btn btn-outline-secondary" title="{{ __('Edit') }}">
                                                 <i class="fas fa-edit"></i> {{ __('Edit') }}
@@ -86,5 +86,5 @@
     </div>
 @endsection
 @push('modals')
-    @include('partials.__confirm_delete_modal')
+    @include('partials/__confirm_delete_modal')
 @endpush

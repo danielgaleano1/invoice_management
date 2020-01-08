@@ -7,5 +7,5 @@ function search_product(){
             $("#price").val(json.price);
             $("#stock").val(json.stock);
         }
-      );
+    );
 }

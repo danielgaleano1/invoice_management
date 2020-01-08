@@ -64,6 +64,7 @@
                             <th>{{ __('Product') }}</th>
                             <th>{{ __('Quantity') }}</th>
                             <th>{{ __('Price') }}</th>
+                            <th>{{ __('Subtotal') }}</th>
                             <th>{{ __('Actions') }}</th>
                         </tr>
                     </thead>
@@ -73,8 +74,9 @@
                                 @if($invoice_product_lists->invoice_id == $invoice_list->id)
                                     <td>{{ $invoice_product_lists->id }}</td>
                                     <td>{{ $invoice_product_lists->Product->description }}</td>
-                                    <td>{{ $invoice_product_lists->quantity }}</td>
+                                    <td>{{ number_format($invoice_product_lists->quantity, 2) }}</td>
                                     <td>{{ number_format($invoice_product_lists->price, 2) }}</td>
+                                    <td>{{ number_format($invoice_product_lists->price * $invoice_product_lists->quantity, 2) }}</td>
                                     <td class="text-center">                                       
                                         <button type="button" class="btn btn-sm btn-outline-danger" data-route="{{ route('invoice_product.destroy', $invoice_product_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal">
                                             <i class="fas fa-trash-alt"></i> {{ __('Delete') }}
@@ -84,7 +86,7 @@
                             </tr>
                         @endforeach
                         <tr class="text-center">
-                            <td  class="text-right" colspan="3">
+                            <td  class="text-right" colspan="4">
                                 <b>{{ __('Value Tax') }}</b>
                             </td>
                             <td>
@@ -92,7 +94,7 @@
                             </td>
                         </tr>
                         <tr class="text-center">
-                            <td class="text-right" colspan="3">
+                            <td class="text-right" colspan="4">
                                 <b>{{ __('Value Total') }}</b>
                             </td>
                             <td>

@@ -82,9 +82,6 @@
                 <a class="btn btn-light" style="background-color: rgb(0, 93, 88); color: white; border-style: solid; border-color: white;" href="{{ route('product.index') }}">
                     <i class="fab fa-linode"></i>{{ __(' Product') }}
                 </a>
-                <a class="btn btn-light" style="background-color: rgb(0, 93, 88); color: white; border-style: solid; border-color: white;" href="{{ route('invoice_product.index') }}">
-                    <i class="fas fa-receipt"></i>{{ __(' Invoice Product') }}
-                </a>
             </div>
         </nav>
         @endguest

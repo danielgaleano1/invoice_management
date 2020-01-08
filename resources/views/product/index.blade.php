@@ -25,14 +25,14 @@
             </thead>
             <tbody>
                 @foreach($product_list as $product_lists)
-                    <tr>
+                    <tr class="text-center">
                         <td>{{ $product_lists->code }}</td>
                         <td>{{ $product_lists->description }}</td>
-                        <td>{{ $product_lists->stock }}</td>
-                        <td>{{ $product_lists->price }}</td>
-                        <td class="text-center">
+                        <td>{{ number_format($product_lists->stock, 0) }}</td>
+                        <td>{{ number_format($product_lists->price, 2) }}</td>
+                        <td>
                             <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Product actions') }}">
-                                <button type="button" class="btn btn-outline-primary" data-description="{{ $product_lists->description }}" data-route="{{ route('product.update', $product_lists->id) }}"  data-toggle="modal" data-target="#add_products_modal">
+                                <button type="button" class="btn btn-outline-primary" data-description="{{ $product_lists->description }}" data-route="{{ route('product.update', $product_lists->id) }}"  data-toggle="modal" data-target="#add_products_modal" disabled>
                                     <i class="fas fa-plus-circle"></i> {{ __('Add Product') }}
                                 </button> 
 
@@ -53,6 +53,6 @@
 </div>
 @endsection
 @push('modals')
-    @include('partials.__confirm_delete_modal')
-    @include('partials.__add_products_modal')
+    @include('partials/__confirm_delete_modal')
+    @include('partials/__add_products_modal')
 @endpush
