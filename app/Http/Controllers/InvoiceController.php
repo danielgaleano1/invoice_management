@@ -10,6 +10,9 @@ use App\Client;
 use App\InvoiceState;
 use App\InvoiceProduct;
 use App\Product;
+use App\Imports\InvoicesImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class InvoiceController extends Controller
 {
@@ -57,6 +60,8 @@ class InvoiceController extends Controller
             'code' => 'min:3|unique:invoices,code',
             'expiration_at' => 'date',
         ]);
+
+        dd("hola store 2");
 
         Invoice::create($request->all());
         return redirect()->route('invoice.index')->withSuccess(__('Invoice create successfully!'));
@@ -135,5 +140,30 @@ class InvoiceController extends Controller
         $invoice_list = Invoice::findOrFail($id);
         $invoice_list->delete();
         return redirect()->route('invoice.index')->withSuccess(__('Invoice deleted successfully'));
+    }
+
+    public function import(Request $request) 
+    {
+        $this->validate($request, [
+            'invoices' => 'required|mimes:xls,xlsx'
+        ]);
+        $path = $request->file('invoices');
+
+        try {
+            Excel::import(new InvoicesImport(), $path);
+            return redirect()->route('invoice.index')->withSuccess(__('Invoices import successfully!'));
+        } 
+        catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+             $failures = $e->failures();
+             
+             foreach ($failures as $failure) {
+                 $failure->row();
+                 $failure->attribute(); 
+                 $failure->errors(); 
+                 $failure->values(); 
+             }
+             dd($failure->row(), $failure->attribute(), $failure->errors(), $failure->values());
+             return redirect()->route('invoice.index')->withSuccess(__('Invoices import unsuccessfully!'));
+        }
     }
 }
