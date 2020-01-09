@@ -14,10 +14,12 @@
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+
     Route::resource('invoice', 'InvoiceController');
     Route::resource('client', 'ClientController');
     Route::resource('product', 'ProductController');
     Route::resource('invoice_product', 'InvoiceProductController');
-});
 
-Route::get('/', 'HomeController@index')->name('home');
+    Route::post('invoice_import_excel', 'InvoiceController@import')->name('invoices.import');
+});

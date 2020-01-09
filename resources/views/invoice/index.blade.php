@@ -10,7 +10,20 @@
         <a class="btn btn-outline-primary" href="{{ route('invoice.create') }}">
             <i class="fas fa-plus-circle"></i> {{ __('Create new invoice') }}
         </a>
+        <button type="button" class="btn btn-outline-success" data-route="{{ route('invoices.import') }}" data-toggle="modal" data-target="#import_invoice_excel_modal">
+            <i class="fas fa-file-excel"></i> {{ __('Import from Excel') }}
+        </button> 
     </div>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <div class="table-responsive-lg">
         <table class="table table-hover table-bordered text-center" >
@@ -64,4 +77,5 @@
 @endsection
 @push('modals')
     @include('partials/__confirm_delete_modal')
+    @include('partials/__import_invoice_excel_modal')
 @endpush
