@@ -15,6 +15,16 @@
         </button> 
     </div>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="table-responsive-lg">
         <table class="table table-hover table-bordered text-center" >
             <thead class="thead-dark">

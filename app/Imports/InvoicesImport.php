@@ -31,8 +31,8 @@ class InvoicesImport implements ToModel, WithHeadingRow, WithBatchInserts, WithC
             'code' => $row['Code'],
             'expiration_at' => $row['Expiration Date'],
             'date_of_receipt' => $row['Receipt Date'],
-            'value_tax' => $row['Tax Value'],
-            'total_value' => $row['Total Value'],
+            'value_tax' => 0,
+            'total_value' => 0,
         ]);
     }
 
@@ -47,8 +47,6 @@ class InvoicesImport implements ToModel, WithHeadingRow, WithBatchInserts, WithC
             'Code' => ['required', Rule::unique('invoices', 'code')],
             'Expiration Date' => 'required|date|after:created_at',
             'Receipt Date' => 'nullable|date|after:created_at|before:expiration_at',
-            'Tax Value' => 'required|numeric',
-            'Total Value' => 'required|numeric',
         ];
     }
 

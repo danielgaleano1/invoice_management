@@ -162,8 +162,7 @@ class InvoiceController extends Controller
                  $failure->errors(); 
                  $failure->values(); 
              }
-             dd($failure->row(), $failure->attribute(), $failure->errors(), $failure->values());
-             return redirect()->route('invoice.index')->withSuccess(__('Invoices import unsuccessfully!'));
+             return redirect()->route('invoice.index')->withErrors($failure->errors());
         }
     }
 }
