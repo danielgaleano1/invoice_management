@@ -27,4 +27,11 @@ class Invoice extends Model
     {
         return $this->hasMany(InvoiceProduct::class);
     }
+
+    public function scopeSearchs($query, $searchs) 
+    {
+        if ($searchs){
+            return $query->where('code','like',"%$searchs%");
+        }
+    }
 }

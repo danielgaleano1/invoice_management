@@ -21,10 +21,13 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $data_to_search = $request->get('search');
+        $invoices = Invoice::searchs($data_to_search)->paginate(5);
+
         return view('invoice.index', [
-            'invoice_list' => Invoice::paginate(10),
+            'invoice_list' => $invoices,
             'collaborator_list' => Collaborator::all(),
             'invoice_state_list' => InvoiceState::all(),
             'client_list' => Client::all(),
@@ -60,8 +63,6 @@ class InvoiceController extends Controller
             'code' => 'min:3|unique:invoices,code',
             'expiration_at' => 'date',
         ]);
-
-        dd("hola store 2");
 
         Invoice::create($request->all());
         return redirect()->route('invoice.index')->withSuccess(__('Invoice create successfully!'));

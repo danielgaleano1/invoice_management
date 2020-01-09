@@ -15,10 +15,13 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+     public function index(Request $request)
+     {
+        $data_to_search = $request->get('search');
+        $clients = Client::searchs($data_to_search)->paginate(5);
+
         return view('client.index', [
-            'client_list' => Client::paginate(10),
+            'client_list' => $clients,
             'city_list' => City::all()
         ]);
     }

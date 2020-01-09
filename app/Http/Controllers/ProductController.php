@@ -18,10 +18,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+     public function index(Request $request)
+     {
+        $data_to_search = $request->get('search');
+        $products = Product::searchs($data_to_search)->paginate(5);
+
         return view('product.index', [
-            'product_list' => Product::paginate(10),
+            'product_list' => $products,
             'invoice_list' => Invoice::all(),
             'collaborator_list' => Collaborator::all(),
             'invoice_state_list' => InvoiceState::all(),

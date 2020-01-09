@@ -15,4 +15,11 @@ class Client extends Model
     {
         return $this->hasMany(Invoice::class);
     }
+
+    public function scopeSearchs($query, $searchs) 
+    {
+        if ($searchs){
+            return $query->where('code','like',"%$searchs%");
+        }
+    }
 }
