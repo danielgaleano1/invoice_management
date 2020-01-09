@@ -3,9 +3,16 @@
 @section('content')
 
 <div class="card card-default">
-    <div class="card-header pb-0">
-        <h3 class="card-title">{{ __('Clients') }}</h3>
-    </div>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand">
+            <h3 class="card-title">{{ __('Clients') }}</h3>
+        </a>
+        <form class="form-inline">
+            <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+
     <div class="card-footer d-flex justify-content-between">
         <a class="btn btn-outline-primary" href="{{ route('client.create') }}">
             <i class="fas fa-plus-circle"></i> {{ __('Create new client') }}
