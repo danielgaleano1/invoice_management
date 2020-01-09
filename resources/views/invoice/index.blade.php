@@ -10,8 +10,8 @@
         <a class="btn btn-outline-primary" href="{{ route('invoice.create') }}">
             <i class="fas fa-plus-circle"></i> {{ __('Create new invoice') }}
         </a>
-        <button type="button" class="btn btn-outline-primary" data-route="{{ route('invoices.import') }}" data-toggle="modal" data-target="#import_invoice_excel_modal">
-            <i class="fas fa-plus-circle"></i> {{ __('Import from Excel') }}
+        <button type="button" class="btn btn-outline-success" data-route="{{ route('invoices.import') }}" data-toggle="modal" data-target="#import_invoice_excel_modal">
+            <i class="fas fa-file-excel"></i> {{ __('Import from Excel') }}
         </button> 
     </div>
 
