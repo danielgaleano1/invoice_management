@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use App\Invoice;
 use App\Collaborator;
 use App\Client;
@@ -55,12 +56,19 @@ class InvoiceProductController extends Controller
         $invoice_list_record = Invoice::findOrFail($request->invoice_id);
         $product_update = Product::findOrFail($request->product_id);
 
+        $validData = $request->validate([
+            'product_id' => [
+                //Rule::unique('invoice_products')->where('invoice_id','=',$invoice_list_record),
+                //Rule::unique('invoice_products'),
+            ],
+        ]);
+
         if ($product_update->stock > $request->input('quantity')) {
             InvoiceProduct::create($request->all());
             
             $subtotal = $request->input('price') * $request->input('quantity');
 
-            $invoice_list_record->value_tax += $subtotal * 0.19;
+            $invoice_list_record->value_tax += $subtotal / 1.19 * 0.19;
             $invoice_list_record->total_value += $subtotal;
             $invoice_list_record->save();
 
@@ -126,7 +134,7 @@ class InvoiceProductController extends Controller
 
         $subtotal = $invoice_product_list->price * $invoice_product_list->quantity;
 
-        $invoice_list_record->value_tax -= $subtotal * 0.19;
+        $invoice_list_record->value_tax -= $subtotal / 1.19 * 0.19;
         $invoice_list_record->total_value -= $subtotal;
         $invoice_list_record->save();
 
