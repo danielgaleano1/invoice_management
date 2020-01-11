@@ -18,7 +18,7 @@ class CreateInvoicesTable extends Migration
             $table->unsignedBigInteger('collaborator_id');
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('invoice_state_id');
-            $table->unsignedInteger('code')->unique();
+            $table->string('code')->unique();
             $table->date('expiration_at');
             $table->date('date_of_receipt')->nullable();
             $table->decimal('value_tax');

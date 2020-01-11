@@ -60,11 +60,13 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
         $validData = $request->validate([
-            'code' => 'min:3|unique:invoices,code',
-            'expiration_at' => 'date',
+            'expiration_at' => 'required|date|after:created_at',
         ]);
 
-        Invoice::create($request->all());
+        $invoice = Invoice::create($request->all());
+
+        $invoice->update(['code' => str_pad($invoice->id, config('invoices.code_lenght'), '0', STR_PAD_LEFT)]);
+        
         return redirect()->route('invoice.index')->withSuccess(__('Invoice create successfully!'));
     }
 
@@ -113,12 +115,8 @@ class InvoiceController extends Controller
         $invoice_list = Invoice::findOrFail($id);
         
         $validData = $request->validate([
-            'code' => [
-                'min:3',
-                'max:10',
-                Rule::unique('invoices')->ignore($invoice_list->id),
-            ],
-            'expiration_at' => 'date',
+            'expiration_at' => 'required|date|after:created_at',
+            'date_of_receipt' => 'nullable|date|after:created_at|before:expiration_at',
         ]);
 
         $invoice_list->collaborator_id = $request->input('collaborator');
@@ -152,6 +150,8 @@ class InvoiceController extends Controller
 
         try {
             Excel::import(new InvoicesImport(), $path);
+            $invoices = Invoice::latest('id')->first();
+            Invoice::where('id', $invoices->id)->update(['code' => str_pad($invoices->id, config('invoices.code_lenght'), '0', STR_PAD_LEFT)]);
             return redirect()->route('invoice.index')->withSuccess(__('Invoices import successfully!'));
         } 
         catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
@@ -163,6 +163,7 @@ class InvoiceController extends Controller
                  $failure->errors(); 
                  $failure->values(); 
              }
+
              return redirect()->route('invoice.index')->withErrors($failure->errors());
         }
     }
