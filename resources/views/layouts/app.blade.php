@@ -89,6 +89,7 @@
         <main class="py-4">
             @yield('content')
         </main>
+
     </div>
     <script src="{{ asset(mix('js/manifest.js')) }}"></script>
     <script src="{{ asset(mix('js/vendor.js')) }}"></script>

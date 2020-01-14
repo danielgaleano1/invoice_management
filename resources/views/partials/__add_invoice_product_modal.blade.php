@@ -31,7 +31,7 @@
                             @includeWhen($errors->has('product_id'), 'partials/__invalid_feedback', ['feedback' => $errors->first('product_id')])
                         </div>
                     </div>
-
+                    
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="quantity">{{ __('Quantity') }}</label>
