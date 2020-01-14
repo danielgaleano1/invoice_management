@@ -80,8 +80,16 @@
         {{ $invoice_list->links() }}
     </div>
 </div>
+
+
 @endsection
 @push('modals')
     @include('partials/__confirm_delete_modal')
     @include('partials/__import_invoice_excel_modal')
+@endpush
+@push('scripts')
+    <script src="{{ asset(mix('js/delete-modal.js')) }}"></script>
+@endpush
+@push('scripts')
+    <script src="{{ asset(mix('js/import-invoice-excel-modal.js')) }}"></script>
 @endpush

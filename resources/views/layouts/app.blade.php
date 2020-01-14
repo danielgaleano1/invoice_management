@@ -10,7 +10,7 @@
     <title>{{ __('Invoice Management') }}</title>
     
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
 </head>
 <body>
     @stack('modals')
@@ -93,19 +93,6 @@
     <script src="{{ asset(mix('js/manifest.js')) }}"></script>
     <script src="{{ asset(mix('js/vendor.js')) }}"></script>
     <script src="{{ asset(mix('js/app.js')) }}"></script>
-    <script src="{{ asset('js/functions.js') }}"></script>
-    <script src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" data-auto-replace-svg="nest"></script>
-    <script>
-    $('#confirm_delete_modal').on('show.bs.modal', function (e) {
-        $('#delete_form').attr('action', $(e.relatedTarget).data('route'));
-    });
-    $('#add_invoice_product_modal').on('show.bs.modal', function (e) {
-        //var description = $(e.relatedTarget).data('description')
-        //var modal = $(this)
-        //modal.find('.modal-body #description').val(description);
-        $('#add_form').attr('action', $(e.relatedTarget).data('route'));
-    });
-    </script>
     @stack('scripts')
 </body>
 </html>

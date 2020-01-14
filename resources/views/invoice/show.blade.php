@@ -112,3 +112,10 @@
     @include('partials/__confirm_delete_modal')
     @include('partials/__add_invoice_product_modal')
 @endpush
+@push('scripts')
+    <script src="{{ asset(mix('js/delete-modal.js')) }}"></script>
+@endpush
+
+@push('scripts')
+    <script src="{{ asset(mix('js/add-invoice-product-modal.js')) }}"></script>
+@endpush
