@@ -56,13 +56,6 @@ class InvoiceProductController extends Controller
         $invoice_list_record = Invoice::findOrFail($request->invoice_id);
         $product_update = Product::findOrFail($request->product_id);
 
-        $validData = $request->validate([
-            'product_id' => [
-                //Rule::unique('invoice_products')->where('invoice_id','=',$invoice_list_record),
-                //Rule::unique('invoice_products'),
-            ],
-        ]);
-
         if ($product_update->stock > $request->input('quantity')) {
             InvoiceProduct::create($request->all());
             

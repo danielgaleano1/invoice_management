@@ -141,8 +141,7 @@ class InvoiceController extends Controller
         return redirect()->route('invoice.index')->withSuccess(__('Invoice deleted successfully'));
     }
 
-    public function import(Request $request) 
-    {
+    public function import(Request $request) {
         $this->validate($request, [
             'invoices' => 'required|mimes:xls,xlsx'
         ]);

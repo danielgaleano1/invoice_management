@@ -11,9 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         //$this->call(country_factory::class);
-         
-         factory(App\Country::class, 1)->create()->each(function ($country) {
+        factory(App\Country::class, 1)->create()->each(function ($country) {
             factory(App\City::class, 3)->create(['country_id'=>$country->id]);
         });
         factory(App\Client::class, 1)->create();
@@ -25,10 +23,6 @@ class DatabaseSeeder extends Seeder
         factory(App\Invoice::class, 1)->create()->each(function ($invoice) {
             factory(App\InvoiceProduct::class, 5)->create(['invoice_id'=>$Invoice->id]);
         });
-        /*
-        factory(App\InvoiceProduct::class, 1)->create();
-        factory(App\Invoice::class, 1)->create();
-        */
         factory(App\User::class, 1)->create();
     }
 }
