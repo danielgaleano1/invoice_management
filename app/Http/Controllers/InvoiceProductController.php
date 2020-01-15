@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use App\Invoice;
 use App\Collaborator;
 use App\Client;
@@ -20,13 +21,8 @@ class InvoiceProductController extends Controller
      */
     public function index()
     {
-        return view('invoice_product.index', [
-            'invoice_product_list' => InvoiceProduct::all(),
-            'invoice_list' => Invoice::all(),
-            'collaborator_list' => Collaborator::all(),
-            'client_list' => Client::all(),
-            'product_list' => Product::all()
-        ]);
+        $invoice_products = Product::all();
+        return $invoice_products;
     }
 
     /**
@@ -60,7 +56,7 @@ class InvoiceProductController extends Controller
             
             $subtotal = $request->input('price') * $request->input('quantity');
 
-            $invoice_list_record->value_tax += $subtotal * 0.19;
+            $invoice_list_record->value_tax += $subtotal / 1.19 * 0.19;
             $invoice_list_record->total_value += $subtotal;
             $invoice_list_record->save();
 
@@ -81,10 +77,7 @@ class InvoiceProductController extends Controller
      */
     public function show($id)
     {
-        $product_id_modal = Product::findOrFail($id);
-        $product_price = $product_id_modal->price;
-        $product_stock = $product_id_modal->stock;
-        return response()->json(['price' => $product_price, 'stock' => $product_stock]);
+        //
     }
 
     /**
@@ -126,7 +119,7 @@ class InvoiceProductController extends Controller
 
         $subtotal = $invoice_product_list->price * $invoice_product_list->quantity;
 
-        $invoice_list_record->value_tax -= $subtotal * 0.19;
+        $invoice_list_record->value_tax -= $subtotal / 1.19 * 0.19;
         $invoice_list_record->total_value -= $subtotal;
         $invoice_list_record->save();
 

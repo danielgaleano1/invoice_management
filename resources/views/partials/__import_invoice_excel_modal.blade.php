@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <p>{{ __('Select one file') }}</p>
-                <form id="import_form" action="invoice_import_excel" method="post" enctype="multipart/form-data">
+                <form id="import_form" action="" method="post" enctype="multipart/form-data">
                     @csrf()
 
                     <input type="file" name="invoices" required accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">

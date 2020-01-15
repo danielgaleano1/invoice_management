@@ -1,5 +1,7 @@
 @extends('layouts.app')
+
 @section('content')
+
     <div class="card card-default">
         <div class="card-header d-flex justify-content-between">
             <h5 class="card-title mb-0">{{ __('Invoice') }}</h5>
@@ -111,4 +113,11 @@
 @push('modals')
     @include('partials/__confirm_delete_modal')
     @include('partials/__add_invoice_product_modal')
+@endpush
+@push('scripts')
+    <script src="{{ asset(mix('js/delete-modal.js')) }}"></script>
+@endpush
+
+@push('scripts')
+    <script src="{{ asset(mix('js/add-invoice-product-modal.js')) }}"></script>
 @endpush

@@ -27,10 +27,10 @@ class InvoicesImport implements ToModel, WithHeadingRow, WithBatchInserts, WithC
         return new Invoice([
             'collaborator_id' => $row['Collaborator'],
             'client_id' => $row['Client'],
-            'invoice_state_id' => $row['State'],
-            'code' => $row['Code'],
-            'expiration_at' => $row['Expiration Date'],
-            'date_of_receipt' => $row['Receipt Date'],
+            'invoice_state_id' => 1,
+            'code' => 0,
+            'expiration_at' => $row['ExpirationDate'],
+            'date_of_receipt' => null,
             'value_tax' => 0,
             'total_value' => 0,
         ]);
@@ -40,13 +40,9 @@ class InvoicesImport implements ToModel, WithHeadingRow, WithBatchInserts, WithC
     public function rules(): array
     {
         return [
-            
             'Collaborator' => 'required|numeric|exists:collaborators,id',
             'Client' => 'required|numeric|exists:clients,id',
-            'State' => 'required|numeric|exists:invoice_states,id',
-            'Code' => ['required', Rule::unique('invoices', 'code')],
-            'Expiration Date' => 'required|date|after:created_at',
-            'Receipt Date' => 'nullable|date|after:created_at|before:expiration_at',
+            'ExpirationDate' => 'required|date_format:Y-m-d',
         ];
     }
 
