@@ -10,7 +10,7 @@
     <title>{{ __('Invoice Management') }}</title>
     
     <!-- Styles -->
-    <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     @stack('modals')

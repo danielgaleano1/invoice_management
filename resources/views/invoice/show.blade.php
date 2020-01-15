@@ -1,5 +1,7 @@
 @extends('layouts.app')
+
 @section('content')
+
     <div class="card card-default">
         <div class="card-header d-flex justify-content-between">
             <h5 class="card-title mb-0">{{ __('Invoice') }}</h5>
