@@ -66,10 +66,11 @@
                                 </a>
                                 
                                 <a href="{{ route('invoice.edit', $invoice_lists) }}" class="btn btn-outline-secondary" title="{{ __('Edit') }}">
-                                    <i class="far fa-edit"></i> {{ __('Edit') }}
+                                    <i class="fas fa-edit"></i> {{ __('Edit') }}
                                 </a>
+
                                 <button type="button" class="btn btn-outline-danger" data-route="{{ route('invoice.destroy', $invoice_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal">
-                                    <i class="far fa-trash-alt"></i> {{ __('Delete') }}
+                                    <i class="fas fa-trash-alt"></i> {{ __('Delete') }}
                                 </button>
                             </div>
                         </td>
