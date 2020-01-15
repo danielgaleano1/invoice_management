@@ -1,7 +1,4 @@
 <div class="row">
-
-    <input type="hidden" name="code" id="code" value="0">
-
     <div class="col-md-6">
         <div class="form-group">
             <label for="collaborator_id">{{ __('Collaborator') }}</label>
@@ -35,11 +32,4 @@
             @includeWhen($errors->has('expiration_at'), 'partials/__invalid_feedback', ['feedback' => $errors->first('expiration_at')])
         </div>
     </div>
-
-    <input type="hidden" name="value_tax" id="value_tax" value="0">
-            
-    <input type="hidden" name="total_value" id="total_value" value="0">
-        
-    <input type="hidden" name="invoice_state_id" id="invoice_state_id" value="1">
-
 </div>

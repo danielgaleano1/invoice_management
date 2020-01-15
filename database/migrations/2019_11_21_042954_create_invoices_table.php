@@ -17,12 +17,12 @@ class CreateInvoicesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('collaborator_id');
             $table->unsignedBigInteger('client_id');
-            $table->unsignedBigInteger('invoice_state_id');
-            $table->string('code')->unique();
+            $table->unsignedBigInteger('invoice_state_id')->nullable();
+            $table->string('code')->unique()->nullable();
             $table->date('expiration_at');
             $table->date('date_of_receipt')->nullable();
-            $table->decimal('value_tax');
-            $table->decimal('total_value');
+            $table->decimal('value_tax')->nullable();
+            $table->decimal('total_value')->nullable();
             $table->timestamps();
 
             $table->foreign('collaborator_id')->references('id')->on('collaborators');

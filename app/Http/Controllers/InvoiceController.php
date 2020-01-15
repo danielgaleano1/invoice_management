@@ -9,7 +9,6 @@ use App\Collaborator;
 use App\Client;
 use App\InvoiceState;
 use App\InvoiceProduct;
-use App\Product;
 use App\Imports\InvoicesImport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -31,7 +30,6 @@ class InvoiceController extends Controller
             'collaborator_list' => Collaborator::all(),
             'invoice_state_list' => InvoiceState::all(),
             'client_list' => Client::all(),
-            'product_list' => Product::all()
         ]);
     }
 
@@ -43,11 +41,9 @@ class InvoiceController extends Controller
     public function create()
     {
         return view('invoice.create', [
-            'invoice_list' => Invoice::all(),
             'collaborator_list' => Collaborator::all(),
             'invoice_state_list' => InvoiceState::all(),
-            'client_list' => Client::all(),
-            'product_list' => Product::all()
+            'client_list' => Client::all()
         ]);
     }
 
@@ -60,12 +56,15 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
         $validData = $request->validate([
-            'expiration_at' => 'required|date|after:created_at',
+            'expiration_at' => 'required|date_format:Y-m-d|after:created_at',
         ]);
 
         $invoice = Invoice::create($request->all());
 
-        $invoice->update(['code' => str_pad($invoice->id, config('invoices.code_lenght'), '0', STR_PAD_LEFT)]);
+        $invoice->update([
+            'code' => str_pad($invoice->id, config('invoices.code_lenght'), '0', STR_PAD_LEFT),
+            'invoice_state_id' => config('invoices.state_initial')
+        ]);
         
         return redirect()->route('invoice.index')->withSuccess(__('Invoice create successfully!'));
     }
@@ -82,7 +81,6 @@ class InvoiceController extends Controller
         return view('invoice.show', [
             'invoice_list' => $invoice_list,
             'invoice_product_list' => InvoiceProduct::all(),
-            'product_list' => Product::all(),
         ]);
     }
 
