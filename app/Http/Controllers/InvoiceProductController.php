@@ -21,13 +21,8 @@ class InvoiceProductController extends Controller
      */
     public function index()
     {
-        return view('invoice_product.index', [
-            'invoice_product_list' => InvoiceProduct::all(),
-            'invoice_list' => Invoice::all(),
-            'collaborator_list' => Collaborator::all(),
-            'client_list' => Client::all(),
-            'product_list' => Product::all()
-        ]);
+        $invoice_products = Product::all();
+        return $invoice_products;
     }
 
     /**
@@ -82,10 +77,7 @@ class InvoiceProductController extends Controller
      */
     public function show($id)
     {
-        $product_id_modal = Product::findOrFail($id);
-        $product_price = $product_id_modal->price;
-        $product_stock = $product_id_modal->stock;
-        return response()->json(['price' => $product_price, 'stock' => $product_stock]);
+        //
     }
 
     /**

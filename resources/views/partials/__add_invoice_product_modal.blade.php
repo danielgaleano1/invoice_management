@@ -22,16 +22,16 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="product_id">{{ __('Code') }}</label>
-                            <select class="form-control custom-select {{ $errors->has('product_id') ? 'is-invalid' : '' }}" name="product_id" id="product_id" onchange="search_product()" required>
+                            <select v-model="selected" @change="getDataOfProduct" class="form-control custom-select {{ $errors->has('product_id') ? 'is-invalid' : '' }}" name="product_id" id="product_id" required>
                                 <option value="">{{ __('Please select a code') }}</option>
-                                @foreach($product_list as $product_lists)
-                                    <option value="{{ $product_lists->id }}">{{ $product_lists->code }}</option>
-                                @endforeach
+                                <option v-for="product in products" v-bind:value="product.id">
+                                    @{{ product.code }}
+                                </option>
                             </select>
                             @includeWhen($errors->has('product_id'), 'partials/__invalid_feedback', ['feedback' => $errors->first('product_id')])
                         </div>
                     </div>
-                    
+ 
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="quantity">{{ __('Quantity') }}</label>
@@ -43,16 +43,16 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="price">{{ __('Price') }}</label>
-                            <input type="text" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" name="price" id="price" value="" readonly>
+                            <input type="text" class="form-control" name="price" id="price" v-bind:value="price" readonly>
                             @includeWhen($errors->has('price'), 'partials/__invalid_feedback', ['feedback' => $errors->first('price')])
                         </div>
                     </div>
                 </form>
-                
+        
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="stock">{{ __('Stock') }}</label>
-                        <input type="number" class="form-control {{ $errors->has('stock') ? 'is-invalid' : '' }}" name="stock" id="stock" value="" readonly>
+                        <input type="number" class="form-control {{ $errors->has('stock') ? 'is-invalid' : '' }}" name="stock" id="stock" v-bind:value="stock" readonly>
                         @includeWhen($errors->has('stock'), 'partials/__invalid_feedback', ['feedback' => $errors->first('stock')])
                     </div>
                 </div>
