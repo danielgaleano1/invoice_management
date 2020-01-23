@@ -45,8 +45,8 @@
             <label for="city">{{ __('City') }}</label>
             <select class="form-control custom-select {{ $errors->has('city') ? 'is-invalid' : '' }}" name="city" id="city" required>
                 <option value="">{{ __('Please select a city') }}</option>
-                @foreach($city_list as $city)
-                    <option value="{{ $city->id }}" {{ old('city') == $city->id ? 'selected' : ''}}>{{ $city->name }}</option>
+                @foreach($cities as $city)
+                    <option value="{{ $city->id }}" {{ old('city') === $city->id ? 'selected' : ''}}>{{ $city->name }}</option>
                 @endforeach
             </select>
             @includeWhen($errors->has('city'), 'partials/__invalid_feedback', ['feedback' => $errors->first('city')])

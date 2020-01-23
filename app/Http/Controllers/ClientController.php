@@ -35,8 +35,7 @@ class ClientController extends Controller
     {
         return view('client.create', [
             'client_list' => Client::all(),
-            'invoice_list' => Invoice::all(),
-            'city_list' => City::all()
+            'invoice_list' => Invoice::all()
         ]);
     }
 
