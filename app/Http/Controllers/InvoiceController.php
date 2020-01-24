@@ -40,11 +40,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        return view('invoice.create', [
-            'collaborator_list' => Collaborator::all(),
-            'invoice_state_list' => InvoiceState::all(),
-            'client_list' => Client::all()
-        ]);
+        return view('invoice.create');
     }
 
     /**

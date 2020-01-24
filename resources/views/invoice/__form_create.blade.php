@@ -4,7 +4,7 @@
             <label for="collaborator_id">{{ __('Collaborator') }}</label>
             <select class="form-control custom-select {{ $errors->has('collaborator_id') ? 'is-invalid' : '' }}" name="collaborator_id" id="collaborator_id" required>
                 <option value="">{{ __('Please select a collaborator') }}</option>
-                @foreach($collaborator_list as $collaborator)
+                @foreach($collaborators as $collaborator)
                     <option value="{{ $collaborator->id }}" {{ old('collaborator_id') == $collaborator->id ? 'selected' : ''}}>{{ $collaborator->name }}</option>
                 @endforeach
             </select>
@@ -17,7 +17,7 @@
             <label for="client_id">{{ __('client') }}</label>
             <select class="form-control custom-select {{ $errors->has('client_id') ? 'is-invalid' : '' }}" name="client_id" id="client_id" required>
                 <option value="">{{ __('Please select a client') }}</option>
-                @foreach($client_list as $client)
+                @foreach($clients as $client)
                     <option value="{{ $client->id }}" {{ old('client_id') == $client->id ? 'selected' : ''}}>{{ $client->name }}</option>
                 @endforeach
             </select>
