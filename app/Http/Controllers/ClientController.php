@@ -33,10 +33,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('client.create', [
-            'client_list' => Client::all(),
-            'invoice_list' => Invoice::all()
-        ]);
+        return view('client.create');
     }
 
     /**
