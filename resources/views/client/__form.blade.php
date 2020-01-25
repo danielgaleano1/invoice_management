@@ -45,7 +45,7 @@
             <label for="city">{{ __('City') }}</label>
             <select class="form-control custom-select {{ $errors->has('city') ? 'is-invalid' : '' }}" name="city" id="city" required>
                 <option value="">{{ __('Please select a city') }}</option>
-                @foreach($city_list as $city)
+                @foreach($cities as $city)
                     <option value="{{ $city->id }}" {{ old('city', $client_list->city_id) == $city->id ? 'selected' : ''}}>{{ $city->name }}</option>
                 @endforeach
             </select>

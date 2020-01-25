@@ -30,13 +30,17 @@ class ViewComposerProvider extends ServiceProvider
         View::composer(
             'client/__form_create', CachedCitiesList::class
         );
+
+        View::composer(
+            'client/__form', CachedCitiesList::class
+        );
         
         View::composer(
-            'invoice/__form_create', CachedCollaboratorsList::class
+            'invoice/__form', CachedCollaboratorsList::class
         );
 
         View::composer(
-            'invoice/__form_create', CachedClientsList::class
+            'invoice/__form', CachedClientsList::class
         );
     }
 }

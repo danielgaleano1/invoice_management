@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
+    protected $fillable = ['code', 'name', 'address', 'phone', 'email', 'city_id'];
+
     public function city()
     {
         return $this->belongsTo(City::class);

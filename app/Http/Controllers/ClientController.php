@@ -89,9 +89,7 @@ class ClientController extends Controller
     {
         $client_list = Client::findOrFail($id);
         return view('client.edit', [
-            'client_list' => $client_list,
-            'invoice_list' => Invoice::all(),
-            'city_list' => City::all()
+            'client_list' => $client_list
         ]);
     }
 
