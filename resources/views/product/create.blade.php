@@ -10,7 +10,7 @@
         <div class="card-body">
             <form action="{{ route('product.store') }}" method="post" id="product-form">
                 @csrf
-                @include('product/__form_create')
+                @include('product/__form')
             </form>
         </div>
 
