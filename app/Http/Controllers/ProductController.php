@@ -24,11 +24,7 @@ class ProductController extends Controller
         $products = Product::searchs($data_to_search)->paginate(5);
 
         return view('product.index', [
-            'product_list' => $products,
-            'invoice_list' => Invoice::all(),
-            'collaborator_list' => Collaborator::all(),
-            'invoice_state_list' => InvoiceState::all(),
-            'client_list' => Client::all()
+            'product_list' => $products
         ]);
     }
 
@@ -39,13 +35,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create', [
-            'product_list' => Product::all(),
-            'invoice_list' => Invoice::all(),
-            'collaborator_list' => Collaborator::all(),
-            'invoice_state_list' => InvoiceState::all(),
-            'client_list' => Client::all()
-        ]);
+        return view('product.create');
     }
 
     /**
@@ -63,12 +53,7 @@ class ProductController extends Controller
             'price' => 'min:1|numeric'
         ]);
 
-        $product_record = new Product;
-        $product_record->code = $request->input('code');
-        $product_record->description = $request->input('description');
-        $product_record->stock = $request->input('stock');
-        $product_record->price = $request->input('price');
-        $product_record->save();
+        $product_record = Product::create($request->all());
 
         return redirect()->route('product.index')->withSuccess(__('Product create successfully!'));
     }
@@ -94,11 +79,7 @@ class ProductController extends Controller
     {
         $product_list = Product::findOrFail($id);
         return view('product.edit', [
-            'product_list' => $product_list,
-            'invoice_list' => Invoice::all(),
-            'collaborator_list' => Collaborator::all(),
-            'invoice_state_list' => InvoiceState::all(),
-            'client_list' => Client::all()
+            'product_list' => $product_list
         ]);
     }
 
