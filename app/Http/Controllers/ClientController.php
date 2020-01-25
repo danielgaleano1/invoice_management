@@ -104,8 +104,6 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $client_record = Client::findOrFail($id);
-
         $validData = $request->validate([
             'code' => [
                 'min:3',

@@ -94,8 +94,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product_record = Product::findOrFail($id);
-
         $validData = $request->validate([
             'code' => [
                 'min:3',
