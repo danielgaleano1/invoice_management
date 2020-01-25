@@ -58,6 +58,17 @@
                         <i class="fas fa-plus-circle"></i> {{ __('Add Product') }}
                     </button> 
                 </div>
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="card-body">
                 <table class="table table-hover table-bordered table-sm table-responsive-sm" >
                     <thead class="thead-dark">
@@ -74,7 +85,7 @@
                         @foreach($invoice_product_list as $invoice_product_lists)
                             <tr class="text-center">
                                 @if($invoice_product_lists->invoice_id == $invoice_list->id)
-                                    <td>{{ $invoice_product_lists->id }}</td>
+                                    <td>{{ $invoice_product_lists->Product->code }}</td>
                                     <td>{{ $invoice_product_lists->Product->description }}</td>
                                     <td>{{ number_format($invoice_product_lists->quantity, 2) }}</td>
                                     <td>{{ number_format($invoice_product_lists->price, 2) }}</td>

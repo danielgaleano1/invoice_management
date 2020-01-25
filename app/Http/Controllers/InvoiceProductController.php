@@ -51,7 +51,14 @@ class InvoiceProductController extends Controller
         $invoice_list_record = Invoice::findOrFail($request->invoice_id);
         $product_update = Product::findOrFail($request->product_id);
 
-        if ($product_update->stock > $request->input('quantity')) {
+        //$products = DB::select('select * from products where active = ?', [1]);
+
+        $products = DB::table('invoice_products')->where([
+            ['product_id', '=', $request->product_id],
+            ['invoice_id', '=', $request->invoice_id],
+        ])->doesntExist();
+
+        if ($products && $product_update->stock > $request->input('quantity')) {
             InvoiceProduct::create($request->all());
             
             $subtotal = $request->input('price') * $request->input('quantity');
@@ -65,7 +72,7 @@ class InvoiceProductController extends Controller
 
             return back();
         } else {
-            return redirect()->route('invoice.show', $invoice_list_record)->with('message', 'Quantity not available');
+            return redirect()->route('invoice.show', $invoice_list_record)->withErrors('Quantity not available or the product is already on the invoice. Code of product: ' . $product_update->code);
         }
     }
 
