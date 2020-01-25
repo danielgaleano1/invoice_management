@@ -107,11 +107,14 @@ class ProductController extends Controller
             'price' => 'min:1|numeric'
         ]);
 
-        $product_record->code = $request->input('code');
-        $product_record->description = $request->input('description');
-        $product_record->stock = $request->input('stock');
-        $product_record->price = $request->input('price');
-        $product_record->save();
+        $product = Product::findOrFail($id);
+
+        $product->update([
+            'code' => $request->input('code'),
+            'description' => $request->input('description'),
+            'stock' => $request->input('stock'),
+            'price' => $request->input('price')
+        ]);
 
         return redirect()->route('product.index')->withSuccess(__('Product create successfully!'));
     }

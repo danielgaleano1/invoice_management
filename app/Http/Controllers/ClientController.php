@@ -121,13 +121,16 @@ class ClientController extends Controller
             ],
         ]);
 
-        $client_record->city_id = $request->input('city');
-        $client_record->code = $request->input('code');
-        $client_record->name = $request->input('name');
-        $client_record->address = $request->input('address');
-        $client_record->phone = $request->input('phone');
-        $client_record->email = $request->input('email');
-        $client_record->save();
+        $client = Client::findOrFail($id);
+
+        $client->update([
+            'city' => $request->input('city'),
+            'code' => $request->input('code'),
+            'name' => $request->input('name'),
+            'address' => $request->input('address'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email')
+        ]);
 
         return redirect()->route('client.index')->withSuccess(__('Client update successfully!'));
     }
