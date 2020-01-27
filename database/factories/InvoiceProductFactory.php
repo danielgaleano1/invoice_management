@@ -13,5 +13,6 @@ $factory->define(InvoiceProduct::class, function (Faker $faker) {
         'invoice_id' => factory(Invoice::class),
         'quantity' => 1,
         'price' => 10000,
+        'subtotal' => 10000,
     ];
 });

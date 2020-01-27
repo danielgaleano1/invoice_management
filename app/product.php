@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $fillable = ['code', 'description', 'stock', 'price'];
+
     public function invoiceProducts()
     {
         return $this->hasMany(InvoiceProduct::class);

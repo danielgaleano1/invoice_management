@@ -30,7 +30,7 @@
                 <dd class="col-md-3">{{ $invoice_list->Collaborator->name }}</dd>
                 
                 <dt class="col-md-1">{{ __('Client') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->Client->name }}</dd>
+                <dd class="col-md-3">{{ $invoice_list->Client->fullName }}</dd>
 
                 <dt class="col-md-1">{{ __('invoice State') }}</dt>
                 <dd class="col-md-3">{{ $invoice_list->InvoiceState->type }}</dd>
@@ -58,6 +58,17 @@
                         <i class="fas fa-plus-circle"></i> {{ __('Add Product') }}
                     </button> 
                 </div>
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="card-body">
                 <table class="table table-hover table-bordered table-sm table-responsive-sm" >
                     <thead class="thead-dark">
@@ -74,11 +85,11 @@
                         @foreach($invoice_product_list as $invoice_product_lists)
                             <tr class="text-center">
                                 @if($invoice_product_lists->invoice_id == $invoice_list->id)
-                                    <td>{{ $invoice_product_lists->id }}</td>
+                                    <td>{{ $invoice_product_lists->Product->code }}</td>
                                     <td>{{ $invoice_product_lists->Product->description }}</td>
                                     <td>{{ number_format($invoice_product_lists->quantity, 2) }}</td>
                                     <td>{{ number_format($invoice_product_lists->price, 2) }}</td>
-                                    <td>{{ number_format($invoice_product_lists->price * $invoice_product_lists->quantity, 2) }}</td>
+                                    <td>{{ number_format($invoice_product_lists->subtotal, 2) }}</td>
                                     <td class="text-center">                                       
                                         <button type="button" class="btn btn-sm btn-outline-danger" data-route="{{ route('invoice_product.destroy', $invoice_product_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal">
                                             <i class="fas fa-trash-alt"></i> {{ __('Delete') }}

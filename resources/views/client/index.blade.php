@@ -24,7 +24,8 @@
             <thead class="thead-dark">
                 <tr class="text-center">
                     <th>{{ __('id') }}</th>
-                    <th>{{ __('Code') }}</th>
+                    <th>{{ __('Document Type') }}</th>
+                    <th>{{ __('Document') }}</th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Address') }}</th>
                     <th>{{ __('Phone') }}</th>
@@ -37,12 +38,13 @@
                 @foreach($client_list as $client_lists)
                     <tr>
                         <td>{{ $client_lists->id }}</td>
+                        <td>{{ $client_lists->document_type->code }}</td>
                         <td>{{ $client_lists->code }}</td>
-                        <td>{{ $client_lists->name }}</td>
+                        <td>{{ $client_lists->fullName }}</td>
                         <td>{{ $client_lists->address }}</td>
                         <td>{{ $client_lists->phone }}</td>
                         <td>{{ $client_lists->email }}</td>
-                        <td>{{ $client_lists->City->name }}</td>
+                        <td>{{ $client_lists->city->name }}</td>
                         <td class="text-right">
                             <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Client actions') }}">
                                 <a href="{{ route('client.show', $client_lists) }}" class="btn btn-outline-info" title="{{ __('View') }}">

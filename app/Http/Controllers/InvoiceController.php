@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use App\Invoice;
 use App\Collaborator;
 use App\Client;
 use App\InvoiceState;
 use App\InvoiceProduct;
+use App\Product;
 use App\Imports\InvoicesImport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -40,7 +42,9 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        return view('invoice.create');
+        $invoice = new Invoice;
+
+        return response()->view('invoice.create', compact('invoice'));
     }
 
     /**
@@ -86,15 +90,9 @@ class InvoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Invoice $invoice)
     {
-        $invoice_list = Invoice::findOrFail($id);
-        return view('invoice.edit', [
-            'invoice_list' => $invoice_list,
-            'collaborator_list' => Collaborator::all(),
-            'client_list' => Client::all(),
-            'invoice_state_list' => InvoiceState::all(),
-        ]);
+        return response()->view('invoice.edit', compact('invoice'));
     }
 
     /**
@@ -106,18 +104,17 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $invoice_list = Invoice::findOrFail($id);
-        
         $validData = $request->validate([
-            'expiration_at' => 'required|date|after:created_at',
-            'date_of_receipt' => 'nullable|date|after:created_at|before:expiration_at',
+            'expiration_at' => 'required|date_format:Y-m-d|after:created_at',
         ]);
 
-        $invoice_list->collaborator_id = $request->input('collaborator');
-        $invoice_list->client_id = $request->input('client');
-        $invoice_list->expiration_at = $request->input('expiration_at');
-        $invoice_list->date_of_receipt = $request->input('date_of_receipt');
-        $invoice_list->save();
+        $invoice = Invoice::findOrFail($id);
+
+        $invoice->update([
+            'collaborator_id' => $request->input('collaborator_id'),
+            'client_id' => $request->input('client_id'),
+            'expiration_at' => $request->input('expiration_at')
+        ]);
 
         return redirect()->route('invoice.index')->withSuccess(__('Invoice updated successfully!'));
     }
@@ -131,6 +128,21 @@ class InvoiceController extends Controller
     public function destroy($id)
     {
         $invoice_list = Invoice::findOrFail($id);
+
+        $invoice_products = DB::table('invoice_products')->where([
+            ['invoice_id', '=', $invoice_list->id],
+        ])->get();
+
+        foreach ($invoice_products as $invoice_product) {
+            $stock = DB::table('products')
+                ->where('id', $invoice_product->product_id)
+                ->value('stock');
+
+            DB::table('products')
+                ->where('id', $invoice_product->product_id)
+                ->update(['stock' => $stock + $invoice_product->quantity]);
+        }
+
         $invoice_list->delete();
         return redirect()->route('invoice.index')->withSuccess(__('Invoice deleted successfully'));
     }

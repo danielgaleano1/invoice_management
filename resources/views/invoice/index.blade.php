@@ -52,7 +52,7 @@
                     <tr>
                         <td>{{ $invoice_lists->code }}</td>
                         <td>{{ $invoice_lists->Collaborator->name }}</td>
-                        <td>{{ $invoice_lists->Client->name }}</td>
+                        <td>{{ $invoice_lists->Client->fullName }}</td>
                         <td>{{ $invoice_lists->InvoiceState->type }}</td>
                         <td>{{ $invoice_lists->created_at }}</td>
                         <td>{{ $invoice_lists->expiration_at }}</td>

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Http\View\Composers\CachedCitiesList;
 use App\Http\View\Composers\CachedCollaboratorsList;
 use App\Http\View\Composers\CachedClientsList;
+use App\Http\View\Composers\CachedDocumentTypesList;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,15 +29,19 @@ class ViewComposerProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            'client/__form_create', CachedCitiesList::class
-        );
-        
-        View::composer(
-            'invoice/__form_create', CachedCollaboratorsList::class
+            'client/__form', CachedCitiesList::class
         );
 
         View::composer(
-            'invoice/__form_create', CachedClientsList::class
+            'client/__form', CachedDocumentTypesList::class
+        );
+        
+        View::composer(
+            'invoice/__form', CachedCollaboratorsList::class
+        );
+
+        View::composer(
+            'invoice/__form', CachedClientsList::class
         );
     }
 }
