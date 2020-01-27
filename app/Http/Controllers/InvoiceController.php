@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use App\Invoice;
 use App\Collaborator;
 use App\Client;
 use App\InvoiceState;
 use App\InvoiceProduct;
+use App\Product;
 use App\Imports\InvoicesImport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -126,6 +128,21 @@ class InvoiceController extends Controller
     public function destroy($id)
     {
         $invoice_list = Invoice::findOrFail($id);
+
+        $invoice_products = DB::table('invoice_products')->where([
+            ['invoice_id', '=', $invoice_list->id],
+        ])->get();
+
+        foreach ($invoice_products as $invoice_product) {
+            $stock = DB::table('products')
+                ->where('id', $invoice_product->product_id)
+                ->value('stock');
+
+            DB::table('products')
+                ->where('id', $invoice_product->product_id)
+                ->update(['stock' => $stock + $invoice_product->quantity]);
+        }
+
         $invoice_list->delete();
         return redirect()->route('invoice.index')->withSuccess(__('Invoice deleted successfully'));
     }
