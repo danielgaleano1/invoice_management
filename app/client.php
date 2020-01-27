@@ -13,6 +13,11 @@ class Client extends Model
         return $this->belongsTo(City::class);
     }
 
+    public function document_type()
+    {
+        return $this->belongsTo(DocumentType::class);
+    }
+
     public function invoices()
     {
         return $this->hasMany(Invoice::class);
@@ -23,5 +28,10 @@ class Client extends Model
         if ($searchs){
             return $query->where('code','like',"%$searchs%");
         }
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->surname;
     }
 }

@@ -30,7 +30,7 @@
                 <dd class="col-md-3">{{ $invoice_list->Collaborator->name }}</dd>
                 
                 <dt class="col-md-1">{{ __('Client') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->Client->name }}</dd>
+                <dd class="col-md-3">{{ $invoice_list->Client->fullName }}</dd>
 
                 <dt class="col-md-1">{{ __('invoice State') }}</dt>
                 <dd class="col-md-3">{{ $invoice_list->InvoiceState->type }}</dd>
@@ -89,7 +89,7 @@
                                     <td>{{ $invoice_product_lists->Product->description }}</td>
                                     <td>{{ number_format($invoice_product_lists->quantity, 2) }}</td>
                                     <td>{{ number_format($invoice_product_lists->price, 2) }}</td>
-                                    <td>{{ number_format($invoice_product_lists->price * $invoice_product_lists->quantity, 2) }}</td>
+                                    <td>{{ number_format($invoice_product_lists->subtotal, 2) }}</td>
                                     <td class="text-center">                                       
                                         <button type="button" class="btn btn-sm btn-outline-danger" data-route="{{ route('invoice_product.destroy', $invoice_product_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal">
                                             <i class="fas fa-trash-alt"></i> {{ __('Delete') }}

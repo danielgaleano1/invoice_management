@@ -6,6 +6,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use App\Client;
 use App\City;
+use App\DocumentType;
 use App\Invoice;
 
 class ClientController extends Controller
@@ -21,8 +22,7 @@ class ClientController extends Controller
         $clients = Client::searchs($data_to_search)->paginate(5);
 
         return view('client.index', [
-            'client_list' => $clients,
-            'city_list' => City::all()
+            'client_list' => $clients
         ]);
     }
 

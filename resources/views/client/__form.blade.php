@@ -1,8 +1,21 @@
 <div class="row">
-    
+
     <div class="col-md-6">
         <div class="form-group">
-            <label for="code">{{ __('Code') }}</label>
+            <label for="document_type">{{ __('Document Type') }}</label>
+            <select class="form-control custom-select {{ $errors->has('document_type') ? 'is-invalid' : '' }}" name="document_type" id="document_type" required>
+                <option value="">{{ __('Please select a Document Type') }}</option>
+                @foreach($document_types as $document_type)
+                    <option value="{{ $document_type->id }}" {{ old('document_type', $client_list->document_type_id) == $document_type->id ? 'selected' : ''}}>{{ $document_type->code }}</option>
+                @endforeach
+            </select>
+            @includeWhen($errors->has('document_type'), 'partials/__invalid_feedback', ['feedback' => $errors->first('document_type')])
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="code">{{ __('Document') }}</label>
             <input type="text" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code" id="code" value="{{ old('code', $client_list->code) != '' ? $client_list->code : '' }}" required>
             @includeWhen($errors->has('code'), 'partials/__invalid_feedback', ['feedback' => $errors->first('code')])
         </div>

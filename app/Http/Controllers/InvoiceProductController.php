@@ -58,10 +58,14 @@ class InvoiceProductController extends Controller
             ['invoice_id', '=', $request->invoice_id],
         ])->doesntExist();
 
-        if ($products && $product_update->stock > $request->input('quantity')) {
-            InvoiceProduct::create($request->all());
-            
+        if ($products && $product_update->stock >= $request->input('quantity')) {
+            $invoice_product = InvoiceProduct::create($request->all());
+
             $subtotal = $request->input('price') * $request->input('quantity');
+
+            $invoice_product->update([
+                'subtotal' => $subtotal
+            ]);
 
             $invoice_list_record->value_tax += $subtotal / 1.19 * 0.19;
             $invoice_list_record->total_value += $subtotal;
