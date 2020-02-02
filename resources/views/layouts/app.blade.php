@@ -43,30 +43,19 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <li class="nav-item">
+                                <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
                             </li>
                             <li class="nav-item">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                <a class="nav-link" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
+                                
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
@@ -93,9 +82,6 @@
                 <a class="btn btn-light" style="background-color: rgb(0, 93, 88); color: white; border-style: solid; border-color: white;" href="{{ route('product.index') }}">
                     <i class="fab fa-linode"></i>{{ __(' Product') }}
                 </a>
-                <a class="btn btn-light" style="background-color: rgb(0, 93, 88); color: white; border-style: solid; border-color: white;" href="{{ route('invoice_product.index') }}">
-                    <i class="fas fa-receipt"></i>{{ __(' Invoice Product') }}
-                </a>
             </div>
         </nav>
         @endguest
@@ -103,23 +89,11 @@
         <main class="py-4">
             @yield('content')
         </main>
+
     </div>
     <script src="{{ asset(mix('js/manifest.js')) }}"></script>
     <script src="{{ asset(mix('js/vendor.js')) }}"></script>
     <script src="{{ asset(mix('js/app.js')) }}"></script>
-    <script src="{{ asset('js/functions.js') }}"></script>
-    <script src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" data-auto-replace-svg="nest"></script>
-    <script>
-    $('#confirm_delete_modal').on('show.bs.modal', function (e) {
-        $('#delete_form').attr('action', $(e.relatedTarget).data('route'));
-    });
-    $('#add_invoice_product_modal').on('show.bs.modal', function (e) {
-        //var description = $(e.relatedTarget).data('description')
-        //var modal = $(this)
-        //modal.find('.modal-body #description').val(description);
-        $('#add_form').attr('action', $(e.relatedTarget).data('route'));
-    });
-    </script>
     @stack('scripts')
 </body>
 </html>

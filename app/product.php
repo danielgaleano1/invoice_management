@@ -4,9 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class product extends Model
+class Product extends Model
 {
-    public function invoice_products() {
-        return $this->hasMany(invoice_product::class);
+    protected $fillable = ['code', 'description', 'stock', 'price'];
+
+    public function invoiceProducts()
+    {
+        return $this->hasMany(InvoiceProduct::class);
+    }
+
+    public function scopeSearchs($query, $searchs) 
+    {
+        if ($searchs){
+            return $query->where('code','like',"%$searchs%");
+        }
     }
 }

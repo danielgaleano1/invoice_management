@@ -3,28 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\invoice;
-use App\collaborator;
-use App\client;
-use App\invoice_state;
-use App\invoice_product;
-use App\product;
+use Illuminate\Validation\Rule;
+use App\Invoice;
+use App\Collaborator;
+use App\Client;
+use App\InvoiceState;
+use App\InvoiceProduct;
+use App\Product;
 
-class product_controller extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+     public function index(Request $request)
+     {
+        $data_to_search = $request->get('search');
+        $products = Product::searchs($data_to_search)->paginate(5);
+
         return view('product.index', [
-            'product_list' => product::all(),
-            'invoice_list' => invoice::all(),
-            'collaborator_list' => collaborator::all(),
-            'invoice_state_list' => invoice_state::all(),
-            'client_list' => client::all()
+            'product_list' => $products
         ]);
     }
 
@@ -35,13 +35,9 @@ class product_controller extends Controller
      */
     public function create()
     {
-        return view('product.create', [
-            'product_list' => product::all(),
-            'invoice_list' => invoice::all(),
-            'collaborator_list' => collaborator::all(),
-            'invoice_state_list' => invoice_state::all(),
-            'client_list' => client::all()
-        ]);
+        $product_list = new Product;
+
+        return response()->view('product.create', compact('product_list'));
     }
 
     /**
@@ -52,7 +48,6 @@ class product_controller extends Controller
      */
     public function store(Request $request)
     {
-
         $validData = $request->validate([
             'code' => 'min:3|max:10|unique:products,code',
             'description' => 'min:3|max:100',
@@ -60,12 +55,7 @@ class product_controller extends Controller
             'price' => 'min:1|numeric'
         ]);
 
-        $product_record = new product;
-        $product_record->code = $request->input('code');
-        $product_record->description = $request->input('description');
-        $product_record->stock = $request->input('stock');
-        $product_record->price = $request->input('price');
-        $product_record->save();
+        $product_record = Product::create($request->all());
 
         return redirect()->route('product.index')->withSuccess(__('Product create successfully!'));
     }
@@ -89,13 +79,9 @@ class product_controller extends Controller
      */
     public function edit($id)
     {
-        $product_list = product::findOrFail($id);
+        $product_list = Product::findOrFail($id);
         return view('product.edit', [
-            'product_list' => $product_list,
-            'invoice_list' => invoice::all(),
-            'collaborator_list' => collaborator::all(),
-            'invoice_state_list' => invoice_state::all(),
-            'client_list' => client::all()
+            'product_list' => $product_list
         ]);
     }
 
@@ -108,8 +94,6 @@ class product_controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product_record = product::findOrFail($id);
-
         $validData = $request->validate([
             'code' => [
                 'min:3',
@@ -121,11 +105,14 @@ class product_controller extends Controller
             'price' => 'min:1|numeric'
         ]);
 
-        $product_record->code = $request->input('code');
-        $product_record->description = $request->input('description');
-        $product_record->stock = $request->input('stock');
-        $product_record->price = $request->input('price');
-        $product_record->save();
+        $product = Product::findOrFail($id);
+
+        $product->update([
+            'code' => $request->input('code'),
+            'description' => $request->input('description'),
+            'stock' => $request->input('stock'),
+            'price' => $request->input('price')
+        ]);
 
         return redirect()->route('product.index')->withSuccess(__('Product create successfully!'));
     }
@@ -138,7 +125,7 @@ class product_controller extends Controller
      */
     public function destroy($id)
     {
-        $product_list = product::findOrFail($id);
+        $product_list = Product::findOrFail($id);
         $product_list->delete();
         return redirect()->route('product.index')->withSuccess(__('Product deleted successfully'));
     }
