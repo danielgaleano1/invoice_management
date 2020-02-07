@@ -2,8 +2,8 @@
 
     <div class="col-md-6">
         <div class="form-group">
-            <label for="document_type">{{ __('Document Type') }}</label>
-            <select class="form-control custom-select {{ $errors->has('document_type') ? 'is-invalid' : '' }}" name="document_type" id="document_type" required>
+            <label for="document_type_id">{{ __('Document Type') }}</label>
+            <select class="form-control custom-select {{ $errors->has('document_type') ? 'is-invalid' : '' }}" name="document_type_id" id="document_type_id" required>
                 <option value="">{{ __('Please select a Document Type') }}</option>
                 @foreach($document_types as $document_type)
                     <option value="{{ $document_type->id }}" {{ old('document_type', $client_list->document_type_id) == $document_type->id ? 'selected' : ''}}>{{ $document_type->code }}</option>
@@ -25,6 +25,14 @@
         <div class="form-group">
             <label for="name">{{ __('Name') }}</label>
             <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" id="name" value="{{ old('name', $client_list->name) != '' ? $client_list->name : '' }}" required>
+            @includeWhen($errors->has('name'), 'partials/__invalid_feedback', ['feedback' => $errors->first('name')])
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="surname">{{ __('Surname') }}</label>
+            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="surname" id="surname" value="{{ old('name', $client_list->name) != '' ? $client_list->name : '' }}" required>
             @includeWhen($errors->has('name'), 'partials/__invalid_feedback', ['feedback' => $errors->first('name')])
         </div>
     </div>
@@ -55,8 +63,8 @@
 
     <div class="col-md-6">
         <div class="form-group">
-            <label for="city">{{ __('City') }}</label>
-            <select class="form-control custom-select {{ $errors->has('city') ? 'is-invalid' : '' }}" name="city" id="city" required>
+            <label for="city_id">{{ __('City') }}</label>
+            <select class="form-control custom-select {{ $errors->has('city') ? 'is-invalid' : '' }}" name="city_id" id="city_id" required>
                 <option value="">{{ __('Please select a city') }}</option>
                 @foreach($cities as $city)
                     <option value="{{ $city->id }}" {{ old('city', $client_list->city_id) == $city->id ? 'selected' : ''}}>{{ $city->name }}</option>

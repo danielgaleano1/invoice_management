@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(DocumentType::class, function (Faker $faker) {
     return [
-        'code' => 'CC',
+        'code' => $faker->unique()->text($maxNbChars = 5),
         'name' => 'Cédula de ciudadania',
     ];
 });
