@@ -107,27 +107,29 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $client = Client::findOrFail($id);
+
         $validData = $request->validate([
             'code' => [
                 'min:3',
                 'max:10',
-                Rule::unique('clients')->ignore($client_record->id),
+                Rule::unique('clients')->ignore($client->id),
             ],
             'name' => 'min:3',
+            'surname' => 'min:3',
             'address' => 'min:5',
             'phone' => 'min:3|numeric',
             'email' => [
                 'email',
-                Rule::unique('clients')->ignore($client_record->id),
+                Rule::unique('clients')->ignore($client->id),
             ],
         ]);
-
-        $client = Client::findOrFail($id);
 
         $client->update([
             'city' => $request->input('city'),
             'code' => $request->input('code'),
             'name' => $request->input('name'),
+            'surname' => $request->input('surname'),
             'address' => $request->input('address'),
             'phone' => $request->input('phone'),
             'email' => $request->input('email')

@@ -21,11 +21,14 @@
         </div>
         <div class="card-body">
             <dl class="row">
-                <dt class="col-md-1">{{ __('Code') }}</dt>
+                <dt class="col-md-1">{{ __('Document Type') }}</dt>
+                <dd class="col-md-3">{{ $client_list->document_type->name }}</dd>
+
+                <dt class="col-md-1">{{ __('Document') }}</dt>
                 <dd class="col-md-3">{{ $client_list->code }}</dd>
 
                 <dt class="col-md-1">{{ __('Name') }}</dt>
-                <dd class="col-md-3">{{ $client_list->name }}</dd>
+                <dd class="col-md-3">{{ $client_list->surName }}</dd>
                 
                 <dt class="col-md-1">{{ __('Address') }}</dt>
                 <dd class="col-md-3">{{ $client_list->address }}</dd>
