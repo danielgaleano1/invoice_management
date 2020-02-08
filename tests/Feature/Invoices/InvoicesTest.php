@@ -20,14 +20,12 @@ class InvoicesIndexTest extends TestCase
     use RefreshDatabase;
     use WithFaker;
 
-    /** @test */
-    public function guest_users_cannot_list_invoices()
+    public function test_guest_users_cannot_list_invoices()
     {
         $this->get(route('invoice.index'))->assertRedirect(route('login'));
     }
 
-    /** @test */
-    public function logged_in_users_can_list_customers()
+    public function test_logged_in_users_can_list_customers()
     {
         $user = factory(User::class)->create();
 
@@ -37,9 +35,7 @@ class InvoicesIndexTest extends TestCase
         $response->assertViewIs('invoice.index');
     }
 
-    /** @test */
-
-    public function index_of_invoices_has_content()
+    public function test_index_of_invoices_has_content()
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->get(route('invoice.index'));
@@ -47,8 +43,7 @@ class InvoicesIndexTest extends TestCase
         $response->assertSee('Invoices');
     }
 
-    /** @test */
-    public function invoice_information_displayed_on_index()
+    public function test_invoice_information_displayed_on_index()
     {
         $user = factory(User::class)->create();
         $country = factory(Country::class)->create();
@@ -73,8 +68,7 @@ class InvoicesIndexTest extends TestCase
         //$response->assertSee($invoice->date_of_receipt);
     }
 
-    /** @test */
-    public function unauthenticated_user_cannot_create_a_invoice()
+    public function test_unauthenticated_user_cannot_create_a_invoice()
     {
         $country = factory(Country::class)->create();
         $document_type = factory(DocumentType::class)->create();
@@ -97,11 +91,8 @@ class InvoicesIndexTest extends TestCase
         ]);
     }
 
-    /** @test */
-    public function a_invoice_can_be_created()
+    public function test_a_invoice_can_be_created()
     {
-        $this->withoutExceptionHandling();
-
         $user = factory(User::class)->create();
         $country = factory(Country::class)->create();
         $document_type = factory(DocumentType::class)->create();
@@ -114,7 +105,7 @@ class InvoicesIndexTest extends TestCase
         $this->actingAs($user)->post(route('invoice.store'), [
             'collaborator_id' => $collaborator->id,
             'client_id' => $client->id,
-            'code' => '000000001',
+            'code' => '000000002',
             'expiration_at' => '3000-01-01',
         ])        
         ->assertRedirect()
@@ -126,90 +117,114 @@ class InvoicesIndexTest extends TestCase
         ]);
     }
 
-/*
-    public function testUnauthenticatedUserCannotUpdateACollaborator()
+   public function test_unauthenticated_user_cannot_update_a_invoice()
     {
+        $country = factory(Country::class)->create();
+        $document_type = factory(DocumentType::class)->create();
+        $profile = factory(Profile::class)->create();
+        $city = factory(City::class)->create();
         $collaborator = factory(Collaborator::class)->create();
+        $client = factory(Client::class)->create();
+        $invoice_state = factory(InvoiceState::class)->create();
+	    $invoice = factory(Invoice::class)->create();
 
-        $this->put(route('collaborators.update', $collaborator), [
-            'name' => 'Test Collaborator Name',
-            'email' => 'test@email.com',
-            'city' => $collaborator->city_id,
-            'role' => $collaborator->role_id,
+        $this->put(route('invoice.update', $invoice), [
+            'collaborator_id' => $invoice->collaborator_id,
+            'client_id' => $invoice->client_id,
+            'code' => '000000001',
+            'expiration_at' => '3000-01-01',
         ])
-        ->assertRedirect(route('login'));
+            ->assertRedirect(route('login'));
 
-        $this->assertDatabaseHas('collaborators', [
-            'name' => $collaborator->name,
-            'email' => $collaborator->email,
+        $this->assertDatabaseHas('invoices', [
+            'code' => $invoice->code,
+            //'expiration_at' => $invoice->expiration_at,
         ]);
     }
 
-/*
-    public function testACollaboratorCanBeUpdated()
+   public function test_a_invoice_can_be_updated()
     {
         $user = factory(User::class)->create();
-        $collaborator = factory(Collaborator::class)->create();
+        $invoice = factory(Invoice::class)->create();
 
-        $this->actingAs($user)->put(route('collaborators.update', $collaborator), [
-            'name' => 'Test Collaborator Name',
-            'email' => 'test@email.com',
-            'city' => $collaborator->city_id,
-            'role' => $collaborator->role_id,
+        $this->actingAs($user)->put(route('invoice.update', $invoice), [
+            'collaborator_id' => $invoice->collaborator_id,
+            'client_id' => $invoice->client_id,
+            'expiration_at' => '4000-01-01',
         ])
         ->assertRedirect()
         ->assertSessionHasNoErrors();
 
-        $this->assertDatabaseHas('collaborators', [
-            'name' => 'Test Collaborator Name',
-            'email' => 'test@email.com',
+        $this->assertDatabaseHas('invoices', [
+            'expiration_at' => '4000-01-01',
         ]);
     }
 
-/*
-    public function testUnauthenticatedUserCannotDeleteACollaborator()
+    public function test_unauthenticated_user_cannot_delete_a_invoice()
     {
-        $collaborator = factory(Collaborator::class)->create();
+        $invoice = factory(Invoice::class)->create();
 
-        $this->delete(route('collaborators.destroy', $collaborator))
+        $this->delete(route('invoice.destroy', $invoice))
             ->assertRedirect(route('login'));
 
-        $this->assertDatabaseHas('collaborators', [
-            'name' => $collaborator->name,
-            'email' => $collaborator->email,
+        $this->assertDatabaseHas('invoices', [
+            'code' => $invoice->code,
         ]);
     }
 
-/*
-    public function testACollaboratorCanBeDeleted()
+    public function test_a_invoice_can_be_deleted()
     {
-        $user = factory(User::class)->create();
-        $collaborator = factory(Collaborator::class)->create();
+	$user = factory(User::class)->create();
+        $invoice = factory(invoice::class)->create();
 
-        $this->actingAs($user)->delete(route('collaborators.destroy', $collaborator))
-            ->assertRedirect(route('collaborators.index'))
+        $this->actingAs($user)->delete(route('invoice.destroy', $invoice))
+            ->assertRedirect(route('invoice.index'))
             ->assertSessionHasNoErrors();
 
-        $this->assertDatabaseMissing('collaborators', [
-           'name' => $collaborator->name,
-            'email' => $collaborator->email,
+        $this->assertDatabaseMissing('invoices', [
+            'code' => $invoice->code,
         ]);
     }
 
-/*
-    public function testCanBeDetailsOfACollaborator()
+    public function test_can_be_detailsOf_a_invoice()
     {
         $user = factory(User::class)->create();
+        $country = factory(Country::class)->create();
+        $document_type = factory(DocumentType::class)->create();
+        $profile = factory(Profile::class)->create();
+        $city = factory(City::class)->create();
         $collaborator = factory(Collaborator::class)->create();
+        $client = factory(Client::class)->create();
+        $invoice_state = factory(InvoiceState::class)->create();
+        $invoice = factory(Invoice::class)->create();
 
-        $response = $this->actingAs($user)->get(route('collaborators.show', $collaborator));
+        $response = $this->actingAs($user)->get(route('invoice.show', $invoice));
 
         $response->assertSuccessful();
-        $response->assertSeeText($collaborator->name);
-        $response->assertSeeText($collaborator->email);
-        $response->assertSeeText($collaborator->city->name);
-        $response->assertSeeText($collaborator->role->name);
+
+        $response->assertSee($invoice->code);
+        $response->assertSee($invoice->Collaborator->name);
+        $response->assertSee($invoice->InvoiceState->type);
+        $response->assertSee($invoice->client->fullName);
+        //$response->assertSee($invoice->expiration_at);
+        //$response->assertSee($invoice->date_of_receipt);
+        $this->assertIsInt($invoice->value_tax);
+        $this->assertIsInt($invoice->total_value);
+        //$response->assertSee($invoice->date_of_receipt);
+
     }
 
-    */
+///////////////////////////////////
+/*
+//Test para carga masiva, importación de facturas
+
+*/
+
+
+///////////////////////////////////
+/*
+//Test para buscar, filtrar y paginar las facturas
+
+*/
+
 }
