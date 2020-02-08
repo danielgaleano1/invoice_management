@@ -12,7 +12,7 @@ $factory->define(Invoice::class, function (Faker $faker) {
     return [
         'collaborator_id' => factory(Collaborator::class),
         'client_id' => factory(Client::class),
-        'invoice_state_id' => factory(InvoiceState::class),
+        'invoice_state_id' => 1,
         'code' => $faker->numberBetween(100000, 700000),
         'expiration_at' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+3 months', $timezone = null),
         'date_of_receipt' => null,

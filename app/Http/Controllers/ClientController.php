@@ -55,13 +55,16 @@ class ClientController extends Controller
         ]);
 
         $client_record = new Client;
-        $client_record->city_id = $request->input('city');
+        $client_record->city_id = $request->input('city_id');
+        $client_record->document_type_id = $request->input('document_type_id');
         $client_record->code = $request->input('code');
         $client_record->name = $request->input('name');
+        $client_record->surname = $request->input('surname');
         $client_record->address = $request->input('address');
         $client_record->phone = $request->input('phone');
         $client_record->email = $request->input('email');
         $client_record->save();
+        //$client_record = Client::create($request->all());
 
         return redirect()->route('client.index')->withSuccess(__('Client create successfully!'));
     }

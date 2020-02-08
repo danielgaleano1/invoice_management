@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
         factory(Country::class, 1)->create()->each(function ($country) {
             factory(City::class, 3)->create(['country_id'=>$country->id]);
         });
-        factory(DocumentType::class, 1)->create();
+        factory(DocumentType::class)->create(['code' => 'CC', 'name' => 'Cédula de ciudadania']);
+        factory(DocumentType::class)->create(['code' => 'CE', 'name' => 'Cédula de extranjeria']);
         factory(Client::class, 1)->create();
         factory(Profile::class, 1)->create();
         factory(Collaborator::class, 1)->create();

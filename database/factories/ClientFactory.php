@@ -4,13 +4,14 @@
 
 use App\Client;
 use App\City;
+use App\DocumentType;
 
 use Faker\Generator as Faker;
 
 $factory->define(Client::class, function (Faker $faker) {
     return [
         'city_id' => factory(City::class),
-        'document_type_id' => 1,
+        'document_type_id' => factory(DocumentType::class),
         'code' => $faker->numberBetween(14000000, 28000000),
         'name' => $faker->firstName,
         'surname' => $faker->lastName,
