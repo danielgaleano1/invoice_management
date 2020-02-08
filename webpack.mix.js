@@ -13,9 +13,11 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/delete-modal', 'public/js')
+    .js('resources/js/add-invoice-product', 'public/js')
+    .js('resources/js/add-invoice-product-modal', 'public/js')
+    .js('resources/js/import-invoice-excel-modal', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .extract();
-
 
 if (!mix.inProduction()) {
     mix.sourceMaps()

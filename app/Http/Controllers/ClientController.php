@@ -4,22 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
-use App\client;
-use App\city;
-use App\invoice;
+use App\Client;
+use App\City;
+use App\DocumentType;
+use App\Invoice;
 
-class client_controller extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+     public function index(Request $request)
+     {
+        $data_to_search = $request->get('search');
+        $clients = Client::searchs($data_to_search)->paginate(5);
+
         return view('client.index', [
-            'client_list' => client::paginate(10),
-            'city_list' => city::all()
+            'client_list' => $clients
         ]);
     }
 
@@ -30,11 +33,9 @@ class client_controller extends Controller
      */
     public function create()
     {
-        return view('client.create', [
-            'client_list' => client::all(),
-            'invoice_list' => invoice::all(),
-            'city_list' => city::all()
-        ]);
+        $client_list = new Client;
+
+        return response()->view('client.create', compact('client_list'));
     }
 
     /**
@@ -53,7 +54,7 @@ class client_controller extends Controller
             'email' => 'min:3|email|unique:clients,email'
         ]);
 
-        $client_record = new client;
+        $client_record = new Client;
         $client_record->city_id = $request->input('city');
         $client_record->code = $request->input('code');
         $client_record->name = $request->input('name');
@@ -73,10 +74,10 @@ class client_controller extends Controller
      */
     public function show($id)
     {
-        $client_list = client::findOrFail($id);
+        $client_list = Client::findOrFail($id);
         return view('client.show', [
             'client_list' => $client_list,
-            'invoice_list' => invoice::all()
+            'invoice_list' => Invoice::all()
         ]);  
     }
 
@@ -88,11 +89,9 @@ class client_controller extends Controller
      */
     public function edit($id)
     {
-        $client_list = client::findOrFail($id);
+        $client_list = Client::findOrFail($id);
         return view('client.edit', [
-            'client_list' => $client_list,
-            'invoice_list' => invoice::all(),
-            'city_list' => city::all()
+            'client_list' => $client_list
         ]);
     }
 
@@ -105,8 +104,6 @@ class client_controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $client_record = client::findOrFail($id);
-
         $validData = $request->validate([
             'code' => [
                 'min:3',
@@ -122,13 +119,16 @@ class client_controller extends Controller
             ],
         ]);
 
-        $client_record->city_id = $request->input('city');
-        $client_record->code = $request->input('code');
-        $client_record->name = $request->input('name');
-        $client_record->address = $request->input('address');
-        $client_record->phone = $request->input('phone');
-        $client_record->email = $request->input('email');
-        $client_record->save();
+        $client = Client::findOrFail($id);
+
+        $client->update([
+            'city' => $request->input('city'),
+            'code' => $request->input('code'),
+            'name' => $request->input('name'),
+            'address' => $request->input('address'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email')
+        ]);
 
         return redirect()->route('client.index')->withSuccess(__('Client update successfully!'));
     }
@@ -141,7 +141,7 @@ class client_controller extends Controller
      */
      public function destroy($id)
      {
-         $client_list = client::findOrFail($id);
+         $client_list = Client::findOrFail($id);
          $client_list->delete();
          return redirect()->route('client.index')->withSuccess(__('client deleted successfully'));
      }

@@ -9,7 +9,7 @@
             <form action="{{ route('client.update', $client_list) }}" method="post" id="client-form">
                 @csrf
                 @method('PATCH')
-                @include('client\__form')
+                @include('client/__form')
             </form>
         </div>
         <div class="card-footer d-flex justify-content-between">

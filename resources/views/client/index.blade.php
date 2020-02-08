@@ -3,9 +3,16 @@
 @section('content')
 
 <div class="card card-default">
-    <div class="card-header pb-0">
-        <h3 class="card-title">{{ __('Clients') }}</h3>
-    </div>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand">
+            <h3 class="card-title">{{ __('Clients') }}</h3>
+        </a>
+        <form class="form-inline">
+            <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+
     <div class="card-footer d-flex justify-content-between">
         <a class="btn btn-outline-primary" href="{{ route('client.create') }}">
             <i class="fas fa-plus-circle"></i> {{ __('Create new client') }}
@@ -15,23 +22,25 @@
     <div class="table-responsive-lg">
         <table class="table table-hover table-bordered" >
             <thead class="thead-dark">
-                <tr>
+                <tr class="text-center">
                     <th>{{ __('id') }}</th>
-                    <th>{{ __('Code') }}</th>
+                    <th>{{ __('Document Type') }}</th>
+                    <th>{{ __('Document') }}</th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Address') }}</th>
                     <th>{{ __('Phone') }}</th>
                     <th>{{ __('Email') }}</th>
                     <th>{{ __('City') }}</th>
-                    <th class="text-right"></th>
+                    <th >{{ __('Actions') }}</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($client_list as $client_lists)
                     <tr>
                         <td>{{ $client_lists->id }}</td>
+                        <td>{{ $client_lists->document_type->code }}</td>
                         <td>{{ $client_lists->code }}</td>
-                        <td>{{ $client_lists->name }}</td>
+                        <td>{{ $client_lists->fullName }}</td>
                         <td>{{ $client_lists->address }}</td>
                         <td>{{ $client_lists->phone }}</td>
                         <td>{{ $client_lists->email }}</td>
@@ -60,5 +69,5 @@
 </div>
 @endsection
 @push('modals')
-    @include('partials.__confirm_delete_modal')
+    @include('partials/__confirm_delete_modal')
 @endpush
