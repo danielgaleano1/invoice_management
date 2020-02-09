@@ -94,18 +94,18 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $product = Product::findOrFail($id);
+
         $validData = $request->validate([
             'code' => [
                 'min:3',
                 'max:10',
-                Rule::unique('products')->ignore($product_record->id),
+                Rule::unique('products')->ignore($product->id),
             ],
             'description' => 'min:3|max:100',
             'stock' => 'min:1|numeric',
             'price' => 'min:1|numeric'
         ]);
-
-        $product = Product::findOrFail($id);
 
         $product->update([
             'code' => $request->input('code'),

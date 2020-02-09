@@ -62,8 +62,8 @@ class InvoiceController extends Controller
         $invoice = Invoice::create($request->all());
 
         $invoice->update([
-            'code' => str_pad($invoice->id, config('invoices.code_lenght'), '0', STR_PAD_LEFT),
-            'invoice_state_id' => config('invoices.state_initial')
+            'code' => str_pad($invoice->id, config('invoices.code_lenght'), '0', STR_PAD_LEFT)
+            //'invoice_state_id' => config('invoices.state_initial')
         ]);
         
         return redirect()->route('invoice.index')->withSuccess(__('Invoice create successfully!'));
