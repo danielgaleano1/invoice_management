@@ -6,10 +6,10 @@
             <h5 class="card-title">{{ __('Edit a invoice') }}</h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('invoice.update', $invoice_list) }}" method="post" id="invoices-form">
+            <form action="{{ route('invoice.update', $invoice) }}" method="post" id="invoices-form">
                 @csrf
                 @method('PATCH')
-                @include('invoice\__form')
+                @include('invoice/__form')
             </form>
         </div>
         <div class="card-footer d-flex justify-content-between">

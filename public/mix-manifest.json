@@ -1,7 +1,10 @@
 {
+    "/js/add-invoice-product.js": "/js/add-invoice-product.js",
+    "/js/add-invoice-product-modal.js": "/js/add-invoice-product-modal.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/js/delete-modal.js": "/js/delete-modal.js",
+    "/js/import-invoice-excel-modal.js": "/js/import-invoice-excel-modal.js",
     "/js/manifest.js": "/js/manifest.js",
     "/js/vendor.js": "/js/vendor.js"
 }

@@ -19,6 +19,7 @@ class CreateInvoiceProductsTable extends Migration
             $table->unsignedBigInteger('invoice_id');
             $table->unsignedInteger('quantity');
             $table->float('price');
+            $table->float('subtotal')->nullable();
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

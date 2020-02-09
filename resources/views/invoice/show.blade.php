@@ -1,5 +1,7 @@
 @extends('layouts.app')
+
 @section('content')
+
     <div class="card card-default">
         <div class="card-header d-flex justify-content-between">
             <h5 class="card-title mb-0">{{ __('Invoice') }}</h5>
@@ -25,22 +27,28 @@
                 <dd class="col-md-3">{{ $invoice_list->code }}</dd>
 
                 <dt class="col-md-1">{{ __('Collaborator') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->collaborator->name }}</dd>
+                <dd class="col-md-3">{{ $invoice_list->Collaborator->name }}</dd>
                 
                 <dt class="col-md-1">{{ __('Client') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->client->name }}</dd>
+                <dd class="col-md-3">{{ $invoice_list->Client->fullName }}</dd>
 
                 <dt class="col-md-1">{{ __('invoice State') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->invoice_state->type }}</dd>
+                <dd class="col-md-3">{{ $invoice_list->InvoiceState->type }}</dd>
                 
+                <dt class="col-md-1">{{ __('Expedition at') }}</dt>
+                <dd class="col-md-3">{{ $invoice_list->created_at }}</dd>
+
                 <dt class="col-md-1">{{ __('Expiration at') }}</dt>
                 <dd class="col-md-3">{{ $invoice_list->expiration_at }}</dd>
-                
+
+                <dt class="col-md-1">{{ __('Receipt at') }}</dt>
+                <dd class="col-md-3">{{ $invoice_list->date_of_receipt == '' ? "Whitout date" : $invoice_list->date_of_receipt }}</dd>
+
                 <dt class="col-md-1">{{ __('Value Tax') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->value_tax }}</dd>
+                <dd class="col-md-3">{{ number_format($invoice_list->value_tax, 2) }}</dd>
                 
                 <dt class="col-md-1">{{ __('Value Total') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->total_value }}</dd>
+                <dd class="col-md-3">{{ number_format($invoice_list->total_value, 2) }}</dd>
             </dl>
 
             <div class="card card-default">
@@ -50,33 +58,62 @@
                         <i class="fas fa-plus-circle"></i> {{ __('Add Product') }}
                     </button> 
                 </div>
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="card-body">
-                <table class="table table-hover table-bordered" >
+                <table class="table table-hover table-bordered table-sm table-responsive-sm" >
                     <thead class="thead-dark">
-                        <tr>
+                        <tr class="text-center">
                             <th>{{ __('Code') }}</th>
                             <th>{{ __('Product') }}</th>
                             <th>{{ __('Quantity') }}</th>
                             <th>{{ __('Price') }}</th>
-                            <th class="text-center">{{ __('Actions') }}</th>
+                            <th>{{ __('Subtotal') }}</th>
+                            <th>{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($invoice_product_list as $invoice_product_lists)
-                            <tr>
+                            <tr class="text-center">
                                 @if($invoice_product_lists->invoice_id == $invoice_list->id)
-                                    <td>{{ $invoice_product_lists->id }}</td>
-                                    <td>{{ $invoice_product_lists->product->description }}</td>
-                                    <td>{{ $invoice_product_lists->quantity }}</td>
-                                    <td>{{ $invoice_product_lists->price }}</td>
+                                    <td>{{ $invoice_product_lists->Product->code }}</td>
+                                    <td>{{ $invoice_product_lists->Product->description }}</td>
+                                    <td>{{ number_format($invoice_product_lists->quantity, 2) }}</td>
+                                    <td>{{ number_format($invoice_product_lists->price, 2) }}</td>
+                                    <td>{{ number_format($invoice_product_lists->subtotal, 2) }}</td>
                                     <td class="text-center">                                       
-                                        <button type="button" class="btn btn-outline-danger" data-route="{{ route('invoice_product.destroy', $invoice_product_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal">
+                                        <button type="button" class="btn btn-sm btn-outline-danger" data-route="{{ route('invoice_product.destroy', $invoice_product_lists->id) }}" data-toggle="modal" data-target="#confirm_delete_modal">
                                             <i class="fas fa-trash-alt"></i> {{ __('Delete') }}
                                         </button>
                                     </td>
                                 @endif
                             </tr>
                         @endforeach
+                        <tr class="text-center">
+                            <td  class="text-right" colspan="4">
+                                <b>{{ __('Value Tax') }}</b>
+                            </td>
+                            <td>
+                                <b>{{ number_format($invoice_list->value_tax, 2) }}</b>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <td class="text-right" colspan="4">
+                                <b>{{ __('Value Total') }}</b>
+                            </td>
+                            <td>
+                                <b>{{ number_format($invoice_list->total_value, 2) }}</b>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 </div>
@@ -85,6 +122,13 @@
     </div>
 @endsection
 @push('modals')
-    @include('partials.__confirm_delete_modal')
-    @include('partials.__add_invoice_product_modal')
+    @include('partials/__confirm_delete_modal')
+    @include('partials/__add_invoice_product_modal')
+@endpush
+@push('scripts')
+    <script src="{{ asset(mix('js/delete-modal.js')) }}"></script>
+@endpush
+
+@push('scripts')
+    <script src="{{ asset(mix('js/add-invoice-product-modal.js')) }}"></script>
 @endpush

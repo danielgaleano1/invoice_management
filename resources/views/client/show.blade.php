@@ -37,7 +37,7 @@
                 <dd class="col-md-3">{{ $client_list->email }}</dd>
                 
                 <dt class="col-md-1">{{ __('City') }}</dt>
-                <dd class="col-md-3">{{ $client_list->city->name }}</dd>
+                <dd class="col-md-3">{{ $client_list->City->name }}</dd>
             </dl>
 
             <div class="card card-default">
@@ -45,21 +45,27 @@
                 <div class="card-body">
                     <table class="table table-hover table-bordered" >
                     <thead class="thead-dark">
-                        <tr>
-                            <th>{{ __('Invoice Id') }}</th>
+                        <tr class="text-center">
                             <th>{{ __('Invoice Code') }}</th>
                             <th>{{ __('Collaborator') }}</th>
-                            <th class="text-center">{{ __('Actions') }}</th>
+                            <th>{{ __('Invoice State') }}</th>
+                            <th>{{ __('Expiration at') }}</th>
+                            <th>{{ __('Value Tax') }}</th>
+                            <th>{{ __('Value Total') }}</th>
+                            <th>{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($invoice_list as $invoice_lists)
-                            <tr>
+                            <tr class="text-center">
                                 @if($invoice_lists->client_id == $client_list->id)
-                                    <td>{{ $invoice_lists->id }}</td>
                                     <td>{{ $invoice_lists->code }}</td>
-                                    <td>{{ $invoice_lists->collaborator_id }}</td>
-                                    <td class="text-center">
+                                    <td>{{ $invoice_lists->Collaborator->name }}</td>
+                                    <td>{{ $invoice_lists->InvoiceState->type }}</td>
+                                    <td>{{ $invoice_lists->expiration_at }}</td>
+                                    <td>{{ number_format($invoice_lists->value_tax, 2) }}</td>
+                                    <td>{{ number_format($invoice_lists->total_value, 2) }}</td>
+                                    <td>
                                         <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Collaborator actions') }}">
                                             <a href="{{ route('invoice.edit', $invoice_lists) }}" class="btn btn-outline-secondary" title="{{ __('Edit') }}">
                                                 <i class="fas fa-edit"></i> {{ __('Edit') }}
@@ -80,5 +86,5 @@
     </div>
 @endsection
 @push('modals')
-    @include('partials.__confirm_delete_modal')
+    @include('partials/__confirm_delete_modal')
 @endpush

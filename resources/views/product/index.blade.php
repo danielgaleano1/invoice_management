@@ -3,9 +3,17 @@
 @section('content')
 
 <div class="card card-default">
-    <div class="card-header pb-0">
-        <h3 class="card-title">{{ __('Products') }}</h3>
-    </div>
+
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand">
+            <h3 class="card-title">{{ __('Products') }}</h3>
+        </a>
+        <form class="form-inline">
+            <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+
     <div class="card-footer d-flex justify-content-between">
         <a class="btn btn-outline-primary" href="{{ route('product.create') }}">
             <i class="fas fa-plus-circle"></i> {{ __('Create new product') }}
@@ -15,24 +23,24 @@
     <div class="table-responsive-lg">
         <table class="table table-hover table-bordered" >
             <thead class="thead-dark">
-                <tr>
+                <tr class="text-center">
                     <th>{{ __('Code') }}</th>
                     <th>{{ __('Product') }}</th>
                     <th>{{ __('Stock') }}</th>
                     <th>{{ __('Price') }}</th>
-                    <th class="text-center">{{ __('Actions') }}</th>
+                    <th>{{ __('Actions') }}</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($product_list as $product_lists)
-                    <tr>
+                    <tr class="text-center">
                         <td>{{ $product_lists->code }}</td>
                         <td>{{ $product_lists->description }}</td>
-                        <td>{{ $product_lists->stock }}</td>
-                        <td>{{ $product_lists->price }}</td>
-                        <td class="text-center">
+                        <td>{{ number_format($product_lists->stock, 0) }}</td>
+                        <td>{{ number_format($product_lists->price, 2) }}</td>
+                        <td>
                             <div class="btn-group btn-group-sm" role="group" aria-label="{{ __('Product actions') }}">
-                                <button type="button" class="btn btn-outline-primary" data-description="{{ $product_lists->description }}" data-route="{{ route('product.update', $product_lists->id) }}"  data-toggle="modal" data-target="#add_products_modal">
+                                <button type="button" class="btn btn-outline-primary" data-description="{{ $product_lists->description }}" data-route="{{ route('product.update', $product_lists->id) }}"  data-toggle="modal" data-target="#add_products_modal" disabled>
                                     <i class="fas fa-plus-circle"></i> {{ __('Add Product') }}
                                 </button> 
 
@@ -48,10 +56,11 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $product_list->links() }}
     </div>
 </div>
 @endsection
 @push('modals')
-    @include('partials.__confirm_delete_modal')
-    @include('partials.__add_products_modal')
+    @include('partials/__confirm_delete_modal')
+    @include('partials/__add_products_modal')
 @endpush
