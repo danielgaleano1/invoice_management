@@ -48,7 +48,7 @@ class ClientsTest extends TestCase
         $response = $this->actingAs($user)->get(route('client.index'));
 
         $response->assertSee($client->code);
-        $response->assertSee($client->full_name);
+        $response->assertSee($client->fullName);
     }
 
    public function test_unauthenticated_user_cannot_create_a_client()
