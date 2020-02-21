@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewComposerProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        App\Providers\PlacetopayServiceProvider::class,
 
     ],
 
@@ -228,7 +229,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-
     ],
 
 ];
