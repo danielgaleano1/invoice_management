@@ -33,7 +33,7 @@
                 <dd class="col-md-3">{{ $invoice_list->Client->fullName }}</dd>
 
                 <dt class="col-md-1">{{ __('invoice State') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->InvoiceState->type }}</dd>
+                <dd class="col-md-3">{{ $invoice_list->invoice_state_id }}</dd>
                 
                 <dt class="col-md-1">{{ __('Expedition at') }}</dt>
                 <dd class="col-md-3">{{ $invoice_list->created_at }}</dd>
@@ -57,6 +57,9 @@
                     <button type="button" class="btn btn-outline-primary" data-route="{{ route('invoice_product.store') }}" data-toggle="modal" data-target="#add_invoice_product_modal">
                         <i class="fas fa-plus-circle"></i> {{ __('Add Product') }}
                     </button> 
+                    <a href="{{ route('invoices.payment', $invoice_list->id) }}" class="btn btn-outline-info" title="{{ __('Pay') }}">
+                        <i class="fas fa-eye"></i> {{ __('Pay') }}
+                    </a>
                 </div>
 
                 @if ($errors->any())
