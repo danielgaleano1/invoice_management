@@ -12,11 +12,11 @@ $factory->define(Client::class, function (Faker $faker) {
     return [
         'city_id' => factory(City::class),
         'document_type_id' => factory(DocumentType::class),
-        'code' => $faker->numberBetween(14000000, 28000000),
+        'code' => $faker->word,
         'name' => $faker->firstName,
         'surname' => $faker->lastName,
         'address' => $faker->address,
-        'phone' => $faker->phoneNumber,
+        'phone' => $faker->numberBetween($min = 1000000000, $max = 9000000000),
         'email' => $faker->unique()->safeEmail,
     ];
 });

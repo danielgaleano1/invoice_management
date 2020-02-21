@@ -12,6 +12,7 @@ use App\Invoice;
 use App\InvoiceProduct;
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,8 +26,7 @@ class DatabaseSeeder extends Seeder
         factory(Country::class, 1)->create()->each(function ($country) {
             factory(City::class, 3)->create(['country_id'=>$country->id]);
         });
-        factory(DocumentType::class)->create(['code' => 'CC', 'name' => 'Cédula de ciudadania']);
-        factory(DocumentType::class)->create(['code' => 'CE', 'name' => 'Cédula de extranjeria']);
+        DB::table('document_types')->insert(['code' => 'CC', 'name' => 'Cédula de ciudadania']);
         factory(Client::class, 1)->create();
         factory(Profile::class, 1)->create();
         factory(Collaborator::class, 1)->create();
