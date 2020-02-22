@@ -121,6 +121,36 @@
                 </table>
                 </div>
             </div>
+
+            <div class="card card-default">
+                <div class="card-header">{{ __('Invoice Payment Attempts') }}</div>
+                <div class="card-footer d-flex justify-content-between">
+
+
+                <div class="card-body">
+                <table class="table table-hover table-bordered table-sm table-responsive-sm" >
+                    <thead class="thead-dark">
+                        <tr class="text-center">
+                            <th>{{ __('Status') }}</th>
+                            <th>{{ __('Created At') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($payments as $payment)
+                            <tr class="text-center">
+                                @if($payment->invoice_id == $invoice_list->id)
+                                    <td>{{ $payment->status }}</td>
+                                    <td>{{ $payment->created_at }}</td>
+                                @endif
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 @endsection

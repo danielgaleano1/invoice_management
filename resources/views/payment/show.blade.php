@@ -12,7 +12,7 @@
                 @csrf
                 <span>
                     Code: {{ $invoice->code }}
-                    Status: __{{ 'Pagada' }}
+                    Status: {{ 'Pagada' }}
                 </span>
             </form>
         </div>
@@ -21,9 +21,6 @@
             <a href="{{ route('invoice.index') }}" class="btn btn-danger">
                 <i class="fas fa-arrow-left"></i> {{ __('Cancel') }}
             </a>
-            <button type="submit" class="btn btn-success" form="payment-form">
-                <i class="fas fa-save"></i> {{ __('Pay') }}
-            </button>
         </div>
     </div> 
 @endsection

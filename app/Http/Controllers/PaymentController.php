@@ -38,6 +38,10 @@ class PaymentController extends Controller
     {
         $invoice = Invoice::findOrFail($id);
         //$payment = new Payment;
+        if ($invoice->invoice_state_id == 2)
+        {
+            return redirect()->route('invoice.show', $invoice->id);
+        }
 
         return view('payment.create', compact('invoice'));
     }
@@ -51,6 +55,11 @@ class PaymentController extends Controller
     public function store(Request $request, Placetopay $placetopay, $id)
     {
         $invoice = Invoice::findOrFail($id);
+
+        if ($invoice->invoice_state_id == 2)
+        {
+            return redirect()->route('invoice.show', $invoice->id);
+        }
 
         $payment = Payment::create();
 
@@ -98,8 +107,8 @@ class PaymentController extends Controller
             "expiration"     => date('c', strtotime('+1 hour')),
             "ipAddress"      => $request->ip(),
             "userAgent"      => $request->header('User-Agent'),
-            "returnUrl"      => route('invoices.payment.show', $invoice->id),
-            "cancelUrl"      => "http://127.0.0.1:8000/invoice",
+            "returnUrl"      => route('invoices.payment.update', $payment->id),
+            "cancelUrl"      => route('invoice.show', $invoice->id),
             "skipResult"     => false,
             "noBuyerFill"    => false,
             "captureAddress" => false,
@@ -108,7 +117,7 @@ class PaymentController extends Controller
 
         try {
             $response = $placetopay->request($request);
-
+            
             if ($response->isSuccessful()) {
                 $payment->update([
                     'status' => $response->status()->status(),
@@ -116,12 +125,10 @@ class PaymentController extends Controller
                     'request_id' => $response->requestId(),
                     'processUrl' => $response->processUrl(),
                 ]);
-                $invoice->update([
-                    'invoice_state_id' => 2
-                ]);
 
                 // Redirect the client to the processUrl or display it on the JS extension
                 return redirect($response->processUrl());
+
             } else {
                 // There was some error so check the message
                 $response->status()->message();
@@ -138,11 +145,8 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Payment $payment, Placetopay $placetopay, Invoice $invoice)
     {
-        $invoice = Invoice::findOrFail($id);
-        //$payment = new Payment;
-
         return view('payment.show', compact('invoice'));
     }
 
@@ -164,9 +168,35 @@ class PaymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Payment $payment, Placetopay $placetopay, $id)
     {
-        //
+        try {
+            $payment = Payment::findOrFail($id);
+            $response = $placetopay->query($payment->request_id);
+            $invoice = Invoice::findOrFail($payment->invoice_id);
+
+            if ($response->isSuccessful()) {
+                // In order to use the functions please refer to the RedirectInformation class
+
+                if ($response->status()->isApproved()) {
+                    $payment->update([
+                        'status' => $response->status()->status(),
+                    ]);
+                    $invoice->update([
+                        'invoice_state_id' => 2
+                    ]);
+                } else {
+                    print_r($requestId . ' ' . $response->status()->message() . "\n");
+                }
+            } else {
+                // There was some error with the connection so check the message
+                print_r($response->status()->message() . "\n");
+            }
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+        }
+        //return redirect()->route('invoice.show', compact('invoice'));
+        return view('payment.show', compact('invoice'));
     }
 
     /**
