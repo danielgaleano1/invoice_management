@@ -17,11 +17,11 @@ class CreateClientsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('city_id');
             $table->unsignedBigInteger('document_type_id');
-            $table->unsignedInteger('code')->unique();
+            $table->string('code')->unique();
             $table->string('name', 200);
             $table->string('surname', 200);
             $table->string('address', 200);
-            $table->string('phone', 50);
+            $table->string('phone', 30);
             $table->string('email', 200)->unique();
             $table->timestamps();
 

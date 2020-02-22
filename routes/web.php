@@ -20,6 +20,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('client', 'ClientController');
     Route::resource('product', 'ProductController');
     Route::resource('invoice_product', 'InvoiceProductController');
+    Route::resource('payment', 'PaymentController');
 
+    Route::get('invoice/{id}/payment', 'PaymentController@create')->name('invoices.payment');
+    Route::post('invoice/{id}/payment', 'PaymentController@store')->name('invoices.payment.store');
+    //Route::get('invoice/{id}/payment/details', 'PaymentController@show')->name('invoices.payment.show');
+    Route::get('payment/update/{id}', 'PaymentController@update')->name('invoices.payment.update');
+    
     Route::post('invoice_import_excel', 'InvoiceController@import')->name('invoices.import');
 });

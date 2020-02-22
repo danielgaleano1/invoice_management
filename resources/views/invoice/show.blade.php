@@ -33,7 +33,7 @@
                 <dd class="col-md-3">{{ $invoice_list->Client->fullName }}</dd>
 
                 <dt class="col-md-1">{{ __('invoice State') }}</dt>
-                <dd class="col-md-3">{{ $invoice_list->InvoiceState->type }}</dd>
+                <dd class="col-md-3">{{ $invoice_list->invoice_state_id }}</dd>
                 
                 <dt class="col-md-1">{{ __('Expedition at') }}</dt>
                 <dd class="col-md-3">{{ $invoice_list->created_at }}</dd>
@@ -57,6 +57,9 @@
                     <button type="button" class="btn btn-outline-primary" data-route="{{ route('invoice_product.store') }}" data-toggle="modal" data-target="#add_invoice_product_modal">
                         <i class="fas fa-plus-circle"></i> {{ __('Add Product') }}
                     </button> 
+                    <a href="{{ route('invoices.payment', $invoice_list->id) }}" class="btn btn-outline-info" title="{{ __('Pay') }}">
+                        <i class="fas fa-eye"></i> {{ __('Pay') }}
+                    </a>
                 </div>
 
                 @if ($errors->any())
@@ -118,6 +121,36 @@
                 </table>
                 </div>
             </div>
+
+            <div class="card card-default">
+                <div class="card-header">{{ __('Invoice Payment Attempts') }}</div>
+                <div class="card-footer d-flex justify-content-between">
+
+
+                <div class="card-body">
+                <table class="table table-hover table-bordered table-sm table-responsive-sm" >
+                    <thead class="thead-dark">
+                        <tr class="text-center">
+                            <th>{{ __('Status') }}</th>
+                            <th>{{ __('Created At') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($payments as $payment)
+                            <tr class="text-center">
+                                @if($payment->invoice_id == $invoice_list->id)
+                                    <td>{{ $payment->status }}</td>
+                                    <td>{{ $payment->created_at }}</td>
+                                @endif
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 @endsection

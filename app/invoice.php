@@ -28,6 +28,11 @@ class Invoice extends Model
         return $this->hasMany(InvoiceProduct::class);
     }
 
+    public function Payment()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
     public function scopeSearchs($query, $searchs) 
     {
         if ($searchs){

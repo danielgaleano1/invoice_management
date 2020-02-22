@@ -11,6 +11,7 @@ use App\Client;
 use App\InvoiceState;
 use App\InvoiceProduct;
 use App\Product;
+use App\Payment;
 use App\Imports\InvoicesImport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -44,7 +45,7 @@ class InvoiceController extends Controller
     {
         $invoice = new Invoice;
 
-        return response()->view('invoice.create', compact('invoice'));
+        return response()->view('invoice.create', compact('invoice', 'invoice_state'));
     }
 
     /**
@@ -62,8 +63,8 @@ class InvoiceController extends Controller
         $invoice = Invoice::create($request->all());
 
         $invoice->update([
-            'code' => str_pad($invoice->id, config('invoices.code_lenght'), '0', STR_PAD_LEFT)
-            //'invoice_state_id' => config('invoices.state_initial')
+            'code' => str_pad($invoice->id, config('invoices.code_lenght'), '0', STR_PAD_LEFT),
+            'invoice_state_id' => InvoiceState::first()->id
         ]);
         
         return redirect()->route('invoice.index')->withSuccess(__('Invoice create successfully!'));
@@ -81,6 +82,7 @@ class InvoiceController extends Controller
         return view('invoice.show', [
             'invoice_list' => $invoice_list,
             'invoice_product_list' => InvoiceProduct::all(),
+            'payments' => Payment::all()
         ]);
     }
 
